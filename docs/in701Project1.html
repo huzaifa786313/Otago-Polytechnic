@@ -50,6 +50,10 @@
 							<h4>Thursday</h4>
 							<p>I successfully got placed into the Operations and Security group and was given one of the Raspberry Pi clusters to work with, the objective of the raspberry pi cluster was to simulate a small office enviroment so they would require various services such as a mail server or a website. After the raspberry pi's were all set up we were to attack and defend against the other Raspberry Pi team so in order to achieve this i decided to install download and flash kali linux onto all of the raspberry pi SD cards but after i did this i realised i was off the mark and that they should be command line based and not GUI's so with that knowledge and some assisstance from James i instead downloaded and installed Raspbian Buster Lite which is a command line based linux system</p>
 							<h4>Friday</h4>
+							<p>After setting up Raspbian on all 3 of the raspberry pi's in my teams cluster i then had to figure out how to connect to them remotely in order to configure them, after doing some googling on this subject i learnt that you needed to create a file and rename it ssh on the sd card this then enables ssh on the raspberry pi allowing for remote connection all that was left now was to figure out what the ip address of the raspberry pi's were. </p>
+							<p>After googling to find out what the ip address was of a connected raspberry pi i came accross a stackoverflow post that answered this question and it was to run the following command seen in the picture below <img src="img/raspberryip.JPG" width =100%>
+							</p>
+							<p>I proceeded to turn the devices and discover there ip one at a time in order to not get confused with which device in the cluster stack had which ip, once i had achieved all of the </p>
 						</div>
 					</div>
 					<div class="card">
@@ -88,8 +92,26 @@
 							<h4>Monday</h4>
 							<h4>Tuesday</h4>
 							<h4>Wednesday</h4>
+							<p>Farmbot is now successfully working
+								After all my previous attempts to get Farmbot running I went back to the FarmBot2020 GitHub repo https://github.com/Lockam1/FarmBot2020 and investigated the network documentation that was from previous semesters.
+<br><br>
+								After looking at WirelessConnection-MAY19.pdf I saw that Rob had requested a key from ITS for the MAC address associated with the Farmbot device and they then mention that it is on the OP-Mobile network, after seeing this I then went over the other files and saw in ConnectionIssues-OCT19.pdf that there was a mention of checking if it will work eduroam network. In the document 2019LAN-WiFi%20connection-Pre-Showcase.pdf they mentioned that they but the MAC address of the Farmbot device on wireless vlan 35 which doesn't have any port restrictions. 
+								<br><br>
+								So after reading all this I went to check with Rob if maybe the reason it didn’t work was because the device the students were using was not also in the same network / vlan as the Farmbot device I also asked if the previous Farmbot group had tried this solution which he was unsure of. I also checked in with Vaughn to update him on the plan as well as asked him about if he knew if the previous group had attempted something similar to which he was unsure of (this gave me some hope that it was going to work).
+								<br><br>
+								I then proceeded to take myself and Damian over to ITS to get his device placed on vlan 35 in the OP-Mobile network, but Perrin was unavailable so instead I sent an email to him. While I was waiting for a response I flashed the SD with a fresh install of Farmbot and was going to place the key onto the Farmbot device so it would be set to go as soon as we heard back from Perrin with the key for Damian's device, when I was about to set the Wi-Fi to "OP-Mobile" I noticed that it didn’t have a key icon next to it and went to talk to rob about this, I then had the idea of manually setting the network to "OP-Mobile" this then asked me to input the key which I did.
+								<br><br>
+								For some reason I then thought maybe 50/50 this might work so I connected my mobile phone to the eduroam network and went to my.farm.bot which then proceeded to work but in order to actually confirm that I could move Farmbot from the app I then had to plug it in with the help of James Wood, we pressed the arrows on the web app and BAM it worked but in order to see if it was actually working and not a fluke we got James to connect to Farmbot on his device and see if he could also operate it which he could.
+								<br><br>
+								The answer was in the documentation all along, but it was spread out over different docs we will now condense the solution in order to make future groups life a bit easier.
+
+							</p>
 							<h4>Thursday</h4>
+							<p>I managed to successfully reboot the previous used ticketing system for the Operations and Security team i also added myself as an admin for the ticketing system via the command line this allowed me to disable the previous semesters accounts so they couldn't see our current tickets this was done purely as a security measure, i also create accounts for the current team and upgrade the previous semester members that were now in project 2 to admin accounts this allows everyone to work with the ticketing system, I then informed Faisal on the progress of the ticketing system.</p>
+							<p>When i arrived home i then informed Matthew Hall who was the lead on working with the ticketing system and was looking at possible new applications to serve this function that i managed to reboot the previous ticketing system that was in place <img src="img/ticketing1.JPG" width=100%></p>
+							<p>After getting the ticketing system back up and running i noticed that there was a large amount of tickets still remaining from the previous semester further investigation into these tickets saw that they were being automaticaly generate based on the nagios server checks and we were recieving a large amount of spam</p>
 							<h4>Friday</h4>
+							
 						</div>
 					</div>
 					<div class="card">
@@ -98,6 +120,7 @@
 						</div>
 						<div class="card-body">
 							<h4>Monday</h4>
+							<p>In the Operations and Security meeting i updated the group on the progress of Farmbot which was not officaly up and running and that a report will be compiled with the process of figuring out the solution and the support documents that were used, Matthew also informed the group about the progress i had made with the ticketing system and that we would instead use that instead of a new application as it was already working and other applications would of required time investment</p>
 							<h4>Tuesday</h4>
 							<h4>Wednesday</h4>
 							<h4>Thursday</h4>
