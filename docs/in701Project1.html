@@ -339,7 +339,10 @@
 						</div>
 						<div class="card-body">
 							<h4>Monday</h4>
-							<p>I took what i learnt in System's Administration and added both owncloud and nagios to the raspberry pi's in order to help reinforce familiarity with installation and configuration of these softwares, i also created a slack channel for the raspberry pi project that i could use to test if nagios would correctly be able to send messages of errors in the configured nagios checks, after i got nagios and slack both ready to go i then proceeded to create a nagios check that would test disk space on the raspberry pi devices and i set it so it would appear that they were full in order to force a notification to slack from nagios which worked as planned <img src="img/nagioscheck.JPG" width=100%> </p>
+							<p>I took what i learnt in System's Administration and added both owncloud and nagios to the raspberry pi's in order to help reinforce familiarity with installation and configuration of these softwares. <img src="img/owncloudnagios.JPG" width=100%> 
+							My next plan was to find a way to get nagios to send alert message to the Operations and Security team channel and i learnt that it's kind of difficult, i needed to create a webhook that could be used to connect nagios and teams together which was easy enough to setup. <img src="img/teamscheck.JPG" width=100%> 
+							But unfortunatley it was more complicated to actually implement it afterwards so instead i then decided to create a slack channel for the raspberry pi project that i could use to test if nagios would correctly be able to send messages of errors in the configured nagios checks, after i got nagios and slack both ready to go i then proceeded to create a nagios check that would test disk space on the raspberry pi devices and i set it so it would appear that they were full in order to force a notification to slack from nagios which worked as planned <img src="img/nagioscheck.JPG" width=100%> <br>
+							After it was all setup i did some further research and tried to find out if you can send notifications from slack to Microsoft Teams, and it turns out you can but they are paid applications  </p>
 							<h4>Tuesday</h4>
 							<h4>Wednesday</h4>
 							<h4>Thursday</h4>
@@ -381,6 +384,7 @@
 						</div>
 						<div class="card-body">
 							<h4>Monday</h4>
+							<p>Today Faisal informed us that he had installed vulnerabilities on our raspberry pi systems and that we needed to discover, exploit and then fix them</p>
 							<h4>Tuesday</h4>
 							<h4>Wednesday</h4>
 							<h4>Thursday</h4>
