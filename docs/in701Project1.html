@@ -353,9 +353,12 @@
 						<div class="card-body">
 							<h4>Monday</h4>
 							<h4>Tuesday</h4>
+							<p>I went into polytech to see what was the issue with the raspberry pi "zeus" connection so because i couldn't ssh onto it i had to plug a mini hdmi cable and keyboard into the device so i could connect and see what was happening that way, when i got it all connected it turns out that the top raspberry pi which was meant to have the SD card configured with the zeus configuration instead had the poseidon card in it, so i swapped the cards over and rebooted them both and confirmed that it was all back up and running</p>
 							<h4>Wednesday</h4>
 							<h4>Thursday</h4>
+							<p>I was trying to ssh onto the zeus raspberry pi from home but was getting connection refused so i went onto my mgmt server for System's Administration and nmap'd the zeus ip and discovered that the command nmap -p- 10.118.2.72 wasn't returning open ports so instead i had to use nmap -Pn- 10.118.2.72 and discovered that it was being filtered <img src=> <br><br>So i contacted Damian to see if he was on site at polytech for his robotics project and he was, so i asked him if he could spare a moment and go over to the raspberry pi machines and connect to the top device on the raspberry pi stack which was meant to be zeus but when he got onto it, it once again was poseidon which led me to believe someone was messing with it, after this the zeus raspberry pi began to have kernel panics and wouldn't restart correctly so i decided i would come in the next day and once again fix it. </p>
 							<h4>Friday</h4>
+							<p>So i had to go back into polytech because the raspberry pi "zeus" was having kernel issues so once again i had to connect an hdmi cable and keyboard to get onto it, after googling how to fix it by checking the error code it was giving i then took the sd card out of zeus and plugged it into the card reader connected to a linux machine that we had setup to act as a bridge and began to modify files that should of fixed the problem according to the answers i discovered when googling the error. After about an hour of trying to fix it i had to give up and instead just reflashed a fresh Raspbian Lite image onto it i then put the sd card into the raspberry pi and rebooted it. I then configured port_forwarding and recreated the virtual interfaces on the device so that the other 2 raspberry pi's could still access the internet i then ran the scripts to get it initally configured with the host names and user accounts although this time i removed the other teams account from the creation script, i then confirmed that everything was working correctly by logging onto both the other raspberry pi's and doing ping tests between each other, the default gateway (zeus) and google (8.8.8.8) all of these came back with a positive connection</p>
 						</div>
 					</div>
 					<div class="card">
@@ -364,6 +367,7 @@
 						</div>
 						<div class="card-body">
 							<h4>Monday</h4>
+							<p></p>
 							<h4>Tuesday</h4>
 							<h4>Wednesday</h4>
 							<h4>Thursday</h4>
