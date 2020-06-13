@@ -75,7 +75,9 @@
 							</p>
 							<p>I proceeded to turn the devices and discover there ip one at a time in order to not get
 								confused with which device in the cluster stack had which ip, once i had all of
-								the ip addresses for the raspberry pi devices i then connected to each of them through ssh and setup basic configuration of the devices such as changing the hosts and hostname of the devices  </p>
+								the ip addresses for the raspberry pi devices i then connected to each of them through
+								ssh and setup basic configuration of the devices such as changing the hosts and hostname
+								of the devices </p>
 						</div>
 					</div>
 					<div class="card">
@@ -102,8 +104,43 @@
 							<h4>Monday</h4>
 							<h4>Tuesday</h4>
 							<h4>Wednesday</h4>
+							<p>
+								I began to test Msmtp/mutt in order to email logs from /var/log/ to an email address for the purpose to notify if anything unusal was happening but to begin with a i just sent the syslogs
+							</p>
 							<h4>Thursday</h4>
+							<p>
+								After sucsess with manually sending logs i decided to create a cron hourly job and see if that would work to send email logs every hour, i did this for about 2 days before i decided to stop it for the moment as nothing important was happening and i would reconfigure it and implement it back later on when the attack and defending scenarios were happening
+							</p>
 							<h4>Friday</h4>
+							<p>I began looking into helping the farmbot team as they were unable to connect to their
+								farmbot device unless they were using mobile data which wasn't a plausable option for
+								them
+								<br><br>
+								My initial thought was that I could setup a private network inside the polytech using a
+								raspberry pi to create a wireless access point and hope that would allow the bypassing
+								of the polytech policies.
+								<br><br>
+								I used the following 2 guides to quickly set it up
+							<ul>
+								<li>
+									<a
+										href="https://howtoraspberrypi.com/create-a-wi-fi-hotspot-in-less-than-10-minutes-with-pi-raspberry/">https://howtoraspberrypi.com/create-a-wi-fi-hotspot-in-less-than-10-minutes-with-pi-raspberry/</a>
+								</li>
+								<li>
+									<a
+										href="https://github.com/billz/raspap-webgui">https://github.com/billz/raspap-webgui</a>
+								</li>
+							</ul>
+							
+							I then needed to enable forwarding of packets by uncommenting #net.ipv4.ip_forward=1 in
+							/etc/sysctl.conf this then allowed users to connect to the raspberry pi wireless network and
+							access the internet through it, at this point I believed that this would work to get Farmbot
+							to work.
+							<br><br>
+							After getting everything setup i then proceeded to re-flash the farmbot os onto the raspberry pi device that was going to be used for farmbot i then connected this device to farmbot hardware and turned it on, i then connected to the farmbots device initial setup Wi-Fi where i then choose for its connection to the internet to be that of the raspberry pi's private network that i had setup after this was done i then connected to the private network on the mobile device and went to the farmbot web url https://my./farm.bot/ which allowed me to access the web interface for the farmbot device, in theory this should of allowed me to use the controls to move the farmbot hardware but atlast it did not so i had to come up with a new plan on how to get connection between farmbot and the mobile device.
+							<br><br>
+							later on that day i had an idea that i could try to setup a vpn that would allow me to bypass the polytechs policies that were blocking connections, i took this idea to Rob to see if it would be ok or if it would cause some issues and if it could possibly work, he said it should be ok since we were third year students and were doing it for a non-malicious purpose and also confirmed that it might be a possible solution 
+							</p>
 						</div>
 					</div>
 					<div class="card">
@@ -302,6 +339,7 @@
 						</div>
 						<div class="card-body">
 							<h4>Monday</h4>
+							<p>I took what i learnt in System's Administration and added both owncloud and nagios to the raspberry pi's in order to help reinforce familiarity with installation and configuration of these softwares, i also created a slack channel for the raspberry pi project that i could use to test if nagios would correctly be able to send messages of errors in the configured nagios checks, after i got nagios and slack both ready to go i then proceeded to create a nagios check that would test disk space on the raspberry pi devices and i set it so it would appear that they were full in order to force a notification to slack from nagios which worked as planned <img src="img/nagioscheck.JPG" width=100%> </p>
 							<h4>Tuesday</h4>
 							<h4>Wednesday</h4>
 							<h4>Thursday</h4>
@@ -329,6 +367,7 @@
 							<h4>Tuesday</h4>
 							<h4>Wednesday</h4>
 							<h4>Thursday</h4>
+							<p>I created login credentials for Faisal and added him to the sudo group i then email'd him those credentials along with the list of ip's required and instructions on how to connect to each device <img src=""></p>
 							<h4>Friday</h4>
 						</div>
 					</div>
@@ -341,10 +380,10 @@
 							<h4>Tuesday</h4>
 							<h4>Wednesday</h4>
 							<h4>Thursday</h4>
-							<p>Today i checked in with the farmbot team and </p>
+							<p>Today i checked in with the farmbot team and confirmed if they were still having issues being able to connect to farmbot to which they were so i messaged Damian later on in the evening to let him know that when i go in tomorrow i'll look into it and see if i can get is fixed</p>
 							<p></p>
 							<h4>Friday</h4>
-							<p></p>
+							<p>Once again farmbot is working correctly from both the mobile and laptop device, I'm not 100% sure on what was the cause of their problems as i followed the instructions from the print out that i gave them when i first got it working but it may of been because i used WPA instead of WPA2</p>
 						</div>
 					</div>
 					<div class="card">
