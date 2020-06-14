@@ -27,6 +27,9 @@
                 <li class="nav-item text-light">
                     <a href="in701Project1.html" class="nav-link">IN701 Project 1</a>
                 </li>
+                <li class="nav-item text-light">
+                    <a href="Farmbot_Report1.htm" class="nav-link">Farmbot Report</a>
+                </li>
             </ul>
 
         </div>
@@ -480,7 +483,11 @@
                         <div class="card-body">
                             <h4>Monday</h4>
                             <p>Today Faisal informed us that he had installed vulnerabilities on our raspberry pi
-                                systems and that we needed to discover, exploit and then fix them</p>
+                                systems and that we needed to discover, exploit and then fix them. I was able to nmap scan my own devices in order to discover if any new ports had been opened <img src="img/vuln.JPG" width=100%><br>
+                            On the device with the ip of 192.168.1.2 i noticed that port 53 as well as 8192 had been opened which leads me to believe these were the vulnerabilities that Faisal had deployed on our servers, now all that was left to do was to figure out how to fix what Faisal did.
+                            <br>
+                            I also knew the default login details for the other team's raspberry pi as they hadn't changed it so i logged onto their gateway server and nmap'd the gateway and there private ip devices to discover the vulnerable ports <img src="img/nmap.JPG" width=100%> <br> After looking at the nmap scan of the other team's devices and comparing it with my own i can see that both networks have a vulnerablitie on port 53 and they may also have one on port 44306 unless that is being used by something they installed.
+                            </p>
                             <h4>Tuesday</h4>
                             <h4>Wednesday</h4>
                             <h4>Thursday</h4>
