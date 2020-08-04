@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a9b15330edd5d25c938f54c0535a66ae4b5954f252db7d2a3175561f383a4fec
-size 266
+---
+  - name: testbook
+    hosts: 10.10.10.4
+    #remote_user: ansible
+    become: yes
+    #become_method: su
+    #become_user:
+    gather_facts: true
+    tasks:
+         - name: download test
+           apt:
+                name: vim
+                state: latest
+

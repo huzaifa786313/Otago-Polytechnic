@@ -1,3 +1,111 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f5912bb3a520c7e73d806e12b4182dbf2f82150e23ab621ce50b1eaad870c659
-size 3421
+- name: Create Azure VM
+  hosts: localhost
+  connection: local
+
+  vars:
+
+   vm_offer: "UbuntuServer"
+   vm_pub: "Canonical"
+   vm_sku: "18.04-LTS"
+
+   vm_size: "Standard_B2s"                              #Refer to 
+
+   az: "australiaeast"
+
+   vm_net: "IoTData_Net"                                #Virtual Network
+   vm_subnet: "IoTData_Sub"                             #Added into vm_net
+
+   vm_publicIP: "IoTData_IP"                            #Public Ip Address
+   vm_NSG: "IoTData_Network_Security_Group"             #Network Security Group
+   vm_NIC: "IoTData_Network_Interface_Card"             #Network Interface
+   vm_Name: "IoTData"                                   #Virtual Machine
+
+   resource_group: "in700_iot"                          
+
+   os_user: "azuser"                                    #Initial Login User
+   os_pass: "AzuserP@ssw0rd"                            #Initial Login Password
+
+  tasks:
+
+  - name: Create a resource group
+    azure_rm_resourcegroup:
+      name: "{{ resource_group }}"
+      location: "{{ az }}"
+      tags:
+        testing: testing
+        delete: never
+
+  - name: Create virtual network
+    azure_rm_virtualnetwork:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_net }}"
+      address_prefixes: "10.0.0.0/16"
+
+  - name: Add subnet
+    azure_rm_subnet:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_subnet }}"
+      address_prefix: "10.0.1.0/24"
+      virtual_network: "{{ vm_net }}"
+
+  - name: Create public IP address
+    azure_rm_publicipaddress:
+      resource_group: "{{ resource_group }}"
+      allocation_method: Static
+      name: "{{ vm_publicIP }}"
+      #domain_name: bit-iotdata                         #What you wanted your DNS name to be + your region + .cloudapp.azure.com i.e. bit-iotdata-australiaeast.cloudapp.azure.com
+    register:  reg_publicIP
+
+  - debug: var=reg_publicIP
+
+  - name: Create Network Security Group that allows SSH
+    azure_rm_securitygroup:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_NSG }}"
+      rules:
+        - name: SSH
+          protocol: Tcp
+          destination_port_range: 22
+          access: Allow
+          priority: 1001
+          direction: Inbound
+        - name: HTTP
+          protocol: Tcp
+          destination_port_range: 80
+          access: Allow
+          priority: 1002
+          direction: Inbound
+        - name: HTTPS
+          protocol: Tcp
+          destination_port_range: 443
+          access: Allow
+          priority: 1003
+          direction: Inbound 
+
+  - name: Create virtual network interface card
+    azure_rm_networkinterface:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_NIC }}"
+      virtual_network: "{{ vm_net }}"
+      subnet: "{{ vm_subnet }}"
+      public_ip_name: "{{ vm_publicIP }}"
+      security_group: "{{ vm_NSG }}"
+
+  - name: Create VM
+    azure_rm_virtualmachine:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_Name }}"
+      vm_size: "{{ vm_size }}"
+      admin_username: "{{ os_user }}"
+      admin_password: "{{ os_pass }}"
+      ssh_password_enabled: true
+      #ssh_public_keys:
+      #  - path: "/home/{{ os_user }}/.ssh/authorized_keys"
+      #    key_data: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABwlu57 mykey"
+      network_interfaces: "{{ vm_NIC }}"
+      image:
+        offer: "{{ vm_offer }}"
+        publisher: "{{ vm_pub }}"
+        sku: "{{ vm_sku }}"
+        version: latest
+

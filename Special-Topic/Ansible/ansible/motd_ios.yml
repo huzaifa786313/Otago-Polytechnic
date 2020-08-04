@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ff54267b9111a088c6ba1dbc1647e0f9149d2d41f6184f761c7a081a280be9d2
-size 415
+---
+  - name: testbook
+    hosts: network
+    connection: local
+    remote_user: admin
+    gather_facts: false
+    tasks:
+            - name: configure login banner
+              ios_banner:
+                      banner: login
+                      text: |
+                              WingleWazzle
+                              Orange
+                              Pineapple
+                      state: present
+

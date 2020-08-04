@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:07e8f5d5f7600e76cab78ecaa36059b7b7c1d9919a738f288a0f60d483025da9
-size 548
+---
+- name: Download Gitlab MkII
+  hosts: gitlab
+  remote_user: azuser
+  become: true
+  tasks:
+          #- name: configure external url
+     #   lineinfile:
+             #path: /etc/gitlab/gitlab.rb
+        #regexp: 'external_url 'http://gitlab.example.com''
+        #        line: external_url http://gitlab-test.australiaeast.cloudapp.azure.com
+    - name: configure external url
+      lineinfile:
+         path: /etc/gitlab/gitlab.rb
+         regexp: '^test'
+         line: "external_url 'http://gitlab-test.australiaeast.cloudapp.azure.com'"
+
