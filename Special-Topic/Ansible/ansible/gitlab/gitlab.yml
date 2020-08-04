@@ -1,12 +1,3 @@
----
-- name: get gitlab
-  hosts: gitlab
-  gather_facts: true
-
-  tasks:
-        - name: get git repo
-          uri:
-            url: "https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh"
-            method: GET
-            validate_certs: no
-          register: git_info
+version https://git-lfs.github.com/spec/v1
+oid sha256:3c39981c7f11ac9ac957e18db0aadb1466c6dd52024adda41bf189353026984d
+size 297

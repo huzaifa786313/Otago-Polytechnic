@@ -1,9 +1,3 @@
----
-  - name: testbook
-    hosts: network
-    connection: local
-    remote_user: admin
-    gather_facts: false
-    tasks:
-            - ping:
-
+version https://git-lfs.github.com/spec/v1
+oid sha256:d3cf3b051b0223de7912d0293fd938ca9ef314a84fc4fc2b1b5275919826ef35
+size 143

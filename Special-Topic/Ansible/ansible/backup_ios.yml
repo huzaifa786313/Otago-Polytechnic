@@ -1,20 +1,3 @@
----
-  - name: testbook
-    hosts: network
-    connection: local
-    remote_user: admin
-    gather_facts: false
-    tasks:
-            - name: backup running config
-              block:
-              - name:
-                ios_command:
-                      commands: show running-config
-                register: ios_cmd
-
-              - name: copy running config to backup folder
-                copy:
-                  content: " {{ ios_cmd.stdout[0] }}"
-                  dest: "/etc/ansible/backup/backup.txt"
-                   
-
+version https://git-lfs.github.com/spec/v1
+oid sha256:e05170803bf690336354dea372af155fe288374a4f36019ea068c86e32da70ea
+size 536
