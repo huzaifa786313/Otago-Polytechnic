@@ -1,0 +1,121 @@
+ Building configuration...
+
+Current configuration : 1505 bytes
+!
+version 12.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+ip subnet-zero
+no ip icmp rate-limit unreachable
+!
+!
+!
+!
+ip cef
+ip tcp synwait-time 5
+no ip domain lookup
+ip domain name specialtopic.test.com
+ip ssh version 2
+!
+!
+multilink bundle-name authenticated
+call rsvp-sync
+!
+!
+!
+!
+!
+!
+!
+username admin privilege 15 password 0 admin
+!
+! 
+!
+!
+!
+!
+!
+interface Loopback1
+ ip address 200.0.0.1 255.255.255.255
+!
+interface FastEthernet0/0
+ no ip address
+ shutdown
+ duplex half
+!
+interface GigabitEthernet1/0
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet2/0
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet3/0
+ ip address 192.168.0.5 255.255.255.252
+ negotiation auto
+!
+interface GigabitEthernet4/0
+ ip address 192.168.0.2 255.255.255.252
+ negotiation auto
+!
+router ospf 1
+ router-id 2.2.2.2
+ log-adjacency-changes
+ network 192.168.0.0 0.0.0.3 area 0
+ network 192.168.0.4 0.0.0.3 area 2
+ network 200.0.0.1 0.0.0.0 area 0
+!
+ip classless
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+control-plane
+!
+!
+!
+dial-peer cor custom
+!
+!
+!
+!
+gatekeeper
+ shutdown
+!
+banner login ^C
+WingleWazzle
+Orange
+Pineapple
+^C
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ stopbits 1
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ stopbits 1
+line vty 0 4
+ login local
+ transport input ssh
+!
+end

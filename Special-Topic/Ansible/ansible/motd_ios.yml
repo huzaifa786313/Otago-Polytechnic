@@ -1,0 +1,16 @@
+---
+  - name: testbook
+    hosts: network
+    connection: local
+    remote_user: admin
+    gather_facts: false
+    tasks:
+            - name: configure login banner
+              ios_banner:
+                      banner: login
+                      text: |
+                              WingleWazzle
+                              Orange
+                              Pineapple
+                      state: present
+

@@ -1,0 +1,5 @@
+- name: Create resource group
+  azure_rm_resourcegroup:
+    name: myResourceGroup
+    location: eastus
+    subscription_id: d040a2d6-a32d-4e52-b77a-d6cbc0fbdd14

@@ -1,0 +1,20 @@
+---
+  - name: testbook
+    hosts: network
+    connection: local
+    remote_user: admin
+    gather_facts: false
+    tasks:
+            - name: backup running config
+              block:
+              - name:
+                ios_command:
+                      commands: show running-config
+                register: ios_cmd
+
+              - name: copy running config to backup folder
+                copy:
+                  content: " {{ ios_cmd.stdout[0] }}"
+                  dest: "/etc/ansible/backup/backup.txt"
+                   
+

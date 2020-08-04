@@ -1,0 +1,40 @@
+---
+- name: Download Gitlab MkII
+  hosts: gitlab
+  remote_user: azuser
+  become: true
+  tasks:
+   - name: Create Directory
+     become: yes
+     file:
+       path: /test/
+       state: directory
+       mode: 0777
+       owner: azuser
+       group: azuser
+
+   - name: Download Package Update Repo Script
+     become: yes
+     get_url:
+        url: "https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh"
+        dest: /test/
+        mode: 0777
+        owner: azuser
+        group: azuser
+
+   - name: Run Update Package Repo Script
+     shell: /test/script.deb.sh
+    
+   - name: Install gitlab CE
+     apt:
+        name: gitlab-ce
+        state: latest
+
+   - name: configure external url
+     lineinfile:
+        path: /etc/gitlab/gitlab.rb
+        regexp: "^external_url 'http://gitlab.example.com'"
+        line: external_url http://gitlab-test.australiaeast.cloudapp.azure.com
+
+   - name: reconfigure gitlab
+     command: gitlab-ctl reconfigure

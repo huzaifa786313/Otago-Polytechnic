@@ -1,0 +1,16 @@
+---
+- hosts: network
+  gather_facts: false
+  connection: network_cli
+  #ansible_user: admin
+  #ansible_password: admin
+  tasks:
+    - name: cisco ios
+      block:
+              - name: run command
+                cli_command:
+                        command: show run
+                        register: result
+              - name: display
+                debug:
+                        var: result.stdout_lines

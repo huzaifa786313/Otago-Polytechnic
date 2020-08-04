@@ -1,0 +1,8 @@
+---
+  - name: testbook
+    hosts: network
+    remote_user: admin
+    gather_facts: true
+    tasks:
+            - ping:
+

@@ -1,0 +1,12 @@
+---
+- name: get gitlab
+  hosts: gitlab
+  gather_facts: true
+
+  tasks:
+        - name: get git repo
+          uri:
+            url: "https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh"
+            method: GET
+            validate_certs: no
+          register: git_info
