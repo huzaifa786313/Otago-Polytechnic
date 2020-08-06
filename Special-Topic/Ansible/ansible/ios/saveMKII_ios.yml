@@ -1,0 +1,14 @@
+---
+  - name: testbook
+    hosts: network
+    connection: local
+    remote_user: admin
+    gather_facts: false
+    tasks:
+    - name: save config
+      ios_command:
+        commands:
+         - command: 'wr'
+           prompt: 'Overwrite the previous NVRAM configuration?[confirm]'
+           answer: 'yes'
+

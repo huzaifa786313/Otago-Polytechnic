@@ -1,0 +1,11 @@
+---
+  - name: testbook
+    hosts: network
+    connection: local
+    remote_user: admin
+    gather_facts: false
+    tasks:
+            - name: See run
+              ios_command:
+                      commands: show run
+
