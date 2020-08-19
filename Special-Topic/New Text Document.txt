@@ -1,0 +1,168 @@
+default route 0.0.0.0 0.0.0.0 172.17.0.2 on the router that connects directly to the ansible machine, i then redistribute this route into ospf so that the other routers can get to into
+create routes on the ansible machine going through the docker0 interface to the gns3 routers i.e. sudo ip route add 192.168.0.4/30 via 172.17.0.1 dev docker0
+
+/opt/gns3
+/etc/gns3
+
+
+ACHIEVED
+save config / daily configs
+push config only motd done so far
+
+cd /tmp
+curl https://raw.githubusercontent.com/GNS3/gns3-server/master/scripts/remote-install.sh > gns3-remote-install.sh
+sudo bash gns3-remote-install.sh --with-openvpn --with-iou --with-i386-repository
+
+
+connection is looking good
+
+to do:
+    get traffic coming from 172.0.0.1 to go out onto to the net
+    transfer gns3server / ansible to their own machines 
+
+sudo ip route add 192.168.0.4/30 via 172.17.0.1 dev docker0
+sudo ip route add 192.168.0.0/30 via 172.17.0.1 dev docker0
+sudo ip route add 192.168.1.0/30 via 172.17.0.1 dev docker0
+sudo ip route add 192.168.1.4/30 via 172.17.0.1 dev docker0
+sudo ip route add 192.168.1.8/30 via 172.17.0.1 dev docker0
+
+sudo ip route del 192.168.0.4/30 via 172.17.0.1 dev docker0
+sudo ip route del 192.168.0.0/30 via 172.17.0.1 dev docker0
+sudo ip route del 192.168.1.0/30 via 172.17.0.1 dev docker0
+sudo ip route del 192.168.1.4/30 via 172.17.0.1 dev docker0
+sudo ip route del 192.168.1.8/30 via 172.17.0.1 dev docker0
+
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo iptables -A FORWARD -i tap1 -o eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -i eth0 -o tap1 -j ACCEPT
+
+sudo iptables -A FORWARD -i eth0 -o tap1 -m state --state RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -i tap1 -o etho -j ACCEPT
+
+
+sudo tunctl -t tap2
+sudo ifconfig tap2 10.10.10.254 netmask 255.255.255.0 up
+
+sudo tunctl -t tap1
+sudo ifconfig tap1 192.168.0.254 netmask 255.255.255.0 up
+sudo ip route add 200.1.1.1/32 via 192.168.0.254 dev tap1
+sudo ip route add 192.168.0.0/24 via 192.168.0.254 dev tap1
+sudo ip route add 192.168.1.0/30 via 192.168.0.254 dev tap1
+
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo iptables -A FORWARD -i tap1 -j ACCEPT
+sudo iptables -A INPUT -i tap1 -j ACCEPT
+sudo iptables -A FORWARD -i eth0 -j ACCEPT
+sudo iptables -A INPUT -i eth0 -j ACCEPT
+
+sudo iptables -t nat -A POSTROUTING -o tap1 -j MASQUERADE
+
+sudo iptables -A FORWARD --in-interface eth0 --out-interface tap1 -j ACCEPT
+sudo iptables -t nat -A POSTROUTING --out-interface tap1 -j MASQUERADE
+
+sudo iptables -A FORWARD -p tcp -m state -d 192.168.0.0/255.255.255.0 --state RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -p udp -m state -d 192.168.0.0/255.255.255.0 --state RELATED,ESTABLISHED -j ACCEPT
+
+sudo iptables -A FORWARD -p tcp -m state -d 10.10.10.0/255.255.255.0 --state RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -p udp -m state -d 10.10.10.0/255.255.255.0 --state RELATED,ESTABLISHED -j ACCEPT
+
+sudo ip route add 
+
+wdiff *file1* *file2* | colordiff
+
+sudo ip route add 10.10.10.0/24 via 172.17.0.1 dev docker0
+
+sudo iptables -A FORWARD -i docker0 -o eth0 -j ACCEPT
+sudo iptables -A FORWARD -i eth0 -o docker0 -m state --state ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
+ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --bip "10.10.10.0/24"
+
+
+sudo iptables -F
+sudo iptables -X
+sudo iptables -t nat -F
+sudo iptables -t nat -X
+sudo iptables -t mangle -F
+sudo iptables -t mangle -X
+sudo iptables -P INPUT ACCEPT
+sudo iptables -P FORWARD ACCEPT
+sudo iptables -P OUTPUT ACCEPT
+
+apt-get install ifmetric
+sudo ifmetric *interface* *metric*
+
+
+
+route add                  metric 150 dev eth0
+
+route add -net 127.0.0.0 netmask 255.0.0.0 metric 1024 dev lo
+              adds the normal loopback entry, using netmask 255.0.0.0 and associated with the "lo" device (assuming this device was previously set up correctly with ifconfig(8)).
+
+       route add -net 192.56.76.0 netmask 255.255.255.0 metric 1024 dev eth0
+              adds a route to the local network 192.56.76.x via "eth0".  The word "dev" can be omitted here.
+
+       route del default
+              deletes the current default route, which is labeled "default" or 0.0.0.0 in the destination field of the current routing table.
+
+       route del -net 192.56.76.0 netmask 255.255.255.0
+              deletes the route. Since the Linux routing kernel uses classless addressing, you pretty much always have to specify the netmask that is same as as seen in 'route -n' listing.
+
+       route add default gw mango
+              adds a default route (which will be used if no other route matches).  All packets using this route will be gatewayed through the address of a node named "mango".  The  device  which  will
+              actually be used for that route depends on how we can reach "mango" - "mango" must be on directly reachable route.
+
+       route add mango sl0
+              Adds the route to the host named "mango" via the SLIP interface (assuming that "mango" is the SLIP host).
+
+       route add -net 192.57.66.0 netmask 255.255.255.0 gw mango
+              This command adds the net "192.57.66.x" to be gatewayed through the former route to the SLIP interface.
+
+       route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
+              This  is  an  obscure one documented so people know how to do it. This sets all of the class D (multicast) IP routes to go via "eth0". This is the correct normal configuration line with a
+              multicasting kernel.
+
+       route add -net 10.0.0.0 netmask 255.0.0.0 metric 1024 reject
+              This installs a rejecting route for the private network "10.x.x.x."
+
+       route -6 add 2001:0002::/48 metric 1 dev eth0
+              This adds a IPv6 route with the specified metric to be directly reachable via eth0.
+
+
+Create the configuration files:
+sudo touch /etc/quagga/bgpd.conf
+sudo touch /etc/quagga/isisd.conf
+sudo touch /etc/quagga/ospf6d.conf
+sudo touch /etc/quagga/ospfd.conf
+sudo touch /etc/quagga/pimd.conf
+sudo touch /etc/quagga/ripd.conf
+sudo touch /etc/quagga/ripngd.conf
+sudo touch /etc/quagga/vtysh.conf
+sudo touch /etc/quagga/zebra.conf
+
+sudo systemctl restart zebra.service
+sudo systemctl restart bgpd.service
+sudo systemctl restart pimd.service
+sudo systemctl restart ripd.service
+sudo systemctl restart ripngd.service
+sudo systemctl restart ospf6d.service
+sudo systemctl restart isisd.service
+sudo systemctl restart ospfd.service
+
+sudo systemctl status zebra.service
+sudo systemctl status bgpd.service
+sudo systemctl status pimd.service
+sudo systemctl status ripd.service
+sudo systemctl status ripngd.service
+sudo systemctl status ospf6d.service
+sudo systemctl status isisd.service
+sudo systemctl status ospfd.service
+
+sudo chown quagga:quaggavty /etc/quagga/*.conf
+sudo chmod 640 /etc/quagga/*.conf 
+
+sudo ip link set tap1 master br0
+sudo ip link set dev eth0 down
+sudo ip addr flush dev eth0 
+sudo ip link set dev eth0 up
+sudo ip link set eth0 master br0
