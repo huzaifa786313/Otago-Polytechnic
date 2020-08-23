@@ -13,11 +13,13 @@
 - GNS3
 - Windows Machine
 
-Step X)
-
 Step X) Ubuntu Setup
 
-A) Download 
+A) Download Ubuntu image from here https://ubuntu.com/download/desktop
+
+B) File > New Virtual Machine > Typical > select browse from the installer disc image file(iso) option, then locate the iso file you downloaded > next > follow the onscreen instructions > finish
+
+C) Edit > virtual network editior > change settings > make sure that you are bridging to the physical interface
 
 Step X) GNS3 Setup
 
