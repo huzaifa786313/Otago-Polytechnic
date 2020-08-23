@@ -53,23 +53,14 @@ Because ansible uses SSH to deploy ad-hoc commands as well as playbooks you will
 ``` conf t
 
 ip domain-name ansible.com
-
 crypto key generate rsa
-
 1024
-
 ip ssh version 2
-
 username admin privilege 15 password 0 admin
-
 exit
-
 line vty 0 4
-
 login local
-
 transport input ssh
-
 exit
 ```
 
