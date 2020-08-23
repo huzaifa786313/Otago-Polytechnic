@@ -51,6 +51,7 @@ You should now be able to ping from your linux vm to R2
 Because ansible uses SSH to deploy ad-hoc commands as well as playbooks you will need to enable SSH onto your GNS3 Routers, a basic configuration has been provided to copy and paste
 
 ``` conf t
+
 ip domain-name ansible.com
 
 crypto key generate rsa
@@ -69,7 +70,8 @@ login local
 
 transport input ssh
 
-exit ```
+exit
+```
 
 #### Azure
 
