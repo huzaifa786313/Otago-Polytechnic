@@ -1,10 +1,13 @@
-IN730 Special Topic
-(azure or local?)
+- IN730 Special Topic
+
 - Lab 1
+
 -- Initial Setup
 
 --- Local
+
 ---- Req
+
 ----
 
 
