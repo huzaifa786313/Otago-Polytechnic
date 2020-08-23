@@ -31,7 +31,7 @@ Step X) GNS3 Setup
 
 A) Sign up to gns3 https://www.gns3.com/ then proceed to download the windows version of gns3 https://www.gns3.com/software/download
 
-
+GNS3 INSTALL STEPS HERE
 
 Step X) Router Template Configuration
 
@@ -67,6 +67,16 @@ C) lets add a cloud to connect our virtual routers to our physical network
 
 After adding the cloud click on it and go to "Ethernet Interfaces" tab, then tick the "Show special Ethernet interfaces" box, click the Add all button, this will add all the interfaces from your physical machine to the cloud allowing you to connect your virtual router to it
 
+
+
+on the interface you connected your R1 to the cloud you need to configure it with an ip in the same range as the physical interface the ens** ip you recorded earlier
+On R1 
+```
+conf t
+int g2/0
+ip address 192.168.61.1 255.255.255.0
+no shut
+```
 
 
 Step X) Ansible Setup
