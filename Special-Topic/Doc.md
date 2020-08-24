@@ -109,6 +109,10 @@ router-id 2.2.2.2
 network 192.168.1.0 area 0
 ```
 
+Step X) Route
+
+On your linux vm you 
+
 Step X) Ansible Setup
 
 X) On your Linux VM open a terminal
@@ -185,9 +189,15 @@ then write quit
 In order to run your ansible playbook that you have now created you need to be located in the directory that the playbook was made 
 
 ```
-ansible-playbook ping.yaml
+ansible-playbook test.yaml
 ```
 
+After running that command the following output should occur: <br>
+
+<img src="Images/playbook.JPG">
+<br>
+
+This means that ansible can successfully 
 A comprehensive list of the modules that are avaliable can be found here https://docs.ansible.com/ansible/latest/modules/modules_by_category.html
 
 
