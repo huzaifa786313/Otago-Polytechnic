@@ -10,7 +10,7 @@ In the following lab we will install and configure the required components neede
 
 ##### Topology
 
-
+<img src="Images/topology.JPG">
 
 ##### Requirements
 
@@ -44,6 +44,11 @@ Step X) Router Template Configuration
 A) Download the image for the cisco c7200 router here https://www.dropbox.com/sh/hhzpveww67m8ifl/AAClzT4W0LkndrIMcxA6ubx3a/GNS3/Lab%20D%20drive%20with%20VIRL%20V225/GNS3/images/IOS?dl=0&subfolder_nav_tracking=1 
 
 B) Import the C7200 Router into gns3 by going file > new template > install an appliance from the GNS3 server > then click the dropdown for the routers section and select Cisco 7200 then click install > Install the appliance on your local computer > create a new version, call it whatever you wish > select your version from the list and click import, locate and select the c7200 bin file your downloaded earlier > next > accept the install > finish, if you click on the router icon on the left hand side you should now see your router template you installed
+
+C) right click your newly created router template and click on the configure template option,
+
+<img src="Images/template.JPG">
+from here go to the slots tab and add "PA-GE" to Adapters slots 1 through 4 this will add 4 gigabyte interfaces to your routers when you spawn them
 
 Step X) Basic Network
 
