@@ -1,12 +1,18 @@
-# IN730 Special Topic
+# IN730 Special Topic - Network Automation
+<br>
 
-## Lab 1
+# Lab 1
 
 ### Initial Setup
+In the following lab we will install and configure the required components needed to **SOMETHING** gns3 and ansible **EXPAND**
 
 #### Local
 
-##### Req
+##### Topology
+
+
+
+##### Requirements
 
 - VM Workstation 
 - Ubuntu VM
@@ -17,13 +23,13 @@
 
 Step X) Ubuntu Setup
 
-A) Download Ubuntu image from here https://ubuntu.com/download/desktop
+A) Download Ubuntu 20.04.1 LTS image from here https://ubuntu.com/download/desktop
 
-B) Launch the VM Workstation Application
+B) Launch the VM Workstation Application then proceed to setup the linux VM by going to File > New Virtual Machine > Typical > select browse from the installer disc image file(iso) option, then locate the iso file you downloaded > next > follow the onscreen instructions > finish
 
-C) File > New Virtual Machine > Typical > select browse from the installer disc image file(iso) option, then locate the iso file you downloaded > next > follow the onscreen instructions > finish
+After creating the linux VM we now need to configure some network options in VM workstation
 
-D) Edit > virtual network editior > change settings > make sure that you are bridging to the physical interface, note the subnet address on the VMnet interface
+C) go to Edit > virtual network editior then click on the change settings option and accept the administrator promopt > set VMnet0 to bridge using the physical interface on your machine. Also select the VMnet that has the type and external connection of NAT and change its subnet ip to 192.168.0.0 with a subnet mask of 255.255.255.0
 
 E) connect to your linux VM and open a terminal, then run the command "ip a" and note down the ip address on the ens33(ens number may vary but there will be only one) interface
 
@@ -74,10 +80,29 @@ On R1
 ```
 conf t
 int g2/0
-ip address 192.168.61.1 255.255.255.0
+ip address 192.168.0.1 255.255.255.0
 no shut
 ```
 
+Configure OSPF and a static default route then redistirbute that route into ospf
+
+On R1
+```
+ip route 0.0.0.0 0.0.0.0 192.168.0.128
+
+router ospf 1
+router-id 1.1.1.1
+network 192.168.0.0 0.0.0.255 area 0
+network 192.168.1.0 0.0.0.3 area 0
+default-information originate
+```
+
+On R2
+```
+router ospf 1
+router-id 2.2.2.2
+network 192.168.1.0 area 0
+```
 
 Step X) Ansible Setup
 
@@ -116,17 +141,24 @@ exit
 
 ansible all -c network_cli -u samsojl1 -k -m ping -e ansible_network_os=ios
 
+## Troubleshooting
+
+If at some point your pings stop working between your linux vm and your 
+delete the cable connecting R1 and the cloud together then reconnect
 
 #### Azure
 
 ##### Req
 
 
+<br>
 
 # Lab 2
 
 ## Basic Playbooks (pull configs etc?)
 
+<br>
+
 # Lab 3
 
-## Automate daily backup config playbook
+## Automate daily backup config playbook OR PHYSICAL?
