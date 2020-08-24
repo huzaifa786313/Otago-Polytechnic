@@ -113,6 +113,7 @@ transport input ssh
 exit
 ```
 
+
 ansible all -c network_cli -u samsojl1 -k -m ping -e ansible_network_os=ios
 
 
