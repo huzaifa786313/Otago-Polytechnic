@@ -69,7 +69,7 @@ After adding the cloud click on it and go to "Ethernet Interfaces" tab, then tic
 
 
 
-on the interface you connected your R1 to the cloud you need to configure it with an ip in the same range as the physical interface the ens** ip you recorded earlier
+on the interface you connected your R1 to the cloud you need to configure it with an ip in the same range as the physical interface, the ens** ip you recorded earlier
 On R1 
 ```
 conf t
@@ -98,7 +98,7 @@ on line 62 uncomment host_key_checking = False
 
 You should now be able to ping from your linux vm to R2
 
-Because ansible uses SSH to deploy ad-hoc commands as well as playbooks you will need to enable SSH onto your GNS3 Routers, a basic configuration has been provided to copy and paste
+Because ansible uses SSH to deploy playbooks as well as ad-hoc commands, you will need to enable SSH onto your GNS3 Routers, a basic configuration has been provided 
 
 ``` conf t
 ip domain-name ansible.com
@@ -112,6 +112,9 @@ login local
 transport input ssh
 exit
 ```
+
+ansible all -c network_cli -u samsojl1 -k -m ping -e ansible_network_os=ios
+
 
 #### Azure
 
