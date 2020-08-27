@@ -206,7 +206,7 @@ ansible all -c network_cli -u samsojl1 -k -m ping -e ansible_network_os=ios
 
 ## Troubleshooting
 
-If at some point your pings stop working between your linux vm and your 
+If at some point your pings / connection stops working between your linux vm and your 
 delete the cable connecting R1 and the cloud together then reconnect
 
 #### Azure
