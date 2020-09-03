@@ -310,6 +310,7 @@ leave as defaults
 review + create
 check over and make sure you have the correct options set
 ```
+* DNS PART TBA
 #### VM 2 - Ansible
 
 type "resource groups" in the search bar and click on the resource groups under services
@@ -356,7 +357,43 @@ leave as defaults
 review + create
 check over and make sure you have the correct options set
 ```
+* DNS PART TBA
 
+On the GNS3/Ansible server
+
+First thing we need to do is install gns3 server onto our linux server so that our gns3 client can connect to
+
+run the following commands to install gns3 server
+```
+cd /tmp
+curl https://raw.githubusercontent.com/GNS3/gns3-server/master/scripts/remote-install.sh > gns3-remote-install.sh
+sudo bash gns3-remote-install.sh --with-openvpn --with-iou --with-i386-repository
+```
+
+# NEED TO DO SOMETHING IN EITHER /opt/gns3 or /etc/gns3 TBA
+
+now we need to create a TAP interface that the gns3 client can use to connect to the gns3 server so that it can communicate with outside devices
+
+First we will need to download uml-utilities which will allow us to create TAP interfaces
+```
+sudo apt-get install uml-utilities
+```
+
+Now that we have uml-utilties we can go ahead and create a TAP interface
+* Do note that the TAP interface and the ip associated with it are not persistant doing it the following way
+```
+sudo tunctl -t tap1
+sudo ifconfig tap1 192.168.1.254 netmask 255.255.255.0 up
+```
+
+to allow connection to the outside we need to configure some iptable rules
+```
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo iptables -A FORWARD -i tap1 -j ACCEPT
+sudo iptables -A INPUT -i tap1 -j ACCEPT
+sudo iptables -A FORWARD -i eth0 -j ACCEPT
+sudo iptables -A INPUT -i eth0 -j ACCEPT
+```
 ### Install GNS3
 
 Step X) GNS3 Setup
@@ -540,11 +577,7 @@ https://otagopoly-my.sharepoint.com/:f:/g/personal/samsojl1_student_op_ac_nz/EvY
 
 Linux VM
 
-```
-cd /tmp
-curl https://raw.githubusercontent.com/GNS3/gns3-server/master/scripts/remote-install.sh > gns3-remote-install.sh
-sudo bash gns3-remote-install.sh --with-openvpn --with-iou --with-i386-repository
-```
+
 
 #### Req
 
