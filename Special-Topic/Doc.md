@@ -372,6 +372,11 @@ sudo bash gns3-remote-install.sh --with-openvpn --with-iou --with-i386-repositor
 
 # NEED TO DO SOMETHING IN EITHER /opt/gns3 or /etc/gns3 TBA
 
+change /etc/gns3/gns3_server.conf file host to 10.10.10.4 and port to 3081
+sudo systemctl restart gns3.service
+
+
+
 now we need to create a TAP interface that the gns3 client can use to connect to the gns3 server so that it can communicate with outside devices
 
 First we will need to download uml-utilities which will allow us to create TAP interfaces
