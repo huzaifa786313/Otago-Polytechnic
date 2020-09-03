@@ -3,23 +3,23 @@
 
 # Lab 1
 
-### Initial Setup
+## Initial Setup
 In the following lab we will install and configure the required components needed to **SOMETHING** gns3 and ansible **EXPAND**
 
-#### Local
+### Local
 
-##### Topology
+#### Topology
 
 <img src="Images/topology.JPG">
 
-##### Requirements
+#### Requirements
 
 - VM Workstation 
 - Ubuntu VM
 - GNS3
 - Windows Machine
 
-##### Setup
+#### Setup
 
 Step X) Ubuntu Setup
 
@@ -209,9 +209,155 @@ ansible all -c network_cli -u samsojl1 -k -m ping -e ansible_network_os=ios
 If at some point your pings / connection stops working between your linux vm and your 
 delete the cable connecting R1 and the cloud together then reconnect
 
-#### Azure
+### Azure
 
-##### Req
+#### SIGNUP SECTION TO BE ADD
+
+Azure portal https://portal.azure.com/ and sign in
+
+#### Resource Group
+
+Create a resource group to store the project *REWORD* in
+
+type "resource groups" in the search bar and click on the resource groups under services
+
+now click add to make a new resource group
+
+here you can name the resource group 
+lets call it "ansible" for now
+
+you can also select the region you want your resource group in, unless you require it to be in a specific region in order to do things it is instead best to choose a region that is the closest to you
+lets select australia east from the drop down
+
+now lets create our resource group
+click the review + create and confirm the creation
+
+#### Network
+
+we now need to create a network that will be used *REWORD*
+
+go to your ansible resource group and click the add button
+
+go to the networking tab and select virtual network
+
+Name - ansible
+Region - Australia East
+
+ipv4 address space
+192.168.0.0/16
+
+add subnet
+name - ansible
+subnet 192.168.0.0/24
+
+review + create
+create
+
+#### VM 1 - Windows
+
+type "resource groups" in the search bar and click on the resource groups under services
+
+click on the ansible resource group that you created
+
+click on the add button
+
+this will take you to a page where you can choose from a large range of options of things to add to your resource group but for now we only need a virtual machine
+
+on the left hand side select the compute option now select virtual machine, this will take you to a screen where you can create a virtual machine
+
+because the free trial has a maximum amount of vcpus that you can have allocated per region we need to make sure we divided them correctly between the ansible/gns3 server and the gns3client machine
+
+confirm that the resource group is ansible
+```
+details
+Virtual machine name - gns3client
+Region - (Asia Pacific) Australia East
+Image - Windows 10 Pro
+Azure Spot Instance - default
+Size - Standard_B2s
+Username - gns3client
+Password - gns3clientP@ssw0rd
+Confirm Password - gns3clientP@ssw0rd
+Public inbound ports - default
+Select inbound ports - default
+Licensing - check
+```
+```
+disks
+Leave as default
+```
+```
+Networking
+Virtual network - Ansible
+subnet - Ansible (192.168.0.0/24)
+public ip - default
+NIC network security group - none
+Load balancing - default
+```
+```
+Management
+leave as defaults
+```
+```
+Advanced
+leave as defaults
+```
+```
+Tags
+leave as defaults
+```
+```
+review + create
+check over and make sure you have the correct options set
+```
+#### VM 2 - Ansible
+
+type "resource groups" in the search bar and click on the resource groups under services
+
+```
+Virtual machine name - gns3server
+Resource Group - ansible
+Region - (Asia Pacific) Australia East
+Image - Ubuntu Server 18.04 LTS
+Azure Spot Instance - default
+Size - Standard_E2s_v3
+Authentication type - Password
+Username - gns3server
+Password - gns3server@ssw0rd
+Confirm Password - gns3server@ssw0rd
+Public inbound ports - default
+Select inbound ports - default
+```
+```
+Disks
+leave as defaults
+```
+```
+Networking
+Virtual network - Ansible
+subnet - Ansible (192.168.0.0/24)
+public ip - default
+NIC network security group - none
+Load balancing - default
+```
+```
+Management
+leave as defaults
+```
+```
+Advanced
+leave as defaults
+```
+```
+Tags
+leave as defaults
+```
+```
+review + create
+check over and make sure you have the correct options set
+```
+
+#### Req
 
 
 <br>
