@@ -357,6 +357,24 @@ review + create
 check over and make sure you have the correct options set
 ```
 
+### Install GNS3
+
+Windows VM
+
+go to https://www.gns3.com/ and sign up 
+
+download gns3 windows version
+
+download c7200 router image to be used with gns3 here
+https://otagopoly-my.sharepoint.com/:f:/g/personal/samsojl1_student_op_ac_nz/EvYyb9R7e6FMkohq9r1w4rgBG-3bAONCIjTJKHz6J0xwdg?e=fI4JFa
+
+Linux VM
+
+```
+cd /tmp
+curl https://raw.githubusercontent.com/GNS3/gns3-server/master/scripts/remote-install.sh > gns3-remote-install.sh
+sudo bash gns3-remote-install.sh --with-openvpn --with-iou --with-i386-repository
+```
 #### Req
 
 
