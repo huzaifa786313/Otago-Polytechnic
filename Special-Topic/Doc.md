@@ -573,8 +573,8 @@ in the /etc/ansible/hosts file we will add the ip addresses of the devices we wi
 
 ```
 [network]
-R2 ansible_host=192.168.1.2 ansible_network_os=ios ansible_ssh_user=admin ansible_ssh_pass=admin
-R1 ansible_host=192.168.0.129 ansible_network_os=ios ansible_ssh_user=admin ansible_ssh_pass=admin
+R2 ansible_host=192.168.1.1 ansible_network_os=ios ansible_ssh_user=admin ansible_ssh_pass=admin
+R1 ansible_host=192.168.2.2 ansible_network_os=ios ansible_ssh_user=admin ansible_ssh_pass=admin
 ```
 * The [network] defines the name of the group this can be called whatever you wish
 * R2 and R1 are the names of the hosts
@@ -584,6 +584,13 @@ R1 ansible_host=192.168.0.129 ansible_network_os=ios ansible_ssh_user=admin ansi
 * ansible_ssh_pass=admin the password of the user account that ansible is using to connect with
 
 <br>
+
+let's run an ad-hoc command against the hosts we just added
+
+```
+ansible all -c network_cli -m ping
+ansible network -c network_cli -m ping
+```
 
 lets create a easy playbook to test if everything is working correctly
 ansible can be a bit pedantic with its formating so here is a 
@@ -606,24 +613,27 @@ and copy and paste the following
 then write quit
 <br>
 
+Now that we have created our playbook it is time to run in
+
+in order to run your playbook you must be in the directory that it is located or specify the location
 In order to run your ansible playbook that you have now created you need to be located in the directory that the playbook was made 
 
 ```
 ansible-playbook ping.yaml
+ansible-playbook /etc/ansible/ping.yaml
 ```
 
-After running that command the following output should occur: <br>
+After running your playbook the following output should occur: <br>
 
 <img src="Images/playbook2.JPG">
 <br>
 
-This means that ansible can successfully 
 
 A comprehensive list of the modules that are avaliable can be found here https://docs.ansible.com/ansible/latest/modules/modules_by_category.html
 
 
 
-ansible all -c network_cli -m ping
+
 
 # FIX THIS 
 Windows VM
