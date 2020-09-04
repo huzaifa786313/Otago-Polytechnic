@@ -359,7 +359,7 @@ check over and make sure you have the correct options set
 ```
 * DNS PART TBA
 
-On the GNS3/Ansible server
+On gns3server
 
 First thing we need to do is install gns3 server onto our linux server so that our gns3 client can connect to
 
@@ -370,12 +370,27 @@ curl https://raw.githubusercontent.com/GNS3/gns3-server/master/scripts/remote-in
 sudo bash gns3-remote-install.sh --with-openvpn --with-iou --with-i386-repository
 ```
 
-# NEED TO DO SOMETHING IN EITHER /opt/gns3 or /etc/gns3 TBA
+Its now time to edit our server settings so that we can connect to it using the gns3client virtual machine in order to do this we need to edit the gns3_server.conf file
 
-change /etc/gns3/gns3_server.conf file host to 10.10.10.4 and port to 3081
+```
+sudo vim /etc/gns3/gns3_server.conf
+```
+
+change the host = variable to the ip of your machine<br>
+( you can check this by running the following command )
+```
+ip a
+```
+and the port = variable to 3081
+
+Your gns3_server.conf file should look like the one in the image below
+
+<img src="Images/serverconf.JPG">
+
+After making these changes restart your gns3 using the following command
+```
 sudo systemctl restart gns3.service
-
-
+```
 
 now we need to create a TAP interface that the gns3 client can use to connect to the gns3 server so that it can communicate with outside devices
 
