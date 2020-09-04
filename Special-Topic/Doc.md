@@ -399,6 +399,12 @@ sudo iptables -A INPUT -i tap1 -j ACCEPT
 sudo iptables -A FORWARD -i eth0 -j ACCEPT
 sudo iptables -A INPUT -i eth0 -j ACCEPT
 ```
+
+Create routes
+```
+sudo ip route add 192.168.1.0/24 via 192.168.1.254 dev tap1
+sudo ip route add 192.168.2.0/30 via 192.168.1.254 dev tap1
+```
 ### Install GNS3
 
 Step X) GNS3 Setup
@@ -460,12 +466,11 @@ Configure OSPF and a static default route then redistirbute that route into ospf
 
 On R1
 ```
-ip route 0.0.0.0 0.0.0.0 192.168.0.128
-
+ip route 0.0.0.0 0.0.0.0 192.168.1.254
 router ospf 1
 router-id 1.1.1.1
-network 192.168.0.0 0.0.0.255 area 0
-network 192.168.1.0 0.0.0.3 area 0
+network 192.168.1.0 0.0.0.255 area 0
+network 192.168.2.0 0.0.0.3 area 0
 default-information originate
 ```
 
