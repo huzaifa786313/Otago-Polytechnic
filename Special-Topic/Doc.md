@@ -405,13 +405,22 @@ Create routes
 sudo ip route add 192.168.1.0/24 via 192.168.1.254 dev tap1
 sudo ip route add 192.168.2.0/30 via 192.168.1.254 dev tap1
 ```
-### Install GNS3
+### Install GNS3 Client
 
 Step X) GNS3 Setup
 
 X) Sign up to gns3 https://www.gns3.com/ then proceed to download the windows version of gns3 https://www.gns3.com/software/download
 
 GNS3 INSTALL STEPS HERE
+
+Edit > preferences > server
+
+change the host to gns3server.australiasoutheast.cloudapp.azure.com<br>
+port 3081
+
+<img src="Images/server.JPG">
+
+leave auth unchecked
 
 Step X) Router Template Configuration
 
@@ -423,6 +432,7 @@ X) Import the C7200 Router into gns3 by going file > new template > install an a
 X) right click your newly created router template and click on the configure template option,
 
 <img src="Images/template.JPG">
+
 from here go to the slots tab and add "PA-GE" to Adapters slots 1 through 4 this will add 4 gigabyte interfaces to your routers when you spawn them
 
 Step X) Basic Network
