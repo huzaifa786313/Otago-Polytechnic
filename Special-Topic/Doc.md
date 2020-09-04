@@ -428,7 +428,7 @@ sudo ip route add 192.168.1.0/24 via 192.168.1.254 dev tap1
 sudo ip route add 192.168.2.0/30 via 192.168.1.254 dev tap1
 ```
 
-### Install GNS3 Client
+## Install GNS3 Client
 
 Step X) GNS3 Setup
 
@@ -447,7 +447,7 @@ leave auth unchecked
 
 Step X) Router Template Configuration
 
-## change to a more permament storage
+## * *change to a more permament storage - TBD* *
 X) Download the image for the cisco c7200 router here https://otagopoly-my.sharepoint.com/:f:/g/personal/samsojl1_student_op_ac_nz/EvYyb9R7e6FMkohq9r1w4rgBG-3bAONCIjTJKHz6J0xwdg?e=p0iyG3
 
 X) Import the C7200 Router into gns3 by going file > new template > install an appliance from the GNS3 server > then click the dropdown for the routers section and select Cisco 7200 then click install > Install the appliance on your local computer > create a new version, call it whatever you wish > select your version from the list and click import, locate and select the c7200 bin file your downloaded earlier > next > accept the install > finish, if you click on the router icon on the left hand side you should now see your router template you installed
