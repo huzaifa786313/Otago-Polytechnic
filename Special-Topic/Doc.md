@@ -209,13 +209,13 @@ ansible all -c network_cli -u samsojl1 -k -m ping -e ansible_network_os=ios
 If at some point your pings / connection stops working between your linux vm and your 
 delete the cable connecting R1 and the cloud together then reconnect
 
-### Azure
+# Azure
 
-#### SIGNUP SECTION TO BE ADD
+## SIGNUP SECTION TO BE ADD
 
 Azure portal https://portal.azure.com/ and sign in
 
-#### Resource Group
+## Resource Group
 
 Create a resource group to store the project *REWORD* in
 
@@ -232,7 +232,7 @@ lets select australia east from the drop down
 now lets create our resource group
 click the review + create and confirm the creation
 
-#### Network
+## Network
 
 we now need to create a network that will be used *REWORD*
 
@@ -253,7 +253,7 @@ subnet 192.168.0.0/24
 review + create
 create
 
-#### VM 1 - Windows
+## VM 1 - Windows
 
 type "resource groups" in the search bar and click on the resource groups under services
 
@@ -311,7 +311,8 @@ review + create
 check over and make sure you have the correct options set
 ```
 * DNS PART TBA
-#### VM 2 - Ansible
+
+## VM 2 - Ansible
 
 type "resource groups" in the search bar and click on the resource groups under services
 
@@ -359,7 +360,7 @@ check over and make sure you have the correct options set
 ```
 * DNS PART TBA
 
-On gns3server
+## gns3server
 
 Before we start lets make sure that our software is up to date *REWORD*
 
