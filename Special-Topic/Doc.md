@@ -519,6 +519,8 @@ router-id 2.2.2.2
 network 192.168.1.0 area 0
 ```
 
+You should now be able to ping from your gns3server to R2
+
 Our final step
 
 Because the ansible program uses SSH to deploy playbooks as well as ad-hoc commands to devices, we will need to enable SSH on our routers, a basic configuration has been provided 
@@ -553,16 +555,19 @@ cd /etc/ansible/
 
 Inside the hosts file you can define your network devices and asign them to groups an example is provided inside the file by ansible
 
-You can run either use ad-hoc commands or ansible playbooks 
+We need to disable host_key_checking so that we aren't forced to ssh onto the device first
 
-Create a default route and redistribute it into ospf
+```
+sudo vim /etc/ansible/ansible.cfg
+```
 
-disable host_key_checking
-on line 62 uncomment host_key_checking = False
+go to line 62 and unncomment 
 
-You should now be able to ping from your linux vm to R2
+```
+host_key_checking = False
+```
 
-in the hosts file you can define your devices in a few different ways you can have them ungrouped
+in the hosts file you can define your environments in a few different ways you can have have them ungroup or you can put them into groups, having them in groups allows you to deploy your playbooks to a set of devices which can be helpful to make sure they are all configured the same.
 
 in the /etc/ansible/hosts file we will add the ip addresses of the devices we wish to use ansible against
 
