@@ -361,6 +361,12 @@ check over and make sure you have the correct options set
 
 On gns3server
 
+Before we start lets make sure that our software is up to date *REWORD*
+
+```
+sudo apt-get update -y
+```
+<br>
 First thing we need to do is install gns3 server onto our linux server so that our gns3 client can connect to
 
 run the following commands to install gns3 server
@@ -462,32 +468,37 @@ On R1
 ```
 conf t
 int g1/0
-ip address 192.168.1.1 255.255.255.252
+ip address 192.168.2.1 255.255.255.252
 no shut
 ```
 On R2
 ```
 conf t
 int g1/0
-ip address 192.168.1.2 255.255.255.252
+ip address 192.168.2.2 255.255.255.252
 no shut
 ```
 X) Verify that R1 can ping R2 and vice versa
 
 X) lets add a cloud to connect our virtual routers to our physical network 
 
-After adding the cloud click on it and go to "Ethernet Interfaces" tab, then tick the "Show special Ethernet interfaces" box, click the Add all button, this will add all the interfaces from your physical machine to the cloud allowing you to connect your virtual router to it
+After adding the cloud click on it and go to "Ethernet Interfaces" tab, then tick the "Show special Ethernet interfaces" box, click the Add all button, this will add all the interfaces to the cloud allowing you to connect your virtual router to it
 
-on the interface you connected your R1 to the cloud you need to configure it with an ip in the same range as the physical interface, the ens** ip you recorded earlier
+now lets connect a cable between our cloud and R1
+
+we will connect to the tap1 interface on the cloud and g2/0 on R1
+
+now we will apply an ip address to g2/0 in the same subnet as tap1 allowing connection
+
 On R1 
 ```
 conf t
 int g2/0
-ip address 192.168.0.1 255.255.255.0
+ip address 192.168.1.1 255.255.255.0
 no shut
 ```
 
-Configure OSPF and a static default route then redistirbute that route into ospf
+we now need to Configure OSPF and a static default route then redistirbute that route into ospf, this will allow R2 to send traffic to the gns3server and outwards *REWORD*
 
 On R1
 ```
@@ -506,13 +517,30 @@ router-id 2.2.2.2
 network 192.168.1.0 area 0
 ```
 
-Step X) Route
+Our final step
 
+Because the ansible program uses SSH to deploy playbooks as well as ad-hoc commands to devices, we will need to enable SSH on our routers, a basic configuration has been provided 
+
+``` conf t
+ip domain-name ansible.com
+crypto key generate rsa
+1024
+ip ssh version 2
+username admin privilege 15 password 0 admin
+exit
+line vty 0 4
+login local
+transport input ssh
+exit
+```
 
 ## Step X) Ansible Setup
 
-X) On your Linux VM open a terminal
+we now need to download and install ansible on our server we can achieve this by using the following
 
+```
+sudo apt-get install ansible -y
+```
 X) run the command sudo apt-get install ansible and accept, this will install ansible onto your linux machine
 
 X) cd into /etc/ansible/ this is where the ansible.cfg and hosts file exist from here you can create your playbooks
@@ -527,21 +555,6 @@ disable host_key_checking
 on line 62 uncomment host_key_checking = False
 
 You should now be able to ping from your linux vm to R2
-
-Because ansible uses SSH to deploy playbooks as well as ad-hoc commands, you will need to enable SSH onto your GNS3 Routers, a basic configuration has been provided 
-
-``` conf t
-ip domain-name ansible.com
-crypto key generate rsa
-1024
-ip ssh version 2
-username admin privilege 15 password 0 admin
-exit
-line vty 0 4
-login local
-transport input ssh
-exit
-```
 
 in the hosts file you can define your devices in a few different ways you can have them ungrouped
 
