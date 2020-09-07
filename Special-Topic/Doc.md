@@ -686,41 +686,32 @@ exit
 
 All that is left for us to do now is to get ansible setup and then we can run it against our gns3 topology
 
-
 We now need to download and install ansible onto our server we can achieve this by using the following
-
-
 ```
 sudo apt-get install ansible -y
 ```
-
-
 Lets go to the ansible directory where the ansible.cfg and hosts file are stored, from this directory you can create and deploy your ansible playbooks as well as modify your host files
 
 ```
 cd /etc/ansible/
 ```
-
 We will disable host_key_checking in our ansible configuration file so that we don't need to ssh onto our gns3 routers first before we can deploy playbooks while this does save time it is a security risk, in order to do this we need to open our ansible configuration file in our text editor
 ```
 sudo vim /etc/ansible/ansible.cfg
 ```
-
 Go to line 62 and uncomment the following
-
 ```
 #host_key_checking = False
 ```
-
 Then save the file
 
 Inside the hosts file you can define your network devices and asign them to groups an example is provided inside the file by ansible
 
 <img src="Images/hosts.JPG">
+
 In the hosts file you can define your environments in a few different ways you can have have them ungroup or you can put them into groups, having them in groups allows you to deploy your playbooks to a set of devices which can be helpful to make sure they are all configured the same.
 
-in the /etc/ansible/hosts file we will add the ip addresses of the devices we wish to use ansible against
-
+In the /etc/ansible/hosts file we will add the ip addresses of the devices we wish to use ansible against
 ```
 [network]
 R2 ansible_host=192.168.1.1 ansible_network_os=ios ansible_ssh_user=admin ansible_ssh_pass=admin
@@ -735,7 +726,7 @@ R1 ansible_host=192.168.2.2 ansible_network_os=ios ansible_ssh_user=admin ansibl
 
 <br>
 
-let's run an ad-hoc command against the hosts we just added
+Let's run an ad-hoc command against the hosts we just added
 
 ```
 ansible all -c network_cli -m ping
@@ -760,8 +751,7 @@ and copy and paste the following
             - ping:
 ```
 
-then write quit
-<br>
+then write quit<br>
 
 Now that we have created our playbook it is time to run in
 
@@ -789,24 +779,6 @@ ansible module list can be found here
 
 ansible playbooks user guide can be found here 
 * https://docs.ansible.com/ansible/latest/user_guide/playbooks.html
-
-
-
-# ?
-Windows VM
-
-go to https://www.gns3.com/ and sign up 
-
-download gns3 windows version
-
-download c7200 router image to be used with gns3 here
-https://otagopoly-my.sharepoint.com/:f:/g/personal/samsojl1_student_op_ac_nz/EvYyb9R7e6FMkohq9r1w4rgBG-3bAONCIjTJKHz6J0xwdg?e=fI4JFa
-
-Linux VM
-
-
-
-#### Req
 
 
 <br>
