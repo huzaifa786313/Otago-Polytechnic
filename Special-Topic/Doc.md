@@ -1,13 +1,6 @@
 # IN730 Special Topic - Network Automation
 <br>
 
-__FORCETOC__
-
-
-=== Test ===
-
-=== Lab 1 ===
-
 ## Initial Setup
 In the following lab we will install and configure the required components needed to **SOMETHING** gns3 and ansible **EXPAND**
 
@@ -215,6 +208,10 @@ If at some point your pings / connection stops working between your linux vm and
 delete the cable connecting R1 and the cloud together then reconnect
 
 # Azure
+
+## Topology
+
+<img src="Images/topologycloud.JPG">
 
 ## SIGNUP SECTION TO BE ADD
 
