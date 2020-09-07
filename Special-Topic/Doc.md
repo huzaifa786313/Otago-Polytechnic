@@ -1,23 +1,27 @@
 # IN730 Special Topic - Network Automation
 <br>
 
+## Disclaimer
+
+vim is the text editor used in the following lab guide but you can use your own preferred text editor if you wish *SOMETHING ABOUT HAVING TO KNOW IT YOURSELF*
+
 ## Initial Setup
 In the following lab we will install and configure the required components needed to **SOMETHING** gns3 and ansible **EXPAND**
 
-### Local
+## Local
 
-#### Topology
+## Topology
 
 <img src="Images/topology.JPG">
 
-#### Requirements
+## Requirements
 
 - VM Workstation 
 - Ubuntu VM
 - GNS3
 - Windows Machine
 
-#### Setup
+## Setup
 
 Step X) Ubuntu Setup
 
@@ -204,12 +208,22 @@ After running that command the following output should occur: <br>
 <img src="Images/playbook.JPG">
 <br>
 
-This means that ansible can successfully 
-A comprehensive list of the modules that are avaliable can be found here https://docs.ansible.com/ansible/latest/modules/modules_by_category.html
-
-
+This means that ansible can successfully  *SOMETHING*
 
 ansible all -c network_cli -u samsojl1 -k -m ping -e ansible_network_os=ios
+
+Further reading:
+
+ansible module list can be found here 
+* https://docs.ansible.com/ansible/latest/modules/modules_by_category.html
+
+ansible playbooks user guide can be found here 
+* https://docs.ansible.com/ansible/latest/user_guide/playbooks.html
+
+
+
+
+
 
 ## Troubleshooting
 
@@ -404,52 +418,63 @@ Alternatively you could also instead configure a static ip and use that in place
 
 ## gns3server
 
-Before we start lets make sure that our software is up to date *REWORD*
+The following occurs on our gns3server VM
 
+Before we start lets make sure that we can download the latest software *REWORD*
+
+In order to do this run the following command
 ```
 sudo apt-get update -y
 ```
 <br>
-First thing we need to do is install gns3 server onto our linux server so that our gns3 client can connect to
+First thing we need to do is install gns3 server onto our linux server so that our gns3 client can connect to it
 
-run the following commands to install gns3 server
+run the following commands to install the gns3 server
 ```
 cd /tmp
 curl https://raw.githubusercontent.com/GNS3/gns3-server/master/scripts/remote-install.sh > gns3-remote-install.sh
 sudo bash gns3-remote-install.sh --with-openvpn --with-iou --with-i386-repository
 ```
 
-Its now time to edit our server settings so that we can connect to it using the gns3client virtual machine in order to do this we need to edit the gns3_server.conf file
+Its now time to edit our server settings so that we can connect to it using the gns3client virtual machine
+
+Run the following command
+
+```
+ip a
+```
+
+and note the ip address of eth0, we will use this in our gns3_server.conf file
+
+Now lets edit our gns3_server.conf file
 
 ```
 sudo vim /etc/gns3/gns3_server.conf
 ```
 
-change the host = variable to the ip of your machine<br>
-( you can check this by running the following command )
-```
-ip a
-```
-and the port = variable to 3081
+make sure that the "host = " is set to the ip of eth0<br>
+and that the port = variable to 3081
 
 Your gns3_server.conf file should look like the one in the image below
 
 <img src="Images/serverconf.JPG">
 
-After making these changes restart your gns3 using the following command
+After making these changes we now need to restart gns3<br> 
+use the following command
 ```
 sudo systemctl restart gns3.service
 ```
 
-now we need to create a TAP interface that the gns3 client can use to connect to the gns3 server so that it can communicate with outside devices
+
+Now we will create a tap interface so that we can connect our virtual network that we will create in gns3 to our physical network so that it can communicate with outside devices
 
 First we will need to download uml-utilities which will allow us to create TAP interfaces
 ```
-sudo apt-get install uml-utilities
+sudo apt-get install uml-utilities -y
 ```
 
 Now that we have uml-utilties we can go ahead and create a TAP interface
-* Do note that the TAP interface and the ip associated with it are not persistant doing it the following way
+* Do note that the TAP interface and the ip associated with it are not persistant doing it the following way so you will have to run the following commands each time you shutdown or restart your VM
 ```
 sudo tunctl -t tap1
 sudo ifconfig tap1 192.168.1.254 netmask 255.255.255.0 up
@@ -464,13 +489,18 @@ sudo iptables -A FORWARD -i eth0 -j ACCEPT
 sudo iptables -A INPUT -i eth0 -j ACCEPT
 ```
 
-Create routes
+Create routes<br>
+we need to create routes<br>
+so that traffic<br>
+*SOMETHING*
 ```
 sudo ip route add 192.168.1.0/24 via 192.168.1.254 dev tap1
 sudo ip route add 192.168.2.0/30 via 192.168.1.254 dev tap1
 ```
 
 ## Install GNS3 Client
+
+## <p style="text-align: center;">The following occurs on our gns3client VM
 
 Step X) GNS3 Setup
 
@@ -487,18 +517,44 @@ port 3081
 
 leave auth unchecked
 
-Step X) Router Template Configuration
+## Router Template Configuration
 
-## * *change to a more permament storage - TBD* *
-X) Download the image for the cisco c7200 router here https://otagopoly-my.sharepoint.com/:f:/g/personal/samsojl1_student_op_ac_nz/EvYyb9R7e6FMkohq9r1w4rgBG-3bAONCIjTJKHz6J0xwdg?e=p0iyG3
+Because gns3 doesn't come with any routers avaliable to use by default we need to import and configure a template for one
 
-X) Import the C7200 Router into gns3 by going file > new template > install an appliance from the GNS3 server > then click the dropdown for the routers section and select Cisco 7200 then click install > Install the appliance on your local computer > create a new version, call it whatever you wish > select your version from the list and click import, locate and select the c7200 bin file your downloaded earlier > next > accept the install > finish, if you click on the router icon on the left hand side you should now see your router template you installed
+First we will need to download the image for our cisco 7200 here is a link to the image download
+```
+https://github.com/samsojl1/Otago-Polytechnic/raw/master/Special-Topic/c7200/c7200-advipservicesk9-mz.122-33.SRC2.extracted.bin
+```
 
-X) right click your newly created router template and click on the configure template option,
+Now lets import the cisco 7200 into gns3
+1) File 
+2) New template
+3) Install an appliance from the GNS3 server 
+4) Next 
+5) Click the dropdown for the routers section and select cisco 7200
+6) Click install 
+7) Install the appliance on the main server 
+8) Create a new version
+9) Version name "Cisco 7200"<br>
+<img src="Images/c7200.JPG"> 
+10) select your version from the list 
+<img src="Images/c7200import.JPG"> 
+11) Click import, locate and select the cisco 7200 bin file your downloaded earlier, your version should change from "Missing" to "Ready to install" as shown in the images
+<img src="Images/c7200install.JPG"> 
+12) Click next
+13) Accept the install 
+14) Finish
+
+If you click on the router icon on the left hand side<br>
+<img src="Images/routericon.JPG">  
+you should now see your router template you installed<br>
+<img src="Images/routericon2.JPG">  
+
+Now we need to configure our newly created router to do this right click on the newly created router and click on the configure template option
 
 <img src="Images/template.JPG">
 
-from here go to the slots tab and add "PA-GE" to Adapters slots 1 through 4 this will add 4 gigabyte interfaces to your routers when you spawn them
+From here go to the slots tab and add "PA-GE" to Adapters slots 1 through 4 this will add 4 gigabyte interfaces to your routers when you spawn them
 
 Step X) Basic Network
 
@@ -589,6 +645,8 @@ exit
 ```
 
 ## Step X) Ansible Installation And Setup
+
+## <p style="text-align: center;"> The following occurs on our gns3server VM
 
 All that is left for us to do now is to get ansible setup and then we can run it against our gns3 topology
 
@@ -685,14 +743,21 @@ After running your playbook the following output should occur: <br>
 <img src="Images/playbook2.JPG">
 <br>
 
+Congratulations you have now successfully deployed your first ansible playbook against a virtual network *REWORD*
 
-A comprehensive list of the modules that are avaliable can be found here https://docs.ansible.com/ansible/latest/modules/modules_by_category.html
+in the future labs we will cover more uses for ansible in both a local and cloud environment 
+
+Further reading:
+
+ansible module list can be found here 
+* https://docs.ansible.com/ansible/latest/modules/modules_by_category.html
+
+ansible playbooks user guide can be found here 
+* https://docs.ansible.com/ansible/latest/user_guide/playbooks.html
 
 
 
-
-
-# FIX THIS 
+# ?
 Windows VM
 
 go to https://www.gns3.com/ and sign up 
@@ -711,12 +776,24 @@ Linux VM
 
 <br>
 
-# Lab 2
+# Lab 2 local + cloud versions
 
 ## Basic Playbooks (pull configs etc?)
 
+## pull configs i.e. backups?
+
+## push configs i.e. motd banners etc for uniform deployments?
+
+## bonus create vms? azure/openstack?
+
 <br>
 
-# Lab 3
+# Lab 3 local + cloud versons
 
 ## Automate daily backup config playbook OR PHYSICAL?
+
+## cron w/ ansible for backups
+
+## some of the previous stuff but on physical gear?
+
+## create a network with a playbook?
