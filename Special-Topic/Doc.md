@@ -1,7 +1,12 @@
 # IN730 Special Topic - Network Automation
 <br>
 
-# Lab 1
+__FORCETOC__
+
+
+=== Test ===
+
+=== Lab 1 ===
 
 ## Initial Setup
 In the following lab we will install and configure the required components needed to **SOMETHING** gns3 and ansible **EXPAND**
@@ -468,15 +473,17 @@ X) lets add 2 of our newly created routers to the project by going to the router
 
 On R1
 ```
+end
 conf t
-int g1/0
+int g2/0
 ip address 192.168.2.1 255.255.255.252
 no shut
 ```
 On R2
 ```
+end
 conf t
-int g1/0
+int g2/0
 ip address 192.168.2.2 255.255.255.252
 no shut
 ```
@@ -494,8 +501,9 @@ now we will apply an ip address to g2/0 in the same subnet as tap1 allowing conn
 
 On R1 
 ```
+end
 conf t
-int g2/0
+int g1/0
 ip address 192.168.1.1 255.255.255.0
 no shut
 ```
@@ -504,6 +512,8 @@ we now need to Configure OSPF and a static default route then redistirbute that 
 
 On R1
 ```
+end
+conf t
 ip route 0.0.0.0 0.0.0.0 192.168.1.254
 router ospf 1
 router-id 1.1.1.1
@@ -514,9 +524,11 @@ default-information originate
 
 On R2
 ```
+end
+conf t
 router ospf 1
 router-id 2.2.2.2
-network 192.168.1.0 area 0
+network 192.168.2.0 0.0.0.3 area 0
 ```
 
 You should now be able to ping from your gns3server to R2
@@ -526,6 +538,7 @@ Our final step
 Because the ansible program uses SSH to deploy playbooks as well as ad-hoc commands to devices, we will need to enable SSH on our routers, a basic configuration has been provided 
 
 ``` 
+end
 conf t
 ip domain-name ansible.com
 crypto key generate rsa
