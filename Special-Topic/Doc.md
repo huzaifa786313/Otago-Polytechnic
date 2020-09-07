@@ -680,7 +680,7 @@ transport input ssh
 exit
 ```
 
-## Step X) Ansible Installation And Setup
+## Ansible Installation And Setup
 
 ## <p style="text-align: center;"> The following occurs on our gns3server VM
 
@@ -695,26 +695,24 @@ sudo apt-get install ansible -y
 ```
 
 
-X) lets go to the ansible directory where the ansible.cfg and hosts file are stored, from this directory you can create and deploy your ansible playbooks as well as modify your host files
+Lets go to the ansible directory where the ansible.cfg and hosts file are stored, from this directory you can create and deploy your ansible playbooks as well as modify your host files
 
 ```
 cd /etc/ansible/
 ```
 
-We need to disable host_key_checking so that we aren't forced to ssh onto our gns3 routers first in order to do this we need to 
-
+We will disable host_key_checking in our ansible configuration file so that we don't need to ssh onto our gns3 routers first before we can deploy playbooks while this does save time it is a security risk, in order to do this we need to open our ansible configuration file in our text editor
 ```
 sudo vim /etc/ansible/ansible.cfg
 ```
 
-go to line 62 and uncomment the following
+Go to line 62 and uncomment the following
 
 ```
-host_key_checking = False
+#host_key_checking = False
 ```
 
-then save the file
-
+Then save the file
 
 Inside the hosts file you can define your network devices and asign them to groups an example is provided inside the file by ansible
 
