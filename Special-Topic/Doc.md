@@ -716,7 +716,8 @@ Then save the file
 
 Inside the hosts file you can define your network devices and asign them to groups an example is provided inside the file by ansible
 
-in the hosts file you can define your environments in a few different ways you can have have them ungroup or you can put them into groups, having them in groups allows you to deploy your playbooks to a set of devices which can be helpful to make sure they are all configured the same.
+<img src="Images/hosts.JPG">
+In the hosts file you can define your environments in a few different ways you can have have them ungroup or you can put them into groups, having them in groups allows you to deploy your playbooks to a set of devices which can be helpful to make sure they are all configured the same.
 
 in the /etc/ansible/hosts file we will add the ip addresses of the devices we wish to use ansible against
 
