@@ -265,25 +265,41 @@ click the review + create and confirm the creation
 
 ## Network
 
-we now need to create a network that will be used *REWORD*
+we now need to create a virtual network that will be used *REWORD*
 
 go to your ansible resource group and click the add button
 
 go to the networking tab and select virtual network
 
+Set the name for your virtual network to ansible<br>
+Set the region for your virtual network to Australia East
+```
 Name - ansible
 Region - Australia East
+```
+create ipv4 address space for your virutal network
 
+we will make it a 192.168.0.0/16
+```
 ipv4 address space
 192.168.0.0/16
-
+```
+we will now subnet our address range<br>
+we will name this subnet ansible<br>
+we will give this subnet an address range of 192.168.0.0/24
+```
 add subnet
 name - ansible
 subnet 192.168.0.0/24
+```
 
+Click the review + create and double check that it is all correct
+
+If everything is correct click the create button
+```
 review + create
 create
-
+```
 ## VM 1 - Windows
 
 type "resource groups" in the search bar and click on the resource groups under services
