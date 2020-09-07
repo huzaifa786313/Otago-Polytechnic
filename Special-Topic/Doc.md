@@ -554,15 +554,26 @@ Now we need to configure our newly created router to do this right click on the 
 
 <img src="Images/template.JPG">
 
-From here go to the slots tab and add "PA-GE" to Adapters slots 1 through 4 this will add 4 gigabyte interfaces to your routers when you spawn them
+From here go to the Slots tab and add "PA-GE" to Adapters slots 1 through 4 this will add 4 gigabyte interfaces to your routers when you spawn them
 
-Step X) Basic Network
+## Basic GNS3 Network
 
-Lets create a simple network in GNS3
+## Topology
 
-X) create a new blank project and call it whatever you want
+The following network topology is what we will use to create our basic network in gns3
 
-X) lets add 2 of our newly created routers to the project by going to the router tab and dragging 2 on, cable these 2 routers together and configure them using a private ip 
+<img src="Images/topologycloud.JPG">
+
+Lets create a simple network in GNS3 and connect it to our physical connect via a tap interface
+
+In order to do this first we must create a new blank project and name it *SOMETHING*
+
+The code to configure the gns3 network environment has been provided below<br>
+The commands have also been provided in a way that they will work no matter where your are located cli wise *REWORD*
+
+1) Add 2 of our newly created cisco 7200 routers
+2) Cable these 2 routers together
+3) Configure these 2 routers with ip addresses according to the topology provided
 
 On R1
 ```
@@ -573,6 +584,7 @@ ip address 192.168.2.1 255.255.255.252
 no shut
 ```
 On R2
+
 ```
 end
 conf t
@@ -580,17 +592,26 @@ int g2/0
 ip address 192.168.2.2 255.255.255.252
 no shut
 ```
-X) Verify that R1 can ping R2 and vice versa
-
-X) lets add a cloud to connect our virtual routers to our physical network 
-
-After adding the cloud click on it and go to "Ethernet Interfaces" tab, then tick the "Show special Ethernet interfaces" box, click the Add all button, this will add all the interfaces to the cloud allowing you to connect your virtual router to it
-
-now lets connect a cable between our cloud and R1
-
-we will connect to the tap1 interface on the cloud and g2/0 on R1
-
-now we will apply an ip address to g2/0 in the same subnet as tap1 allowing connection
+4) Verify that R1 can ping R2 and vice versa
+On R1
+```
+end
+ping 192.168.2.2
+```
+On R2
+```
+end
+ping 192.168.2.1
+```
+5) Add a cloud to our network, you can find this by clicking on the end device icon<br>
+<img src="Images/enddevice.JPG"><br>
+<img src="Images/cloud.JPG">
+6) Select the cloud
+7) Go to the "TAP Interfaces" tab
+8) Check the that tap1 has been added
+<img src="Images/tap.JPG">
+9) Cable R1 to the cloud using the tap1 interface
+10) Configure R1 with an ip address
 
 On R1 
 ```
@@ -600,8 +621,17 @@ int g1/0
 ip address 192.168.1.1 255.255.255.0
 no shut
 ```
+11) confirm that R1 can ping the tap interface
+```
+end
+ping 192.168.1.254
+```
+12) Confirm that the gns3server can ping R1
+* you will need to do this on the gns3server
 
 we now need to Configure OSPF and a static default route then redistirbute that route into ospf, this will allow R2 to send traffic to the gns3server and outwards *REWORD*
+
+13) Configure OSPF
 
 On R1
 ```
@@ -614,7 +644,6 @@ network 192.168.1.0 0.0.0.255 area 0
 network 192.168.2.0 0.0.0.3 area 0
 default-information originate
 ```
-
 On R2
 ```
 end
@@ -623,13 +652,20 @@ router ospf 1
 router-id 2.2.2.2
 network 192.168.2.0 0.0.0.3 area 0
 ```
+14) Confirm that R2 can ping tap1
+```
+end
+ping 192.168.1.254
+```
+15) Confirm that the gns3server can ping R2
+* you will need to do this on the gns3server
 
-You should now be able to ping from your gns3server to R2
 
 Our final step
 
-Because the ansible program uses SSH to deploy playbooks as well as ad-hoc commands to devices, we will need to enable SSH on our routers, a basic configuration has been provided 
+Because the ansible requires the use of SSH to deploy playbooks, we will need to configure and enable SSH on our routers, a basic ssh configuration has been provided 
 
+On both R1 and R2
 ``` 
 end
 conf t
