@@ -39,7 +39,8 @@ GNS3 INSTALL STEPS HERE
 
 Step X) Router Template Configuration
 
-X) Download the image for the cisco c7200 router here https://www.dropbox.com/sh/hhzpveww67m8ifl/AAClzT4W0LkndrIMcxA6ubx3a/GNS3/Lab%20D%20drive%20with%20VIRL%20V225/GNS3/images/IOS?dl=0&subfolder_nav_tracking=1 
+X) Download the image for the cisco c7200 router here 
+https://github.com/samsojl1/Otago-Polytechnic/raw/master/Special-Topic/c7200/c7200-advipservicesk9-mz.122-33.SRC2.extracted.bin
 
 X) Import the C7200 Router into gns3 by going file > new template > install an appliance from the GNS3 server > then click the dropdown for the routers section and select Cisco 7200 then click install > Install the appliance on your local computer > create a new version, call it whatever you wish > select your version from the list and click import, locate and select the c7200 bin file your downloaded earlier > next > accept the install > finish, if you click on the router icon on the left hand side you should now see your router template you installed
 
@@ -58,6 +59,7 @@ X) lets add 2 of our newly created routers to the project by going to the router
 
 On R1
 ```
+end
 conf t
 int g1/0
 ip address 192.168.1.1 255.255.255.252
@@ -65,6 +67,7 @@ no shut
 ```
 On R2
 ```
+end
 conf t
 int g1/0
 ip address 192.168.1.2 255.255.255.252
@@ -81,6 +84,7 @@ After adding the cloud click on it and go to "Ethernet Interfaces" tab, then tic
 on the interface you connected your R1 to the cloud you need to configure it with an ip in the same range as the physical interface, the ens** ip you recorded earlier
 On R1 
 ```
+end
 conf t
 int g2/0
 ip address 192.168.0.1 255.255.255.0
@@ -91,8 +95,9 @@ Configure OSPF and a static default route then redistirbute that route into ospf
 
 On R1
 ```
+end
+conf t
 ip route 0.0.0.0 0.0.0.0 192.168.0.128
-
 router ospf 1
 router-id 1.1.1.1
 network 192.168.0.0 0.0.0.255 area 0
@@ -102,6 +107,8 @@ default-information originate
 
 On R2
 ```
+end
+conf t
 router ospf 1
 router-id 2.2.2.2
 network 192.168.1.0 area 0
@@ -132,7 +139,9 @@ You should now be able to ping from your linux vm to R2
 
 Because ansible uses SSH to deploy playbooks as well as ad-hoc commands, you will need to enable SSH onto your GNS3 Routers, a basic configuration has been provided 
 
-``` conf t
+``` 
+end
+conf t
 ip domain-name ansible.com
 crypto key generate rsa
 1024
@@ -208,6 +217,12 @@ If at some point your pings / connection stops working between your linux vm and
 delete the cable connecting R1 and the cloud together then reconnect
 
 # Azure
+
+## Disclaimer
+
+vim is the text editor used in the following lab guide but you can use your own preferred text editor if you wish *SOMETHING ABOUT HAVING TO KNOW IT YOURSELF*
+
+Ansible / gns3server are the same *REWORD*
 
 ## Topology
 
@@ -362,6 +377,31 @@ check over and make sure you have the correct options set
 ```
 * DNS PART TBA
 
+We will configre a dns on our gns3server so that connecting to it is easier *REWORD*
+
+go to your Ansible resource group and click on your gns3server-ip
+
+<img src="Images/gns3dns.JPG">
+
+From here click the configuration option on the left hand side of the screen under settings 
+
+<img src="Images/gns3dnssettings.JPG">
+
+under "DNS name label (optional)" 
+
+lets set our DNS name label to
+```
+gns3server
+```
+
+and save it
+
+your DNS name label will be suffixed with ".australiaeast.cloudapp.azure.com" i.e. gns3server.australiaeast.cloudapp.azure.com
+
+* If there are multiple people working on this you may need to tweak your name by appending a number onto the end i.e. gns3server1 etc. if you had to do this note the change for future steps
+
+Alternatively you could also instead configure a static ip and use that in place of a DNS
+
 ## gns3server
 
 Before we start lets make sure that our software is up to date *REWORD*
@@ -440,7 +480,7 @@ GNS3 INSTALL STEPS HERE
 
 Edit > preferences > server
 
-change the host to gns3server.australiasoutheast.cloudapp.azure.com<br>
+change the host to gns3server.australiaeast.cloudapp.azure.com<br>
 port 3081
 
 <img src="Images/server.JPG">
@@ -548,34 +588,41 @@ transport input ssh
 exit
 ```
 
-## Step X) Ansible Setup
+## Step X) Ansible Installation And Setup
 
-we now need to download and install ansible on our server we can achieve this by using the following
+All that is left for us to do now is to get ansible setup and then we can run it against our gns3 topology
+
+
+We now need to download and install ansible onto our server we can achieve this by using the following
+
 
 ```
 sudo apt-get install ansible -y
 ```
 
 
-X) lets open the ansible directory where the ansible.cfg and hosts file are stored, from here you can create and deploy your ansible playbooks
+X) lets go to the ansible directory where the ansible.cfg and hosts file are stored, from this directory you can create and deploy your ansible playbooks as well as modify your host files
 
 ```
 cd /etc/ansible/
 ```
 
-Inside the hosts file you can define your network devices and asign them to groups an example is provided inside the file by ansible
-
-We need to disable host_key_checking so that we aren't forced to ssh onto the device first
+We need to disable host_key_checking so that we aren't forced to ssh onto our gns3 routers first in order to do this we need to 
 
 ```
 sudo vim /etc/ansible/ansible.cfg
 ```
 
-go to line 62 and unncomment 
+go to line 62 and uncomment the following
 
 ```
 host_key_checking = False
 ```
+
+then save the file
+
+
+Inside the hosts file you can define your network devices and asign them to groups an example is provided inside the file by ansible
 
 in the hosts file you can define your environments in a few different ways you can have have them ungroup or you can put them into groups, having them in groups allows you to deploy your playbooks to a set of devices which can be helpful to make sure they are all configured the same.
 
