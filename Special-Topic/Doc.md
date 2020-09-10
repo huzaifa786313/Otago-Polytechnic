@@ -819,6 +819,8 @@ ansible playbooks user guide can be found here
 
 ## push configs i.e. motd banners etc for uniform deployments?
 
+## run a check on your config backups to make sure that they are configured the same - the interface ip and such
+
 ## bonus create vms? azure/openstack using ansible?
 
 download and install azure command line
@@ -837,11 +839,27 @@ after you have logged in you will be given an output that contains the informati
 
 - name
 
-when you use azure cli it will assign anything you create to 
-
 <img src="Images/azdetails.jpg">
 
-playbook that will create
+when you use azure cli it will assign anything you create to your default subscription so if you have multiple subscriptions on your account we will need to set this
+
+to change your default subscription is a quick task
+
+```
+az account set --subscription <ID>
+```
+
+after changing your subscription you wont be given a notification so you will need to verify that it has changed by using the following command
+```
+az account list
+```
+
+- sudo apt-get install python-pip
+- pip install packaging
+- pip install msrestazure
+- pip install ansible[azure]
+
+playbook that will create *NEED TO CHANGE THE VARIABLES AS THEY STILL RELATE TO GITLAB TEST DEPLOYMENT*
 ```
 - name: Create Azure VM
   hosts: localhost
@@ -973,6 +991,8 @@ playbook that will create
         sku: "{{ vm_sku }}"
         version: latest
 ```
+
+using azure peerings so that your private ip network in 1 region can communicate with another private network in a different region i.e. AUEast w/ AUSouthEast
 
 <br>
 
