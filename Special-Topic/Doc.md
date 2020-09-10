@@ -786,7 +786,9 @@ After running your playbook the following output should occur: <br>
 
 Congratulations you have now successfully deployed your first ansible playbook against a virtual network *REWORD*
 
-in the future labs we will cover more uses for ansible in both a local and cloud environment 
+In future labs we will cover more uses for ansible in both a local and cloud environment 
+
+Please save your work or make a script to recreate it quickly along as future labs will be built off this
 
 Further reading:
 
@@ -801,13 +803,176 @@ ansible playbooks user guide can be found here
 
 # Lab 2 local + cloud versions
 
+## Requirements
+
+- VM Workstation 
+- Ubuntu VM
+- GNS3
+- Windows Machine
+- Completion of lab 1
+
 ## Basic Playbooks (pull configs etc?)
 
 ## pull configs i.e. backups?
 
+
+
 ## push configs i.e. motd banners etc for uniform deployments?
 
-## bonus create vms? azure/openstack?
+## bonus create vms? azure/openstack using ansible?
+
+download and install azure command line
+```
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+```
+
+connect to the azure command line
+```
+az login
+```
+
+follow the on screen prompt and input the code it provides then select your microsoft account that you used for the previous lab
+
+after you have logged in you will be given an output that contains the information about your microsoft azure account *SOMETHING* 
+
+- name
+
+when you use azure cli it will assign anything you create to 
+
+<img src="Images/azdetails.jpg">
+
+playbook that will create
+```
+- name: Create Azure VM
+  hosts: localhost
+  connection: local
+
+  vars:
+# {
+#    "offer": "UbuntuServer",
+#    "publisher": "Canonical",
+#    "sku": "16.04-LTS",
+#    "urn": "Canonical:UbuntuServer:16.04-LTS:latest",
+#    "urnAlias": "UbuntuLTS",
+#    "version": "latest"
+#  },
+   vm_offer: "UbuntuServer"
+   vm_pub: "Canonical"
+   vm_sku: "18.04-LTS"
+
+   vm_size: "Standard_E2s_v3"
+
+   az: "australiaeast"
+
+   vm_net: "myVNet"
+   vm_subnet: "mySubnet"
+
+   vm_publicIP: "myPublicIP"
+   vm_NSG: "myNSG"
+   vm_NIC: "myNIC"
+   vm_Name: "gitlab-test"
+
+   resource_group: "gitlab_test"
+
+   os_user: "azuser"
+   os_pass: "AzuserP@ssw0rd"
+
+  tasks:
+
+  - name: Create a resource group
+    azure_rm_resourcegroup:
+      name: "{{ resource_group }}"
+      location: "{{ az }}"
+      tags:
+        testing: testing
+        delete: never
+
+  - name: Create virtual network
+    azure_rm_virtualnetwork:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_net }}"
+      address_prefixes: "10.0.0.0/16"
+
+  - name: Add subnet
+    azure_rm_subnet:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_subnet }}"
+      address_prefix: "10.0.1.0/24"
+      virtual_network: "{{ vm_net }}"
+
+  - name: Create public IP address
+    azure_rm_publicipaddress:
+      resource_group: "{{ resource_group }}"
+      allocation_method: Static
+      name: "{{ vm_publicIP }}"
+      domain_name: gitlab-test
+    register:  reg_publicIP
+
+  - debug: var=reg_publicIP
+
+  - name: Create Network Security Group that allows SSH
+    azure_rm_securitygroup:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_NSG }}"
+      rules:
+        - name: SSH
+          protocol: Tcp
+          destination_port_range: 22
+          access: Allow
+          priority: 1001
+          direction: Inbound
+        - name: HTTP
+          protocol: Tcp
+          destination_port_range: 80
+          access: Allow
+          priority: 1002
+          direction: Inbound
+        - name: HTTPS
+          protocol: Tcp
+          destination_port_range: 443
+          access: Allow
+          priority: 1003
+          direction: Inbound
+        - name: AERO
+          protocol: Tcp
+          destination_port_range: 8060
+          access: Allow
+          priority: 1004
+          direction: Inbound
+        - name: UNKNOWN
+          protocol: Tcp
+          destination_port_range: 9094
+          access: Allow
+          priority: 1005
+          direction: Inbound  
+
+  - name: Create virtual network interface card
+    azure_rm_networkinterface:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_NIC }}"
+      virtual_network: "{{ vm_net }}"
+      subnet: "{{ vm_subnet }}"
+      public_ip_name: "{{ vm_publicIP }}"
+      security_group: "{{ vm_NSG }}"
+
+  - name: Create VM
+    azure_rm_virtualmachine:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_Name }}"
+      vm_size: "{{ vm_size }}"
+      admin_username: "{{ os_user }}"
+      admin_password: "{{ os_pass }}"
+      ssh_password_enabled: true
+      #ssh_public_keys:
+      #  - path: "/home/{{ os_user }}/.ssh/authorized_keys"
+      #    key_data: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABwlu57 mykey"
+      network_interfaces: "{{ vm_NIC }}"
+      image:
+        offer: "{{ vm_offer }}"
+        publisher: "{{ vm_pub }}"
+        sku: "{{ vm_sku }}"
+        version: latest
+```
 
 <br>
 
@@ -819,4 +984,5 @@ ansible playbooks user guide can be found here
 
 ## some of the previous stuff but on physical gear?
 
-## create a network with a playbook?
+## create a network with a playbook? (AZURE?)
+
