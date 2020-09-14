@@ -238,6 +238,9 @@ vim is the text editor used in the following lab guide but you can use your own 
 
 Ansible / gns3server are the same *REWORD*
 
+## Requirements
+- Azure Subscription 
+
 ## Topology
 
 <img src="Images/topologycloud.JPG">
@@ -803,7 +806,9 @@ ansible playbooks user guide can be found here
 
 # Lab 2 local + cloud versions
 
-## Requirements
+## Local
+
+### Requirements
 
 - VM Workstation 
 - Ubuntu VM
@@ -815,7 +820,86 @@ ansible playbooks user guide can be found here
 
 ## pull configs i.e. backups?
 
+## push configs i.e. motd banners etc for uniform deployments?
 
+## run a check on your config backups to make sure that they are configured the same - the interface ip and such
+
+## Cloud
+
+### Requirements
+
+- Completion of lab 1
+- Azure Subscription
+
+## Basic Playbooks (pull configs etc?)
+
+## pull configs i.e. backups?
+
+create a directory to be used for backups of the routers
+```
+sudo mkdir ~/ ansible-backups
+```
+
+create a playbook called backup.yaml
+
+```
+sudo vim /etc/ansible/backup.yaml
+```
+
+insert the following into the backup.yaml file
+```
+---
+  - hosts: localhost
+
+    tasks:
+            - name: Get Date/Time
+              setup:
+                      filter: "ansible_date_time"
+                      gather_subset: "!all"
+
+            - name: Store Date/Time
+              set_fact:
+                      DTG: "{{ansible_date_time.date }}"
+
+            - name: Create Directory {{hostvars.localhost.DTG}}
+              file:
+                      path: /home/gns3server/ansible-backup/{{hostvars.localhost.DTG}}
+                      state: directory
+    run_once: true
+
+  - hosts: network
+    connection: local
+    remote_user: admin
+    gather_facts: false
+    tasks:
+            - name: backup running config
+              block:
+              - name:
+                ios_command:
+                  commands: show running-config
+                register: config
+
+              - name: save running config to backup folder
+                copy:
+                  content: "{{config.stdout[0]}}"
+                  dest: "/home/gns3server/ansible-backup/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
+```
+
+now run the playbook which will run 
+```
+show running-config
+```
+and store this 
+```
+ansible-playbook backup.yaml
+```
+use the following command to list your home directory
+```
+tree ~/
+```
+you should have an output simillar to the following
+
+<img src="Images/treeconfig.JPG">
 
 ## push configs i.e. motd banners etc for uniform deployments?
 
@@ -866,14 +950,6 @@ playbook that will create *NEED TO CHANGE THE VARIABLES AS THEY STILL RELATE TO 
   connection: local
 
   vars:
-# {
-#    "offer": "UbuntuServer",
-#    "publisher": "Canonical",
-#    "sku": "16.04-LTS",
-#    "urn": "Canonical:UbuntuServer:16.04-LTS:latest",
-#    "urnAlias": "UbuntuLTS",
-#    "version": "latest"
-#  },
    vm_offer: "UbuntuServer"
    vm_pub: "Canonical"
    vm_sku: "18.04-LTS"
