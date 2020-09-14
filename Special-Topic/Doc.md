@@ -903,6 +903,35 @@ you should have an output simillar to the following
 
 ## push configs i.e. motd banners etc for uniform deployments?
 
+```
+---
+  - name: testbook
+    hosts: network
+    connection: local
+    remote_user: admin
+    gather_facts: false
+    tasks:
+            - name: configure login banner
+              ios_banner:
+                      banner: login
+                      text: |
+                              Here
+                              Is
+                              A
+                              Test
+                              Configuration
+                              Banner
+                      state: present
+```
+
+now lets connect to our router to see the change we made
+
+due to issues with gns3 and cloud we need to add a few
+
+```
+ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c 3des-cbc admin@<router IP>
+```
+
 ## run a check on your config backups to make sure that they are configured the same - the interface ip and such
 
 ## bonus create vms? azure/openstack using ansible?
