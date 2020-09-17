@@ -151,7 +151,6 @@ crypto key generate rsa
 1024
 ip ssh version 2
 username admin privilege 15 password 0 admin
-exit
 line vty 0 4
 login local
 transport input ssh
@@ -823,6 +822,11 @@ ansible playbooks user guide can be found here
 
 ```
 sudo apt-get install tree
+```
+configure ip routes so that our playbooks can reach the devices
+```
+sudo ip route add 192.168.0.0/24 via 192.168.0.128 dev ens33
+sudo ip route add 192.168.1.0/30 via 192.168.0.128 dev ens33
 ```
 ## push configs i.e. motd banners etc for uniform deployments?
 
