@@ -831,6 +831,19 @@ ansible playbooks user guide can be found here
 - Completion of lab 1
 - Azure Subscription
 
+### Topology
+
+<img src="Images/topologycloud.JPG">
+
+If you stopped your virtual machine that was running your gns3server and you didnt make your tap1 and ip routes persistent then you will need to run the following commands again to recreate those
+
+```
+sudo tunctl -t tap1
+sudo ifconfig tap1 192.168.1.254 netmask 255.255.255.0 up
+sudo ip route add 192.168.1.0/24 via 192.168.1.254 dev tap1
+sudo ip route add 192.168.2.0/30 via 192.168.1.254 dev tap1
+```
+
 ## Basic Playbooks (pull configs etc?)
 
 ## pull configs i.e. backups?
