@@ -844,9 +844,7 @@ sudo ip route add 192.168.1.0/24 via 192.168.1.254 dev tap1
 sudo ip route add 192.168.2.0/30 via 192.168.1.254 dev tap1
 ```
 
-## Basic Playbooks (pull configs etc?)
-
-## pull configs i.e. backups?
+## Using ansible playbooks to pull device information
 
 create a directory to be used for backups of the routers
 ```
@@ -906,7 +904,11 @@ and store this
 ```
 ansible-playbook backup.yaml
 ```
-use the following command to list your home directory
+we will instead an application called tree which will help with displaying *REWORD*
+```
+sudo apt-get install tree
+```
+we can now use the following command to list the home directory
 ```
 tree ~/
 ```
@@ -914,6 +916,7 @@ you should have an output simillar to the following
 
 <img src="Images/treeconfig.JPG">
 
+here we can see that ansible managed to pull configuration from the routers
 ## push configs i.e. motd banners etc for uniform deployments?
 
 ```
