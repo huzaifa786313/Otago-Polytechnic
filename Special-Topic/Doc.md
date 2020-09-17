@@ -820,6 +820,10 @@ ansible playbooks user guide can be found here
 
 ## pull configs i.e. backups?
 
+
+```
+sudo apt-get install tree
+```
 ## push configs i.e. motd banners etc for uniform deployments?
 
 ## run a check on your config backups to make sure that they are configured the same - the interface ip and such
