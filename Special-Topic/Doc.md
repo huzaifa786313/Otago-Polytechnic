@@ -1086,9 +1086,6 @@ playbook that will create *NEED TO CHANGE THE VARIABLES AS THEY STILL RELATE TO 
       admin_username: "{{ os_user }}"
       admin_password: "{{ os_pass }}"
       ssh_password_enabled: true
-      #ssh_public_keys:
-      #  - path: "/home/{{ os_user }}/.ssh/authorized_keys"
-      #    key_data: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABwlu57 mykey"
       network_interfaces: "{{ vm_NIC }}"
       image:
         offer: "{{ vm_offer }}"
