@@ -942,13 +942,16 @@ here we can see that ansible managed to pull configuration from the routers
 
 now lets connect to our router to see the change we made
 
-due to issues with gns3 and cloud we need to add a few
+due to issues with gns3 and cloud we need to add a few additional options to our ssh command
 
 ```
 ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c 3des-cbc admin@<router IP>
 ```
+if we now ssh onto the router we can see that ansible has configured a motd banner
 
-## run a check on your config backups to make sure that they are configured the same - the interface ip and such
+<img src="Images/sshmotd.JPG">
+
+## run a check on your config backups to make sure that they are configured the same - except for the interface ip and such
 
 ## bonus create vms? azure/openstack using ansible?
 
