@@ -828,7 +828,30 @@ configure ip routes so that our playbooks can reach the devices
 sudo ip route add 192.168.0.0/24 via 192.168.0.128 dev ens33
 sudo ip route add 192.168.1.0/30 via 192.168.0.128 dev ens33
 ```
+
 ## push configs i.e. motd banners etc for uniform deployments?
+
+
+```
+---
+  - name: testbook
+    hosts: network
+    connection: local
+    remote_user: admin
+    gather_facts: false
+    tasks:
+            - name: configure login banner
+              ios_banner:
+                      banner: login
+                      text: |
+                              Here
+                              Is
+                              A
+                              Test
+                              Configuration
+                              Banner
+                      state: present
+```
 
 ## run a check on your config backups to make sure that they are configured the same - the interface ip and such
 
@@ -955,6 +978,7 @@ due to issues with gns3 and cloud we need to add a few additional options to our
 ```
 ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c 3des-cbc admin@<router IP>
 ```
+
 if we now ssh onto the router we can see that ansible has configured a motd banner
 
 <img src="Images/sshmotd.JPG">
