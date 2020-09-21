@@ -987,9 +987,14 @@ if we now ssh onto the router we can see that ansible has configured a motd bann
 
 ## bonus create vms? azure/openstack using ansible?
 
+```
+sudo apt install curl
+```
+
 download and install azure command line
 ```
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+sudo apt install azure-cli
 ```
 
 connect to the azure command line
