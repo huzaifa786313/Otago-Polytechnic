@@ -1,0 +1,15 @@
+---
+  - hosts: localhost
+    tasks:
+      - name:  Match
+        debug: 
+         msg: "The atomic number of Lithium is {{ lookup('csvfile', 'Test_Net_1 file=dtest.csv delimiter=,') }}"
+
+      - name: Define Values From CSV File
+        set_fact:
+                Net: = "{{ lookup('csvfile',' file=dtest.csv delimiter=, col=1') }}"
+                NSG: = "{{ lookup('csvfile',' file=dtest.csv delimiter=, col=2') }}"
+        delegate_to: localhost
+
+      - debug:
+          msg: "{{Net}}, {{NSG}}"

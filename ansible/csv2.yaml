@@ -1,0 +1,22 @@
+---
+  - hosts: localhost
+    tasks:
+      - read_csv:
+                path: dtest.csv
+                key: Net
+        register: users 
+      - debug: 
+          msg: "{{ item.value.Net }}, 
+                {{ item.value.NSG }},"
+          register: test1
+
+        loop: "{{users.dict|dict2items}}"
+        #register: test
+        
+      - debug:
+              msg: "{{test1}}"
+
+      - name: copy
+        copy:
+          content: "{{users}}"
+          dest: "/etc/ansible/config.txt"

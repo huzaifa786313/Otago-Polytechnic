@@ -1,0 +1,35 @@
+---
+  - hosts: localhost
+
+    tasks:
+            - name: Get Date/Time
+              setup:
+                      filter: "ansible_date_time"
+                      gather_subset: "!all"
+
+            - name: Store Date/Time
+              set_fact:
+                      DTG: "{{ansible_date_time.date }}"
+
+            - name: Create Directory {{hostvars.localhost.DTG}}
+              file:
+                      path: /home/gns3server/ansible-backup/{{hostvars.localhost.DTG}}
+                      state: directory
+    run_once: true
+
+  - hosts: network
+    connection: local
+    remote_user: admin
+    gather_facts: false
+    tasks:
+            - name: backup running config
+              block: 
+              - name:
+                ios_command:
+                  commands: show running-config
+                register: config
+    
+              - name: save running config to backup folder
+                copy:
+                  content: "{{config.stdout[0]}}"
+                  dest: "/home/gns3server/ansible-backup/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"

@@ -1,0 +1,120 @@
+---
+  - hosts: localhost
+    vars_prompt:
+     - name: amount
+       prompt: "How Many Virtual Machines Would You Like To Create? (0 based so 0 = 1)"
+       private: no
+    vars:
+     vm_offer: "UbuntuServer"
+     vm_pub: "Canonical"
+     vm_sku: "18.04-LTS"
+
+     vm_size: "Standard_B1ls"
+     
+     az: "australiasoutheast"
+     net: "samsojl1_sp-vnet"
+     vm_net: "IN700-Network"
+     vm_subnet: "IN700-Subnet"
+
+     vm_NSG: "IN700-Security-Group"
+     vm_NIC: "IN700-NIC"
+     vm_Name: "IN700"
+     
+     vm_peer: "IN700"
+
+     resource_group: "samsojl1_sp"
+
+     os_user: "student"
+     os_pass: "studentP@ssw0rd"
+
+    tasks:
+      - name: Create Network Security Group that allows SSH
+        azure_rm_securitygroup:
+          resource_group: "{{ resource_group }}"
+          name: "{{ vm_NSG }}"
+          rules:
+          - name: SSH
+            protocol: Tcp
+            destination_port_range: 22
+            access: Allow
+            priority: 1001
+            direction: Inbound
+          - name: HTTP
+            protocol: Tcp
+            destination_port_range: 80
+            access: Allow
+            priority: 1002
+            direction: Inbound
+          - name: HTTPS
+            protocol: Tcp
+            destination_port_range: 443
+            access: Allow
+            priority: 1003
+            direction: Inbound
+          state: absent
+
+      - name: Create virtual network
+        azure_rm_virtualnetwork:
+          resource_group: "{{ resource_group }}"
+          name: "{{ vm_net }}"
+          address_prefixes: "192.0.0.0/16"
+          state: absent
+
+      - name: Add subnet
+        azure_rm_subnet:
+          resource_group: "{{ resource_group }}"
+          name: "{{ vm_subnet }}"
+          address_prefix: "192.0.1.0/24"
+          virtual_network: "{{ vm_net }}"
+          state: absent
+
+      - name: Create virtual network interface card
+        azure_rm_networkinterface:
+          resource_group: "{{ resource_group }}"
+          name: "{{ vm_NIC }}-{{item}}"
+          virtual_network: "{{ vm_net }}"
+          subnet: "{{ vm_subnet }}"
+          security_group: "{{ vm_NSG }}"
+          state: absent
+        with_sequence: start=0 end={{amount}}
+
+      - name: Create VM
+        azure_rm_virtualmachine:
+          resource_group: "{{ resource_group }}"
+          name: "{{ vm_Name }}-{{item}}"
+          vm_size: "{{ vm_size }}"
+          admin_username: "{{ os_user }}"
+          admin_password: "{{ os_pass }}"
+          ssh_password_enabled: true
+          network_interfaces: "{{ vm_NIC }}-{{item}}"
+          image:
+            offer: "{{ vm_offer }}"
+            publisher: "{{ vm_pub }}"
+            sku: "{{ vm_sku }}"
+            version: latest
+          state: absent
+        with_sequence: start=0 end={{amount}}
+
+      - name: Peer Old To New
+        azure_rm_virtualnetworkpeering:
+          resource_group: "{{ resource_group }}"
+          virtual_network: "{{ net }}"
+          name: "{{ vm_peer }}"
+          remote_virtual_network:
+                  resource_group: "{{ resource_group }}"
+                  name: "{{ vm_net }}"
+          allow_virtual_network_access: true
+          allow_forwarded_traffic: true
+          state: absent
+      
+      - name: Peer New To Old
+        azure_rm_virtualnetworkpeering:
+          resource_group: "{{ resource_group }}"
+          virtual_network: "{{ vm_net }}"
+          name: "{{ net }}"
+          remote_virtual_network:
+                  resource_group: "{{ resource_group }}"
+                  name: "{{ net }}"
+          allow_virtual_network_access: true
+          allow_forwarded_traffic: true
+          state: absent

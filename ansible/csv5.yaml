@@ -1,0 +1,25 @@
+---
+  - hosts: localhost
+    vars :
+     inc: '0'
+    vars_prompt:
+            - name: amount
+              prompt: "How many?"
+              private: no
+    tasks:
+      - read_csv:
+                path: dtest.csv
+        register: users
+        delegate_to: localhost
+
+      - set_fact:
+          inc: "{{inc | int + 1}}"
+      - debug:
+              #var: inc
+          msg: "NSG {{ item.NSG }}
+                Net {{ item.Net }}
+                combined message {{item.NSG}}+{{item.Net}}"
+        loop: '{{users.list}}'
+      - debug:
+              msg: "{{item}}"
+        with_sequence: start=0 end={{amount}}

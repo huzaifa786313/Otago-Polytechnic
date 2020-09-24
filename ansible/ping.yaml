@@ -1,0 +1,7 @@
+---
+  - name: ping
+    hosts: network
+    connection: local
+    gather_facts: false
+    tasks:
+            - ping:

@@ -1,0 +1,1 @@
+{"failed": false, "changed": false, "list": [], "dict": {"Test_1_Net": {"Net": "Test_1_Net", "NSG": "Test_1_NSG"}, "Test_2_Net": {"Net": "Test_2_Net", "NSG": "Test_2_NSG"}}}

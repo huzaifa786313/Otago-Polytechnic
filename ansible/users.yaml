@@ -1,0 +1,12 @@
+---
+  - name: user creation
+    hosts: all
+    remote_user: manager
+    become: yes
+    gather_facts: false
+    tasks:
+            - name: add user
+              user:
+                      name: student
+                      password: "{{ 'P@ssw0rd' | password_hash('sha512') }}"
+

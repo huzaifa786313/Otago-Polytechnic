@@ -1,0 +1,18 @@
+---
+  - name: testbook
+    hosts: network
+    connection: local
+    remote_user: admin
+    gather_facts: false
+    tasks:
+            - name: configure login banner
+              ios_banner:
+                      banner: login
+                      text: | 
+                              Here
+                              Is
+                              A
+                              Test
+                              Configuration
+                              Banner
+                      state: present

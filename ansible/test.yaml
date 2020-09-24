@@ -1,0 +1,16 @@
+---
+  - hosts: localhost
+    vars_prompt:
+      - name: amount
+        prompt: "abc"
+        private: no
+    vars:
+        name: "test"    
+    tasks:
+      - set_fact:
+                name: "{{amount}}"
+      - set_fact:
+                amount: "{{amount | int -1 }}"
+      - debug:
+         msg: "PC-{{item | int + 1}} Number-{{item}}"
+        with_sequence: start=0 end={{amount}}
