@@ -166,3 +166,17 @@ sudo ip link set dev eth0 down
 sudo ip addr flush dev eth0 
 sudo ip link set dev eth0 up
 sudo ip link set eth0 master br0
+
+
+  506  az account show
+  507  az role assignment list --assignee SAMSOJL1@student.op.ac.nz
+  508  az role assignment list --resource-group samsojl1_sp
+  509  az role assignment list --assignee SAMSOJL1@student.op.ac.nz --all
+  510  az role assignment list --assignee --all
+  511  az role assignment list --assignee samsojl1@student.op.ac.nz --resource-group samsojl1_sp
+  512  az role assignment list --assignee rbroadley@op.ac.nz --resource-group samsojl1_sp
+  513  az role assignment list --assignee SyedH@op.ac.nz --resource-group samsojl1_sp
+  514  az role assignment list --assignee pangdw1@student.op.ac.nz --resource-group samsojl1_sp
+  515  az role assignment list --assignee pangdw1* --resource-group samsojl1_sp
+  516  az role assignment list --assignee pangdw1@student.op.ac.nz --resource-group samsojl1_sp
+  517  az role assignment list --assignee SAMSOJL1@student.op.ac.nz --all
