@@ -258,22 +258,31 @@ Do note that routes configured this way aren't persistent and will need to be re
 
 ## Ansible Setup
 
-- On your Linux VM open a terminal
+Now that everything has been configured so that we can use ansible it is time to setup ansible
 
-- run the command sudo apt-get install ansible and accept, this will install ansible onto your linux machine
+On your Linux VM open a terminal and use the command 
 
-- cd into /etc/ansible/ this is where the ansible.cfg and hosts file exist from here you can create your playbooks
+```
+sudo apt-get install ansible -y
+```
 
-Inside the hosts file you can define your network devices and asign them to groups an example is provided inside the file by ansible
+This will download and install ansible onto the linux machine
+
+After we have installed ansible we now need to make some configurations to it
+
+Go to the ansible directory
+```
+cd /etc/ansible/
+```
+
+Inside this directory you will find the ansible.cfg and hosts file, this is also where you will create your ansible playbooks to begin with
+
+Inside the hosts file you can define your network devices and asign them to groups an example of this provided inside the file by ansible
 
 You can run either use ad-hoc commands or ansible playbooks 
 
-Create a default route and redistribute it into ospf
-
 disable host_key_checking
 on line 62 uncomment host_key_checking = False
-
-You should now be able to ping from your linux vm to R2
 
 Because ansible uses SSH to deploy playbooks as well as ad-hoc commands, you will need to enable SSH onto your GNS3 Routers, a basic configuration has been provided 
 
