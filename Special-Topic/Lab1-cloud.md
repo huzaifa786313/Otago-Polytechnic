@@ -221,16 +221,16 @@ In order to do this run the following command
 sudo apt-get update -y
 ```
 <br>
-First thing we need to do is install gns3 server onto our linux server so that our gns3 client can connect to it
+First thing we need to do is install GNS3 server onto our linux server so that our GNS3 client can connect to it
 
-run the following commands to install the gns3 server
+Run the following commands to install the GNS3 server
 ```
 cd /tmp
 curl https://raw.githubusercontent.com/GNS3/gns3-server/master/scripts/remote-install.sh > gns3-remote-install.sh
 sudo bash gns3-remote-install.sh --with-openvpn --with-iou --with-i386-repository
 ```
 
-Its now time to edit our server settings so that we can connect to it using the gns3client virtual machine
+Now we need to edit our server settings so that the gns3client can connect
 
 Run the following command
 
@@ -240,25 +240,26 @@ ip a
 
 and note the ip address of eth0, we will use this in our gns3_server.conf file
 
+<img src="Images/eth.PNG">
+
 Now lets edit our gns3_server.conf file
 
 ```
 sudo vim /etc/gns3/gns3_server.conf
 ```
 
-make sure that the "host = " is set to the ip of eth0<br>
-and that the port = variable to 3081
+- Change the "host = " ip to that of your eth0
+- Change the "port = " to 3081
 
 Your gns3_server.conf file should look like the one in the image below
 
-<img src="Images/serverconf.JPG">
+<img src="Images/serverconf.PNG">
 
 After making these changes we now need to restart gns3<br> 
 use the following command
 ```
 sudo systemctl restart gns3.service
 ```
-
 
 Now we will create a tap interface so that we can connect our virtual network that we will create in gns3 to our physical network so that it can communicate with outside devices
 
@@ -273,8 +274,7 @@ Now that we have uml-utilties we can go ahead and create a TAP interface
 sudo tunctl -t tap1
 sudo ifconfig tap1 192.168.1.254 netmask 255.255.255.0 up
 ```
-
-to allow connection to the outside we need to configure some iptable rules
+To allow connection to the outside we need to configure some iptable rules
 ```
 sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 sudo iptables -A FORWARD -i tap1 -j ACCEPT
@@ -283,16 +283,16 @@ sudo iptables -A FORWARD -i eth0 -j ACCEPT
 sudo iptables -A INPUT -i eth0 -j ACCEPT
 ```
 
-Create routes<br>
-we need to create routes<br>
-so that traffic<br>
-*SOMETHING*
+## Linux Routing
+
+We will need to configure routes so that traffic knows where to go to get to the GNS3 routers
+
 ```
 sudo ip route add 192.168.1.0/24 via 192.168.1.254 dev tap1
 sudo ip route add 192.168.2.0/30 via 192.168.1.254 dev tap1
 ```
 
-## Install GNS3 Client
+## Install And Setup GNS3
 
 ## <p style="text-align: center;">The following occurs on our gns3client VM
 
