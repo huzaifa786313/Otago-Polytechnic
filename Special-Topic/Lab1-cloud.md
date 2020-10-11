@@ -33,7 +33,7 @@ Type "resource groups" in the search bar and click on the resource groups under 
 
 <img src="Images/resourcegroupsearch.PNG">
 
-This will take you to your resource group page and display and existing resource groups that you have access to as well as allow you to create new ones
+This will take you to your resource group page and display any existing resource groups that you have access to as well as allow you to create new ones
 
 Now click add to make a new resource group
 
@@ -99,19 +99,21 @@ If everything is correct click the create button
 
 ## VM 1 - gns3client
 
-type "resource groups" in the search bar and click on the resource groups under services
+We will now create the first of 2 VM's that will be used for this lab
 
-click on the ansible resource group that you created
+Type "virtual machines" in the search bar and click on the Virtual machines under services
 
-click on the add button
+<img src="Images/virtualmachines.PNG">
 
-this will take you to a page where you can choose from a large range of options of things to add to your resource group but for now we only need a virtual machine
+This will take you to your virtual machines page and display any existing virtual machines that you have access to as well as allow you to create new ones
 
-on the left hand side select the compute option now select virtual machine, this will take you to a screen where you can create a virtual machine
+Now click add to make a new virtual machine
 
-because the free trial has a maximum amount of vcpus that you can have allocated per region we need to make sure we divided them correctly between the ansible/gns3 server and the gns3client machine
+<img src="Images/virtualmachinesadd.PNG">
 
-confirm that the resource group is ansible
+Because the free trial has a maximum amount of vcpus that you can have allocated per region we need to make sure we divided them correctly between the ansible/gns3 server and the gns3client machine
+
+Confirm that the resource group is ansible
 ```
 details
 Virtual machine name - gns3client
