@@ -113,9 +113,11 @@ Now click add to make a new virtual machine
 
 Because the free trial has a maximum amount of vcpus that you can have allocated per region we need to make sure we divided them correctly between the ansible/gns3 server and the gns3client machine
 
-Confirm that the resource group is ansible
+<img src="Images/virtualmachinestab.PNG">
+
+## Basics
 ```
-details
+Resource group - ansible
 Virtual machine name - gns3client
 Region - (Asia Pacific) Australia East
 Image - Windows 10 Pro
@@ -128,40 +130,58 @@ Public inbound ports - default
 Select inbound ports - default
 Licensing - check
 ```
+## Disks
 ```
-disks
 Leave as default
 ```
+## Networking
 ```
-Networking
 Virtual network - Ansible
 subnet - Ansible (192.168.0.0/24)
 public ip - default
 NIC network security group - none
 Load balancing - default
 ```
+## Management
 ```
-Management
 leave as defaults
 ```
+## Advanced
 ```
-Advanced
 leave as defaults
 ```
+## Tags
 ```
-Tags
 leave as defaults
 ```
+## Review + create
 ```
-review + create
 check over and make sure you have the correct options set
 ```
-* DNS PART TBA
+
+After your gns3client VM has been created we need to apply a
+
+DNS PART TBA
 
 ## VM 2 - gns3server / Ansible
 
-type "resource groups" in the search bar and click on the resource groups under services
+We will now create the second of the 2 VM's that will be used for this lab
 
+Type "virtual machines" in the search bar and click on the Virtual machines under services
+
+<img src="Images/virtualmachines.PNG">
+
+This will take you to your virtual machines page and display any existing virtual machines that you have access to as well as allow you to create new ones
+
+Now click add to make a new virtual machine
+
+<img src="Images/virtualmachinesadd.PNG">
+
+Because the free trial has a maximum amount of vcpus that you can have allocated per region we need to make sure we divided them correctly between the ansible/gns3 server and the gns3client machine
+
+<img src="Images/virtualmachinestab.PNG">
+
+## Basics
 ```
 Virtual machine name - gns3server
 Resource Group - ansible
@@ -176,58 +196,58 @@ Confirm Password - gns3server@ssw0rd
 Public inbound ports - default
 Select inbound ports - default
 ```
+## Disks
 ```
-Disks
-leave as defaults
+Leave as defaults
 ```
+## Networking
 ```
-Networking
 Virtual network - Ansible
 subnet - Ansible (192.168.0.0/24)
 public ip - default
 NIC network security group - none
 Load balancing - default
 ```
+## Management
 ```
-Management
-leave as defaults
+Leave as defaults
 ```
+## Advanced
 ```
-Advanced
-leave as defaults
+Leave as defaults
 ```
+## Tags
 ```
-Tags
-leave as defaults
+Leave as defaults
 ```
+## Review + create
 ```
-review + create
-check over and make sure you have the correct options set
+Check over and make sure you have the correct options set
 ```
-* DNS PART TBA
 
-We will configre a dns on our gns3server so that connecting to it is easier *REWORD*
+After creating our gns3server VM we will create and apply a DNS name to it so that it makes connecting to it easier
 
-go to your Ansible resource group and click on your gns3server-ip
 
-<img src="Images/gns3dns.JPG">
 
-From here click the configuration option on the left hand side of the screen under settings 
+Go to your Ansible resource group and click on your gns3server VM
 
-<img src="Images/gns3dnssettings.JPG">
+<img src="Images/virtualmachinesdns.PNG">
 
-under "DNS name label (optional)" 
+Under "DNS name label (optional)" 
+
+<img src="Images/virtualmachinesdns1.PNG">
 
 lets set our DNS name label to
+
 ```
 gns3server
 ```
 
-and save it
+And save it
 
-your DNS name label will be suffixed with ".australiaeast.cloudapp.azure.com" i.e. gns3server.australiaeast.cloudapp.azure.com
+Your DNS name label will be suffixed with ".australiaeast.cloudapp.azure.com" i.e. gns3server.australiaeast.cloudapp.azure.com
 
-* If there are multiple people working on this you may need to tweak your name by appending a number onto the end i.e. gns3server1 etc. if you had to do this note the change for future steps
+- If there are multiple people working on this you may need to tweak your name by appending a number onto the end i.e. gns3server1 etc. if you had to do this note the change for future steps
 
 Alternatively you could also instead configure a static ip and use that in place of a DNS
 
