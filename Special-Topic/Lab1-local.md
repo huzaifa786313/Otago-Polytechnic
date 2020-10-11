@@ -20,8 +20,6 @@ In the following lab we will install and configure the required components neede
 ## Requirements
 
 - VM Workstation 
-- Ubuntu VM
-- GNS3
 - Windows Machine
 
 ## Setup
@@ -184,7 +182,7 @@ int g1/0
 ip address 192.168.1.2 255.255.255.252
 no shut
 ```
-- Verify that R1 can ping R2 and R2 can ping R1
+Verify that R1 can ping R2 and R2 can ping R1
 
 Now we will add a cloud to our GNS3 project
 

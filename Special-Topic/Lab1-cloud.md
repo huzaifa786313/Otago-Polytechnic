@@ -3,28 +3,30 @@
 
 ## Lab1 - Setting up Ansible (Cloud Version)
 
-# Azure
-
 ## Disclaimer
 
-vim is the text editor used in the following lab guide but you can use your own preferred text editor if you wish *SOMETHING ABOUT HAVING TO KNOW IT YOURSELF*
+VIM is the text editor used in the following lab
 
-Ansible / gns3server are the same *REWORD*
+The GNS3 version used at the creation of this lab was GNS3 2.2.12
+
 
 ## Requirements
+
 - Azure Subscription 
+- Terminal Emulator
 
 ## Topology
 
 <img src="Images/topologycloud.JPG">
 
-## SIGNUP SECTION TO BE ADD
+## AZURE SIGNUP SECTION TO BE ADDED(FREE TRIAL)?
 
 Azure portal https://portal.azure.com/ and sign in
 
 ## Resource Group
 
-Create a resource group to store the project *REWORD* in
+Lets create a resource group that we can use for this project
+
 
 type "resource groups" in the search bar and click on the resource groups under services
 
@@ -76,7 +78,7 @@ If everything is correct click the create button
 review + create
 create
 ```
-## VM 1 - Windows
+## VM 1 - gns3client
 
 type "resource groups" in the search bar and click on the resource groups under services
 
@@ -135,7 +137,7 @@ check over and make sure you have the correct options set
 ```
 * DNS PART TBA
 
-## VM 2 - Ansible
+## VM 2 - gns3server / Ansible
 
 type "resource groups" in the search bar and click on the resource groups under services
 
@@ -294,48 +296,81 @@ sudo ip route add 192.168.2.0/30 via 192.168.1.254 dev tap1
 
 ## <p style="text-align: center;">The following occurs on our gns3client VM
 
-Step X) GNS3 Setup
+In order to download GNS3 you need to signup to their website
 
-X) Sign up to gns3 https://www.gns3.com/ then proceed to download the windows version of gns3 https://www.gns3.com/software/download
+- Sign up to GNS3 https://www.gns3.com/ 
 
-GNS3 INSTALL STEPS HERE
+- Download the windows version of GNS3 https://www.gns3.com/software/download
 
-Edit > preferences > server
+After downloading GNS3 onto our windows VM we now need to configure it so that it connects to our GNS3 Server in order to do this we need to start GNS3 
 
-change the host to gns3server.australiaeast.cloudapp.azure.com<br>
-port 3081
+- Go to the Edit tab and select preferences 
+- Go to the Server tab
 
-<img src="Images/server.JPG">
+- Change the host to gns3server.australiaeast.cloudapp.azure.com
+- Set port 3081
 
-leave auth unchecked
+<img src="Images/server.PNG">
+
+Leave Auth unchecked
 
 ## Router Template Configuration
 
-Because gns3 doesn't come with any routers avaliable to use by default we need to import and configure a template for one
+We need to download and configure a router template that we will use within GNS3, GNS3 by default does not come with any routers that you can use.
 
-First we will need to download the image for our cisco 7200 here is a link to the image download
-```
+- Download the image for the cisco 7200 router here 
 https://github.com/samsojl1/Otago-Polytechnic/raw/master/Special-Topic/c7200/c7200-advipservicesk9-mz.122-33.SRC2.extracted.bin
-```
 
-Now lets import the cisco 7200 into gns3
-1) File 
-2) New template
-3) Install an appliance from the GNS3 server 
-4) Next 
-5) Click the dropdown for the routers section and select cisco 7200
-6) Click install 
-7) Install the appliance on the main server 
-8) Create a new version
-9) Version name "Cisco 7200"<br>
-<img src="Images/c7200.JPG"> 
-10) select your version from the list 
-<img src="Images/c7200import.JPG"> 
-11) Click import, locate and select the cisco 7200 bin file your downloaded earlier, your version should change from "Missing" to "Ready to install" as shown in the images
-<img src="Images/c7200install.JPG"> 
-12) Click next
-13) Accept the install 
-14) Finish
+In order to create a template using the image we just downloaded we need to do the following
+
+- In GNS3 go to File > New Template
+
+- Install an appliance from the GNS3 server 
+
+- Then click the dropdown for the routers section and select Cisco 7200 then click install 
+
+<img src="Images/templaterouter.JPG">
+
+
+- Install the appliance on your local computer 
+
+- Select Create a new version
+
+- Name it "C7200" and select ok
+
+<img src="Images/name.JPG">
+
+- You should now see your router but with its files missing
+
+<img src="Images/missing.JPG">
+
+
+- select your version from the list and click import, locate and select the c7200-advipservicesk9-mz.122-33.SRC2.extracted.bin image your downloaded
+
+- Next 
+
+- Accept the install
+ 
+<img src="Images/install.JPG">
+
+- Finish
+
+If you click on the router icon on the left hand side 
+
+<img src="Images/routericon.JPG">
+<br>
+
+You should now see your router template you installed
+<br>
+<img src="Images/routericon1.JPG">
+
+We now need to make a few tweaks to our newly created template
+
+- Right click your router template and select the configure template option
+
+<img src="Images/template.JPG">
+
+- Go to the "Slots" tab and add "PA-GE" to Adapters slots 1 through 4 this will add  gigabyte interfaces to your routers when you create them
 
 If you click on the router icon on the left hand side<br>
 <img src="Images/routericon.JPG">  
@@ -348,24 +383,18 @@ Now we need to configure our newly created router to do this right click on the 
 
 From here go to the Slots tab and add "PA-GE" to Adapters slots 1 through 4 this will add 4 gigabyte interfaces to your routers when you spawn them
 
-## Basic GNS3 Network
+## Configure A Basic Network
 
-## Topology
-
-The following network topology is what we will use to create our basic network in gns3
 
 <img src="Images/topologycloud.JPG">
 
-Lets create a simple network in GNS3 and connect it to our physical connect via a tap interface
+Lets create a simple network in GNS3
 
-In order to do this first we must create a new blank project and name it *SOMETHING*
+- Create a new blank project
 
-The code to configure the gns3 network environment has been provided below<br>
-The commands have also been provided in a way that they will work no matter where your are located cli wise *REWORD*
+- Add 2 routers to the project
 
-1) Add 2 of our newly created cisco 7200 routers
-2) Cable these 2 routers together
-3) Configure these 2 routers with ip addresses according to the topology provided
+- Cable these 2 routers together according to the topology above
 
 On R1
 ```
@@ -376,7 +405,6 @@ ip address 192.168.2.1 255.255.255.252
 no shut
 ```
 On R2
-
 ```
 end
 conf t
@@ -384,7 +412,9 @@ int g2/0
 ip address 192.168.2.2 255.255.255.252
 no shut
 ```
-4) Verify that R1 can ping R2 and vice versa
+
+Verify that R1 can ping R2 and R2 can ping R1
+
 On R1
 ```
 end
@@ -395,15 +425,29 @@ On R2
 end
 ping 192.168.2.1
 ```
-5) Add a cloud to our network, you can find this by clicking on the end device icon<br>
-<img src="Images/enddevice.JPG"><br>
-<img src="Images/cloud.JPG">
-6) Select the cloud
-7) Go to the "TAP Interfaces" tab
-8) Check the that tap1 has been added
-<img src="Images/tap.JPG">
-9) Cable R1 to the cloud using the tap1 interface
-10) Configure R1 with an ip address
+
+Now we will add a cloud to our GNS3 project
+
+The cloud allows the routers inside your GNS3 project to communicate with outside devices
+
+Lets add a cloud to connect our virtual routers to our physical network 
+
+- From the browse end devices tab 
+
+<img src="Images/clouddevice.JPG">
+
+- Add the cloud to your project
+
+<img src="Images/cloudicon.JPG">
+
+After adding the cloud we now need to configure it 
+
+- Click on the cloud and go to the "TAP Interfaces" tab
+- Check the that tap1 has been added
+- Cable R1 to the cloud according to the topology
+
+
+We will now configure R1's interface that connects with the TAP interface with an ip address 
 
 On R1 
 ```
@@ -413,17 +457,14 @@ int g1/0
 ip address 192.168.1.1 255.255.255.0
 no shut
 ```
-11) confirm that R1 can ping the tap interface
+Confirm that R1 can ping the tap interface
 ```
 end
 ping 192.168.1.254
 ```
-12) Confirm that the gns3server can ping R1
-* you will need to do this on the gns3server
+Confirm that the gns3server can ping R1
 
-we now need to Configure OSPF and a static default route then redistirbute that route into ospf, this will allow R2 to send traffic to the gns3server and outwards *REWORD*
-
-13) Configure OSPF
+Configure OSPF and a static default route then redistirbute that route into ospf
 
 On R1
 ```
@@ -444,20 +485,15 @@ router ospf 1
 router-id 2.2.2.2
 network 192.168.2.0 0.0.0.3 area 0
 ```
-14) Confirm that R2 can ping tap1
+Confirm that R2 can ping tap1
 ```
 end
 ping 192.168.1.254
 ```
-15) Confirm that the gns3server can ping R2
-* you will need to do this on the gns3server
+Confirm that the gns3server can ping R2
 
+Because ansible is agentless and uses SSH to deploy playbooks, you will need to configure and enable SSH onto your GNS3 Routers, a basic configuration has been provided 
 
-Our final step
-
-Because the ansible requires the use of SSH to deploy playbooks, we will need to configure and enable SSH on our routers, a basic ssh configuration has been provided 
-
-On both R1 and R2
 ``` 
 end
 conf t
@@ -499,7 +535,7 @@ Then save the file
 
 Inside the hosts file you can define your network devices and asign them to groups an example is provided inside the file by ansible
 
-<img src="Images/hosts.JPG">
+<img src="Images/hosts.PNG">
 
 In the hosts file you can define your environments in a few different ways you can have have them ungroup or you can put them into groups, having them in groups allows you to deploy your playbooks to a set of devices which can be helpful to make sure they are all configured the same.
 
@@ -543,22 +579,21 @@ and copy and paste the following
             - ping:
 ```
 
-then write quit<br>
+Now that we have created our playbook it is time to run it
 
-Now that we have created our playbook it is time to run in
-
-in order to run your playbook you must be in the directory that it is located or specify the location
-In order to run your ansible playbook that you have now created you need to be located in the directory that the playbook was made 
-
+You can run your ansible playbooks by being located in the directory where its located by using
 ```
 ansible-playbook ping.yaml
+```
+Or you can provide the path to the playbook
+```
 ansible-playbook /etc/ansible/ping.yaml
 ```
 
-After running your playbook the following output should occur: <br>
+After running your playbook the following output should occur
 
-<img src="Images/playbook2.JPG">
-<br>
+<img src="Images/playbook2.PNG">
+
 
 Congratulations you have now successfully deployed your first ansible playbook
 
@@ -569,10 +604,7 @@ Please save your work or make a script to recreate it quickly along as future la
 Further reading:
 
 ansible module list can be found here 
-* https://docs.ansible.com/ansible/latest/modules/modules_by_category.html
+- https://docs.ansible.com/ansible/latest/modules/modules_by_category.html
 
 ansible playbooks user guide can be found here 
-* https://docs.ansible.com/ansible/latest/user_guide/playbooks.html
-
-
-<br>
+- https://docs.ansible.com/ansible/latest/user_guide/playbooks.html
