@@ -27,7 +27,7 @@ In the following lab we will install and configure the required components neede
 ## Setup
 
 
-### Ubuntu Setup
+## Ubuntu Setup
 
 First thing we need to do is download a ubuntu image that we will use for our ansible server
 
@@ -80,9 +80,15 @@ In the end your Virtual Network Editor should look simillar to the image below
 <img src="Images/virtualnetworkeditor.JPG">
 
 
-- connect to your linux VM and open a terminal, then run the command "ip a" and note down the ip address on the ens33(ens number may vary but there will be only one) interface
+- Connect to your linux VM and open a terminal
 
-### GNS3 Setup
+- use the command "ip a" and note down the ip address on the ens33(ens number may vary but there will be only one)
+
+<img src="Images/ens.JPG">
+
+This ip will be used later when we configure GNS3
+
+## GNS3 Setup
 
 In order to download GNS3 you need to signup to their website
 
@@ -92,27 +98,75 @@ In order to download GNS3 you need to signup to their website
 
 
 
-### Router Template Configuration
+## Router Template Configuration
 
-We need to download and configure a router template that we will use, GNS3 does not come with
+We need to download and configure a router template that we will use within GNS3, GNS3 by default does not come with any routers that you can use.
 
 - Download the image for the cisco 7200 router here 
 https://github.com/samsojl1/Otago-Polytechnic/raw/master/Special-Topic/c7200/c7200-advipservicesk9-mz.122-33.SRC2.extracted.bin
 
-- Import the C7200 Router into GNS3 by going file > new template > install an appliance from the GNS3 server > then click the dropdown for the routers section and select Cisco 7200 then click install > Install the appliance on your local computer > create a new version, call it whatever you wish > select your version from the list and click import, locate and select the c7200 bin file your downloaded earlier > next > accept the install > finish, if you click on the router icon on the left hand side you should now see your router template you installed
+In order to create a template using the image we just downloaded we need to do the following
 
-- right click your newly created router template and click on the configure template option,
+- In GNS3 go to File > New Template
+
+- Install an appliance from the GNS3 server 
+
+- Then click the dropdown for the routers section and select Cisco 7200 then click install 
+
+<img src="Images/templaterouter.JPG">
+
+
+- Install the appliance on your local computer 
+
+- Select Create a new version
+
+- Name it "C7200" and select ok
+
+<img src="Images/name.JPG">
+
+- You should now see your router but with its files missing
+
+<img src="Images/missing.JPG">
+
+
+- select your version from the list and click import, locate and select the c7200-advipservicesk9-mz.122-33.SRC2.extracted.bin image your downloaded
+
+- Next 
+
+- Accept the install
+ 
+<img src="Images/install.JPG">
+
+- Finish
+
+If you click on the router icon on the left hand side 
+
+<img src="Images/routericon.JPG">
+<br>
+
+You should now see your router template you installed
+<br>
+<img src="Images/routericon1.JPG">
+
+We now need to make a few tweaks to our newly created template
+
+- Right click your router template and select the configure template option
 
 <img src="Images/template.JPG">
-from here go to the slots tab and add "PA-GE" to Adapters slots 1 through 4 this will add 4 gigabyte interfaces to your routers when you spawn them
 
-### Configure A Basic Network
+- Go to the "Slots" tab and add "PA-GE" to Adapters slots 1 through 4 this will add  gigabyte interfaces to your routers when you create them
+
+## Configure A Basic Network
+
+<img src="Images/topology.JPG">
 
 Lets create a simple network in GNS3
 
-- create a new blank project and call it whatever you want
+- Create a new blank project
 
-- lets add 2 of our newly created routers to the project by going to the router tab and dragging 2 on, cable these 2 routers together and configure them using a private ip 
+- Add 2 routers to the project
+
+- Cable these 2 routers together according to the topology above
 
 On R1
 ```
@@ -130,15 +184,34 @@ int g1/0
 ip address 192.168.1.2 255.255.255.252
 no shut
 ```
-- Verify that R1 can ping R2 and vice versa
+- Verify that R1 can ping R2 and R2 can ping R1
 
-- lets add a cloud to connect our virtual routers to our physical network 
+Now we will add a cloud to our GNS3 project
 
-After adding the cloud click on it and go to "Ethernet Interfaces" tab, then tick the "Show special Ethernet interfaces" box, click the Add all button, this will add all the interfaces from your physical machine to the cloud allowing you to connect your virtual router to it
+The cloud allows the routers inside your GNS3 project to communicate with outside devices
 
+Lets add a cloud to connect our virtual routers to our physical network 
 
+- From the browse end devices tab 
 
-on the interface you connected your R1 to the cloud you need to configure it with an ip in the same range as the physical interface, the ens** ip you recorded earlier
+<img src="Images/clouddevice.JPG">
+
+- Add the cloud to your project
+
+<img src="Images/cloudicon.JPG">
+
+After adding the cloud we now need to configure it 
+
+- Click on the cloud and go to "Ethernet Interfaces" tab
+- Tick the "Show special Ethernet interfaces" option
+- Click the Add all button
+
+By selecting the add all option this will add all the interfaces from your physical machine to the cloud allowing you to connect your virtual router to it
+
+- Cable R1 to the Cloud according to the topology 
+
+On the interface you connected your R1 to the cloud you need to configure it with an ip in the same range as the physical interface, the ens33 ip you recorded earlier
+
 On R1 
 ```
 end
@@ -171,11 +244,19 @@ router-id 2.2.2.2
 network 192.168.1.0 area 0
 ```
 
-### Route
+## Linux Routing
 
-On your linux vm you 
+On your linux vm you will need to configure a route so that traffic knows where to go to to get to your GNS3 routers
 
-### Ansible Setup
+In your linux terminal use the following command
+
+```
+sudo ip route add 192.168.1.0/30 via 192.168.0.128 dev ens33
+```
+
+Do note that routes configured this way aren't persistent and will need to be re entered, you can configure them to be persistent but for what we are trying to do that isn't required
+
+## Ansible Setup
 
 - On your Linux VM open a terminal
 
