@@ -244,6 +244,21 @@ router-id 2.2.2.2
 network 192.168.1.0 area 0
 ```
 
+Because ansible is agentless and uses SSH to deploy playbooks, you will need to configure and enable SSH onto your GNS3 Routers, a basic configuration has been provided 
+
+``` 
+end
+conf t
+ip domain-name ansible.com
+crypto key generate rsa
+1024
+ip ssh version 2
+username admin privilege 15 password 0 admin
+line vty 0 4
+login local
+transport input ssh
+exit
+```
 ## Linux Routing
 
 On your linux vm you will need to configure a route so that traffic knows where to go to to get to your GNS3 routers
@@ -277,55 +292,43 @@ cd /etc/ansible/
 
 Inside this directory you will find the ansible.cfg and hosts file, this is also where you will create your ansible playbooks to begin with
 
+We will disable host_key_checking in our ansible.cfg file so that we don't need to SSH onto our GNS3 routers first before we can deploy playbooks, while this helps to save time in a lab environment it is also a security risk
+
+
+```
+sudo vim /etc/ansible/ansible.cfg
+```
+Go to line 62 and uncomment the following
+```
+#host_key_checking = False
+```
+Then save the file
+
 Inside the hosts file you can define your network devices and asign them to groups an example of this provided inside the file by ansible
 
-You can run either use ad-hoc commands or ansible playbooks 
-
-disable host_key_checking
-on line 62 uncomment host_key_checking = False
-
-Because ansible uses SSH to deploy playbooks as well as ad-hoc commands, you will need to enable SSH onto your GNS3 Routers, a basic configuration has been provided 
-
-``` 
-end
-conf t
-ip domain-name ansible.com
-crypto key generate rsa
-1024
-ip ssh version 2
-username admin privilege 15 password 0 admin
-line vty 0 4
-login local
-transport input ssh
-exit
-```
-
-in the hosts file you can define your devices in a few different ways you can have them ungrouped
-
-in the /etc/ansible/hosts file we will add the ip addresses of the devices we wish to use ansible against
+The following is to be added to our hosts file
 
 ```
 [routers]
 R2 ansible_host=192.168.1.2 ansible_network_os=ios ansible_ssh_user=admin ansible_ssh_pass=admin
-R1 ansible_host=192.168.0.129 ansible_network_os=ios ansible_ssh_user=admin ansible_ssh_pass=admin
+R1 ansible_host=192.168.0.1 ansible_network_os=ios ansible_ssh_user=admin ansible_ssh_pass=admin
 ```
-* The [routers] defines the name of the group this can be called whatever you wish
-* R2 and R1 are the names of the hosts
-* ansible_host=X.X.X.X is the ip of the host
-* ansible_network_os=ios defines the network platform that the host is using
-* ansible_ssh_user=admin the user account that ansible uses to connect with in this example its admin because that is what we created earlier when we setup the router configuration in gns3
-* ansible_ssh_pass=admin the password of the user account that ansible is using to connect with
+- The [routers] defines the name of the group this can be called whatever you wish
+- R2 and R1 are the names of the hosts
+- ansible_host=X.X.X.X is the ip of the host
+- ansible_network_os=ios defines the network platform that the host is using
+- ansible_ssh_user=admin the user account that ansible uses to connect with in this example its admin because that is what we created earlier when we setup the router configuration in gns3
+- ansible_ssh_pass=admin the password of the user account that ansible is using to connect with
 
-<br>
+Now that we have everything setup we can finaly use ansible
 
-lets create a easy playbook to test if everything is working correctly
-ansible can be a bit pedantic with its formating so here is a 
+Lets create a simple playbook to test if everything is working correctly
 
 ```
 sudo vim /etc/ansible/test.yaml
 ```
 
-and copy and paste the following 
+And insert the following
 ```
 ---
   - name: ping
@@ -336,38 +339,34 @@ and copy and paste the following
             - ping:
 ```
 
-then write quit
-<br>
-
 In order to run your ansible playbook that you have now created you need to be located in the directory that the playbook was made 
 
 ```
+cd /etc/ansible
 ansible-playbook test.yaml
 ```
 
-After running that command the following output should occur: <br>
+After running that command the following output should occur <br>
 
-<img src="Images/playbook.JPG">
+<img src="Images/playbook.PNG">
 <br>
 
-This means that ansible can successfully  *SOMETHING*
+Congratulations you have now successfully deployed your first ansible playbook
 
-ansible all -c network_cli -u samsojl1 -k -m ping -e ansible_network_os=ios
+In future labs we will cover more uses for ansible in both a local and cloud environment 
+
+Please save your work or make a script to recreate it quickly along as future labs will be built off this
+
 
 Further reading:
 
 ansible module list can be found here 
-* https://docs.ansible.com/ansible/latest/modules/modules_by_category.html
+- https://docs.ansible.com/ansible/latest/modules/modules_by_category.html
 
 ansible playbooks user guide can be found here 
-* https://docs.ansible.com/ansible/latest/user_guide/playbooks.html
-
-
-
-
-
+- https://docs.ansible.com/ansible/latest/user_guide/playbooks.html
 
 ## Troubleshooting
 
-If at some point your pings / connection stops working between your linux vm and your 
-delete the cable connecting R1 and the cloud together then reconnect
+If at some point your pings / connection stops working between your linux vm and your GNS3 routers,
+delete the cable connecting R1 and the cloud together then cable them back together

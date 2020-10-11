@@ -560,7 +560,7 @@ After running your playbook the following output should occur: <br>
 <img src="Images/playbook2.JPG">
 <br>
 
-Congratulations you have now successfully deployed your first ansible playbook against a virtual network *REWORD*
+Congratulations you have now successfully deployed your first ansible playbook
 
 In future labs we will cover more uses for ansible in both a local and cloud environment 
 
