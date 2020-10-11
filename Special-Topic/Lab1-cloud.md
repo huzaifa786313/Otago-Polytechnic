@@ -23,31 +23,45 @@ The GNS3 version used at the creation of this lab was GNS3 2.2.12
 
 Azure portal https://portal.azure.com/ and sign in
 
+Lets go to our azure home https://portal.azure.com/#home
+
 ## Resource Group
 
 Lets create a resource group that we can use for this project
 
+Type "resource groups" in the search bar and click on the resource groups under services
 
-type "resource groups" in the search bar and click on the resource groups under services
+<img src="Images/resourcegroupsearch.PNG">
 
-now click add to make a new resource group
+This will take you to your resource group page and display and existing resource groups that you have access to as well as allow you to create new ones
 
-here you can name the resource group 
-lets call it "ansible" for now
+Now click add to make a new resource group
 
-you can also select the region you want your resource group in, unless you require it to be in a specific region in order to do things it is instead best to choose a region that is the closest to you
-lets select australia east from the drop down
+<img src="Images/resourcegroupadd.PNG">
 
-now lets create our resource group
-click the review + create and confirm the creation
+Here you can name the resource group 
+
+Lets call it "ansible" for now
+
+<img src="Images/resourcegroupcreate.PNG">
+
+You can also select the region you want your resource group in, unless you require it to be in a specific region in order to do things it is instead best to choose a region that is the closest to you
+
+Lets select Australia East from the drop down
+
+Now lets create our resource group
+
+Click the review + create and confirm the creation
 
 ## Network
 
 we now need to create a virtual network that will be used *REWORD*
 
-go to your ansible resource group and click the add button
+Go to your ansible resource group and click the add button
 
-go to the networking tab and select virtual network
+Go to the networking tab and select virtual network
+
+<img src="Images/networkcreate.PNG">
 
 Set the name for your virtual network to ansible<br>
 Set the region for your virtual network to Australia East
@@ -55,29 +69,34 @@ Set the region for your virtual network to Australia East
 Name - ansible
 Region - Australia East
 ```
-create ipv4 address space for your virutal network
+<img src="Images/networkname.PNG">
 
-we will make it a 192.168.0.0/16
-```
-ipv4 address space
-192.168.0.0/16
-```
-we will now subnet our address range<br>
-we will name this subnet ansible<br>
-we will give this subnet an address range of 192.168.0.0/24
-```
-add subnet
-name - ansible
-subnet 192.168.0.0/24
-```
+Go to the IP address tab
+
+<img src="Images/networkip.PNG">
+
+Under the ipv4 address we change it from the 10.X.X.X/16 range it gives us to a 192.168.0.0/16
+
+<img src="Images/networkaddress.PNG">
+
+Now we just need to create a subnet within our address range
+
+
+Click the add subnet button
+
+<img src="Images/networksubnetbutton.PNG">
+
+
+Name this subnet ansible
+
+Give this subnet an address range of 192.168.0.0/24
+
+<img src="Images/networksubnet.PNG">
 
 Click the review + create and double check that it is all correct
 
 If everything is correct click the create button
-```
-review + create
-create
-```
+
 ## VM 1 - gns3client
 
 type "resource groups" in the search bar and click on the resource groups under services
