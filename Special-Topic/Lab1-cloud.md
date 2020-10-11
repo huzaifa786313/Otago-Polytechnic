@@ -1,5 +1,4 @@
 # IN730 Special Topic - Network Automation
-<br>
 
 ## Lab1 - Setting up Ansible (Cloud Version)
 
@@ -8,7 +7,6 @@
 VIM is the text editor used in the following lab
 
 The GNS3 version used at the creation of this lab was GNS3 2.2.12
-
 
 ## Requirements
 
@@ -19,7 +17,7 @@ The GNS3 version used at the creation of this lab was GNS3 2.2.12
 
 <img src="Images/topologycloud.JPG">
 
-## AZURE SIGNUP SECTION TO BE ADDED(FREE TRIAL)?
+## Azure
 
 Azure portal https://portal.azure.com/ and sign in
 

@@ -1,5 +1,4 @@
 # IN730 Special Topic - Network Automation
-<br>
 
 ## Lab1 - Setting up Ansible (Local Version)
 
