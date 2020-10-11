@@ -210,18 +210,18 @@ your DNS name label will be suffixed with ".australiaeast.cloudapp.azure.com" i.
 
 Alternatively you could also instead configure a static ip and use that in place of a DNS
 
-## gns3server
+## Configure gns3server VM
 
-The following occurs on our gns3server VM
+## <p style="text-align: center;">The following occurs on our gns3server VM
 
-Before we start lets make sure that we can download the latest software *REWORD*
+After connecting to our gns3server we need to make sure that we can download the latest software
 
 In order to do this run the following command
 ```
 sudo apt-get update -y
 ```
-<br>
-First thing we need to do is install GNS3 server onto our linux server so that our GNS3 client can connect to it
+
+Now we need to install the GNS3 server onto our VM so that our GNS3 client can connect to it
 
 Run the following commands to install the GNS3 server
 ```
@@ -556,11 +556,14 @@ R1 ansible_host=192.168.2.2 ansible_network_os=ios ansible_ssh_user=admin ansibl
 
 Let's run an ad-hoc command against the hosts we just added
 
+The following will run the command against any host in our hosts file
 ```
 ansible all -c network_cli -m ping
+```
+The following will run the command against any host in our network group
+```
 ansible network -c network_cli -m ping
 ```
-
 lets create a easy playbook to test if everything is working correctly
 ansible can be a bit pedantic with its formating so here is a 
 
