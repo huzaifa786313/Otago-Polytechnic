@@ -10,7 +10,6 @@ vim is the text editor used in the following lab guide but you can use your own 
 ## Initial Setup
 In the following lab we will install and configure the required components needed to **SOMETHING** gns3 and ansible **EXPAND**
 
-## Local
 
 ## Topology
 
@@ -25,43 +24,65 @@ In the following lab we will install and configure the required components neede
 
 ## Setup
 
-Step X) Ubuntu Setup
 
-X) Download Ubuntu 20.04.1 LTS image from here https://ubuntu.com/download/desktop
+### Ubuntu Setup
 
-X) Launch the VM Workstation Application then proceed to setup the linux VM by going to File > New Virtual Machine > Typical > select browse from the installer disc image file(iso) option, then locate the iso file you downloaded > next > follow the onscreen instructions > finish
+
+- Download Ubuntu 20.04.1 LTS image from here https://ubuntu.com/download/desktop
+
+After downloading the ubuntu image we will now create a virtual machine in VM Workstation
+
+- Launch the VM Workstation Application 
+- Go to File
+- Select New Virtual Machine 
+- Select the "Typical (recommended)" option 
+
+<img src="Images/typical.JPG">
+
+- Select "Installer disc image file (iso):" then locate the Ubuntu iso file you downloaded earlier
+
+<img src="Images/isoimage.JPG">
+
+- Personalize your ubuntu machine how you wish
+
+- Leave the "Specify Disk Capacity" with the defaults 
+
+<img src="Images/disksize.JPG">
+
+- Customize Hardware and change the RAM to 4GB
 
 After creating the linux VM we now need to configure some network options in VM workstation
 
-X) go to Edit > virtual network editior then click on the change settings option and accept the administrator promopt > set VMnet0 to bridge using the physical interface on your machine. Also select the VMnet that has the type and external connection of NAT and change its subnet ip to 192.168.0.0 with a subnet mask of 255.255.255.0
+- go to Edit > virtual network editior then click on the change settings option and accept the administrator promopt > set VMnet0 to bridge using the physical interface on your machine. Also select the VMnet that has the type and external connection of NAT and change its subnet ip to 192.168.0.0 with a subnet mask of 255.255.255.0
 
-X) connect to your linux VM and open a terminal, then run the command "ip a" and note down the ip address on the ens33(ens number may vary but there will be only one) interface
+<img src="Images/virtualnetworkeditor.JPG">
+- connect to your linux VM and open a terminal, then run the command "ip a" and note down the ip address on the ens33(ens number may vary but there will be only one) interface
 
-Step X) GNS3 Setup
+### GNS3 Setup
 
-X) Sign up to gns3 https://www.gns3.com/ then proceed to download the windows version of gns3 https://www.gns3.com/software/download
+- Sign up to gns3 https://www.gns3.com/ then proceed to download the windows version of gns3 https://www.gns3.com/software/download
 
 GNS3 INSTALL STEPS HERE
 
-Step X) Router Template Configuration
+### Router Template Configuration
 
-X) Download the image for the cisco c7200 router here 
+- Download the image for the cisco c7200 router here 
 https://github.com/samsojl1/Otago-Polytechnic/raw/master/Special-Topic/c7200/c7200-advipservicesk9-mz.122-33.SRC2.extracted.bin
 
-X) Import the C7200 Router into gns3 by going file > new template > install an appliance from the GNS3 server > then click the dropdown for the routers section and select Cisco 7200 then click install > Install the appliance on your local computer > create a new version, call it whatever you wish > select your version from the list and click import, locate and select the c7200 bin file your downloaded earlier > next > accept the install > finish, if you click on the router icon on the left hand side you should now see your router template you installed
+- Import the C7200 Router into gns3 by going file > new template > install an appliance from the GNS3 server > then click the dropdown for the routers section and select Cisco 7200 then click install > Install the appliance on your local computer > create a new version, call it whatever you wish > select your version from the list and click import, locate and select the c7200 bin file your downloaded earlier > next > accept the install > finish, if you click on the router icon on the left hand side you should now see your router template you installed
 
-X) right click your newly created router template and click on the configure template option,
+- right click your newly created router template and click on the configure template option,
 
 <img src="Images/template.JPG">
 from here go to the slots tab and add "PA-GE" to Adapters slots 1 through 4 this will add 4 gigabyte interfaces to your routers when you spawn them
 
-Step X) Basic Network
+### Configure A Basic Network
 
 Lets create a simple network in GNS3
 
-X) create a new blank project and call it whatever you want
+- create a new blank project and call it whatever you want
 
-X) lets add 2 of our newly created routers to the project by going to the router tab and dragging 2 on, cable these 2 routers together and configure them using a private ip 
+- lets add 2 of our newly created routers to the project by going to the router tab and dragging 2 on, cable these 2 routers together and configure them using a private ip 
 
 On R1
 ```
@@ -79,9 +100,9 @@ int g1/0
 ip address 192.168.1.2 255.255.255.252
 no shut
 ```
-X) Verify that R1 can ping R2 and vice versa
+- Verify that R1 can ping R2 and vice versa
 
-X) lets add a cloud to connect our virtual routers to our physical network 
+- lets add a cloud to connect our virtual routers to our physical network 
 
 After adding the cloud click on it and go to "Ethernet Interfaces" tab, then tick the "Show special Ethernet interfaces" box, click the Add all button, this will add all the interfaces from your physical machine to the cloud allowing you to connect your virtual router to it
 
@@ -120,17 +141,17 @@ router-id 2.2.2.2
 network 192.168.1.0 area 0
 ```
 
-Step X) Route
+### Route
 
 On your linux vm you 
 
-Step X) Ansible Setup
+### Ansible Setup
 
-X) On your Linux VM open a terminal
+- On your Linux VM open a terminal
 
-X) run the command sudo apt-get install ansible and accept, this will install ansible onto your linux machine
+- run the command sudo apt-get install ansible and accept, this will install ansible onto your linux machine
 
-X) cd into /etc/ansible/ this is where the ansible.cfg and hosts file exist from here you can create your playbooks
+- cd into /etc/ansible/ this is where the ansible.cfg and hosts file exist from here you can create your playbooks
 
 Inside the hosts file you can define your network devices and asign them to groups an example is provided inside the file by ansible
 
