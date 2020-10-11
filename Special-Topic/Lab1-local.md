@@ -40,7 +40,7 @@ After downloading the ubuntu image we will now create a virtual machine in VM Wo
 - Select New Virtual Machine 
 - Select the "Typical (recommended)" option 
 
-<img src="Images/typical.JPG">
+<img src="Images/typical.PNG">
 
 - Select "Installer disc image file (iso):" then locate the Ubuntu iso file you downloaded earlier
 
@@ -84,7 +84,7 @@ In the end your Virtual Network Editor should look simillar to the image below
 
 - use the command "ip a" and note down the ip address on the ens33(ens number may vary but there will be only one)
 
-<img src="Images/ens.JPG">
+<img src="Images/ens.PNG">
 
 This ip will be used later when we configure GNS3
 
