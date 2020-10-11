@@ -159,10 +159,6 @@ leave as defaults
 check over and make sure you have the correct options set
 ```
 
-After your gns3client VM has been created we need to apply a
-
-DNS PART TBA
-
 ## VM 2 - gns3server / Ansible
 
 We will now create the second of the 2 VM's that will be used for this lab
@@ -227,8 +223,6 @@ Check over and make sure you have the correct options set
 
 After creating our gns3server VM we will create and apply a DNS name to it so that it makes connecting to it easier
 
-
-
 Go to your Ansible resource group and click on your gns3server VM
 
 <img src="Images/virtualmachinesdns.PNG">
@@ -237,7 +231,7 @@ Under "DNS name label (optional)"
 
 <img src="Images/virtualmachinesdns1.PNG">
 
-lets set our DNS name label to
+Set the DNS name label to
 
 ```
 gns3server
