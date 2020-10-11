@@ -5,7 +5,9 @@
 
 ## Disclaimer
 
-vim is the text editor used in the following lab guide but you can use your own preferred text editor if you wish *SOMETHING ABOUT HAVING TO KNOW IT YOURSELF*
+VIM is the text editor used in the following lab
+
+The GNS3 version used at the creation of this lab was GNS3 2.2.12
 
 ## Initial Setup
 In the following lab we will install and configure the required components needed to **SOMETHING** gns3 and ansible **EXPAND**
@@ -27,6 +29,7 @@ In the following lab we will install and configure the required components neede
 
 ### Ubuntu Setup
 
+First thing we need to do is download a ubuntu image that we will use for our ansible server
 
 - Download Ubuntu 20.04.1 LTS image from here https://ubuntu.com/download/desktop
 
@@ -51,25 +54,52 @@ After downloading the ubuntu image we will now create a virtual machine in VM Wo
 
 - Customize Hardware and change the RAM to 4GB
 
+<img src="Images/hardware.JPG">
+
+- Finish
+
+
 After creating the linux VM we now need to configure some network options in VM workstation
 
-- go to Edit > virtual network editior then click on the change settings option and accept the administrator promopt > set VMnet0 to bridge using the physical interface on your machine. Also select the VMnet that has the type and external connection of NAT and change its subnet ip to 192.168.0.0 with a subnet mask of 255.255.255.0
+- Click on the Edit tab and go click on the virtual network editior 
+
+- Click on the "Change Settings" option and accept the administrator promopt 
+
+<img src="Images/admin.JPG">
+
+- Select VMnet0 then select Bridged and bridge it to your machines physical network interface
+
+<img src="Images/bridged.JPG">
+
+- Also select the VMnet that has the type and external connection of NAT and change its subnet ip to 192.168.0.0 with a subnet mask of 255.255.255.0
+
+<img src="Images/subnetd.JPG">
+
+In the end your Virtual Network Editor should look simillar to the image below
 
 <img src="Images/virtualnetworkeditor.JPG">
+
+
 - connect to your linux VM and open a terminal, then run the command "ip a" and note down the ip address on the ens33(ens number may vary but there will be only one) interface
 
 ### GNS3 Setup
 
-- Sign up to gns3 https://www.gns3.com/ then proceed to download the windows version of gns3 https://www.gns3.com/software/download
+In order to download GNS3 you need to signup to their website
 
-GNS3 INSTALL STEPS HERE
+- Sign up to GNS3 https://www.gns3.com/ 
+
+- Download the windows version of GNS3 https://www.gns3.com/software/download
+
+
 
 ### Router Template Configuration
 
-- Download the image for the cisco c7200 router here 
+We need to download and configure a router template that we will use, GNS3 does not come with
+
+- Download the image for the cisco 7200 router here 
 https://github.com/samsojl1/Otago-Polytechnic/raw/master/Special-Topic/c7200/c7200-advipservicesk9-mz.122-33.SRC2.extracted.bin
 
-- Import the C7200 Router into gns3 by going file > new template > install an appliance from the GNS3 server > then click the dropdown for the routers section and select Cisco 7200 then click install > Install the appliance on your local computer > create a new version, call it whatever you wish > select your version from the list and click import, locate and select the c7200 bin file your downloaded earlier > next > accept the install > finish, if you click on the router icon on the left hand side you should now see your router template you installed
+- Import the C7200 Router into GNS3 by going file > new template > install an appliance from the GNS3 server > then click the dropdown for the routers section and select Cisco 7200 then click install > Install the appliance on your local computer > create a new version, call it whatever you wish > select your version from the list and click import, locate and select the c7200 bin file your downloaded earlier > next > accept the install > finish, if you click on the router icon on the left hand side you should now see your router template you installed
 
 - right click your newly created router template and click on the configure template option,
 
