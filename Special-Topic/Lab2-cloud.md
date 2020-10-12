@@ -83,7 +83,7 @@ and store this
 ```
 ansible-playbook backup.yaml
 ```
-we will instead an application called tree which will help with displaying *REWORD*
+we will download and install an application called tree which will help with displaying the contents of our directories
 ```
 sudo apt-get install tree
 ```
@@ -95,10 +95,11 @@ you should have an output simillar to the following
 
 <img src="Images/treeconfig.PNG">
 
-here we can see that ansible managed to pull configuration from the routers
+Here we can see that ansible managed to pull configuration from the routers
+
 ## Ansible playbooks to deploy configuration
 
-We can use these playbooks to allow us to deploy a uniform environment *EXPAND* 
+We will create a playbook that will push configuration to our routers this will allow us to maintain a uniform environment
 
 ```
 ---
@@ -134,6 +135,7 @@ If we now ssh onto the router we can see that ansible has configured a motd bann
 <img src="Images/sshmotd.PNG">
 
 ## run a check on your config backups to make sure that they are configured the same - except for the interface ip and such
+
 
 ## Create additional VM's using Ansible
 
@@ -194,7 +196,7 @@ We can now create a playbook that will create a virtual machine
    vm_size: "Standard_E2s_v3"
 
    az: "australiaeast"
-
+   net: "Ansible"
    vm_net: "AnsibleVNet"
    vm_subnet: "AnsibleSubnet"
 
@@ -305,6 +307,5 @@ We can now create a playbook that will create a virtual machine
       allow_virtual_network_access: true
       allow_forwarded_traffic: true
 ```
-At the end of the playbook we added the azure_rm_virtualnetworkpeering module, this will allow devices in different networks to communicate with each other
+At the end of this playbook we added the azure_rm_virtualnetworkpeering module, this will allow devices in different networks to communicate with each other
 
-## using azure peerings so that your private ip network in 1 region can communicate with another private network in a different region i.e. AUEast w/ AUSouthEast
