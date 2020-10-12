@@ -1,14 +1,14 @@
 # IN730 Special Topic - Network Automation
-<br>
 
 ## Lab2 - Ansible Playbooks (Cloud Version)
 
-### Requirements
+## Requirements
 
 - Completion of lab 1
 - Azure Subscription
+- Terminal Emulator
 
-### Topology
+## Topology
 
 <img src="Images/topologycloud.JPG">
 
@@ -21,20 +21,21 @@ sudo ip route add 192.168.1.0/24 via 192.168.1.254 dev tap1
 sudo ip route add 192.168.2.0/30 via 192.168.1.254 dev tap1
 ```
 
-## Using ansible playbooks to pull device information
+## Ansible playbook to pull device information
 
-create a directory to be used for backups of the routers
+We will create an ansible playbook that will pull configuration from our routers that we can use as a backup
+
+We will need to create a directory to be used to store the backups of the routers configuration
+
+This will create a directory in our home directory
 ```
-sudo mkdir ~/ ansible-backups
+sudo mkdir ~/ansible-backups
 ```
-
-create a playbook called backup.yaml
-
+Create a playbook called backup.yaml
 ```
 sudo vim /etc/ansible/backup.yaml
 ```
-
-insert the following into the backup.yaml file
+Insert the following
 ```
 ---
   - hosts: localhost
@@ -73,6 +74,7 @@ insert the following into the backup.yaml file
                   dest: "/home/gns3server/ansible-backup/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
 ```
 
+
 now run the playbook which will run 
 ```
 show running-config
@@ -87,14 +89,16 @@ sudo apt-get install tree
 ```
 we can now use the following command to list the home directory
 ```
-tree ~/
+tree ~/ansible-backup
 ```
 you should have an output simillar to the following
 
-<img src="Images/treeconfig.JPG">
+<img src="Images/treeconfig.PNG">
 
 here we can see that ansible managed to pull configuration from the routers
-## push configs i.e. motd banners etc for uniform deployments?
+## Ansible playbooks to deploy configuration
+
+We can use these playbooks to allow us to deploy a uniform environment *EXPAND* 
 
 ```
 ---
@@ -117,22 +121,25 @@ here we can see that ansible managed to pull configuration from the routers
                       state: present
 ```
 
-now lets connect to our router to see the change we made
+Now lets connect to our router to see the change we made
 
-due to issues with gns3 and cloud we need to add a few additional options to our ssh command
+- Do note that due to issues with gns3 and cloud we need to add a few additional options to our ssh command
 
 ```
 ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c 3des-cbc admin@<router IP>
 ```
 
-if we now ssh onto the router we can see that ansible has configured a motd banner
+If we now ssh onto the router we can see that ansible has configured a motd banner
 
-<img src="Images/sshmotd.JPG">
+<img src="Images/sshmotd.PNG">
 
 ## run a check on your config backups to make sure that they are configured the same - except for the interface ip and such
 
-## bonus create vms? azure/openstack using ansible?
+## Create additional VM's using Ansible
 
+In order to create VM's in azure using ansible we need to download and install additional software
+
+We will download curl which we require in order to get the azure command line
 ```
 sudo apt install curl
 ```
@@ -143,18 +150,18 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 sudo apt install azure-cli
 ```
 
-connect to the azure command line
+Now that we have downloaded and installed azure command line we need to connect to it
 ```
 az login
 ```
 
-follow the on screen prompt and input the code it provides then select your microsoft account that you used for the previous lab
+Follow the on screen prompt and input the code it provides then select your microsoft account that you used for the previous lab
 
 after you have logged in you will be given an output that contains the information about your microsoft azure account *SOMETHING* 
 
 - name
 
-<img src="Images/azdetails.jpg">
+<img src="Images/azdetails.PNG">
 
 when you use azure cli it will assign anything you create to your default subscription so if you have multiple subscriptions on your account we will need to set this
 
@@ -296,6 +303,4 @@ playbook that will create *NEED TO CHANGE THE VARIABLES AS THEY STILL RELATE TO 
         version: latest
 ```
 
-using azure peerings so that your private ip network in 1 region can communicate with another private network in a different region i.e. AUEast w/ AUSouthEast
-
-<br>
+## using azure peerings so that your private ip network in 1 region can communicate with another private network in a different region i.e. AUEast w/ AUSouthEast

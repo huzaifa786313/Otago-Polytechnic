@@ -1,13 +1,10 @@
 # IN730 Special Topic - Network Automation
-<br>
 
-## Lab2 - Ansible Playbooks (Cloud Version)
+## Lab2 - Ansible Playbooks (Local Version)
 
 ### Requirements
 
 - VM Workstation 
-- Ubuntu VM
-- GNS3
 - Windows Machine
 - Completion of lab 1
 
@@ -51,3 +48,4 @@ sudo ip route add 192.168.1.0/30 via 192.168.0.128 dev ens33
 
 ## run a check on your config backups to make sure that they are configured the same - the interface ip and such
 
+az login will open a web browser
