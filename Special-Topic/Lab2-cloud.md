@@ -144,7 +144,7 @@ We will download curl which we require in order to get the azure command line
 sudo apt install curl
 ```
 
-download and install azure command line
+Download and install azure command line
 ```
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 sudo apt install azure-cli
@@ -154,24 +154,23 @@ Now that we have downloaded and installed azure command line we need to connect 
 ```
 az login
 ```
+<img src="Images/azlogin.PNG">
 
-Follow the on screen prompt and input the code it provides then select your microsoft account that you used for the previous lab
+Follow the on screen prompt and input the code it provides on the website then select your microsoft account that you used for the previous lab
 
-after you have logged in you will be given an output that contains the information about your microsoft azure account *SOMETHING* 
-
-- name
+After you have logged in you will be given an output that contains the information about your microsoft azure account
 
 <img src="Images/azdetails.PNG">
 
-when you use azure cli it will assign anything you create to your default subscription so if you have multiple subscriptions on your account we will need to set this
+When you use azure cli it will assign anything you create to your default subscription so if you have multiple subscriptions on your account we will need to set this
 
-to change your default subscription is a quick task
+To change your default subscription is a quick task
 
 ```
 az account set --subscription <ID>
 ```
 
-after changing your subscription you wont be given a notification so you will need to verify that it has changed by using the following command
+After changing your subscription you wont be given a notification so you will need to verify that it has changed by using the following command
 ```
 az account list
 ```
@@ -181,7 +180,7 @@ az account list
 - pip install msrestazure
 - pip install ansible[azure]
 
-playbook that will create *NEED TO CHANGE THE VARIABLES AS THEY STILL RELATE TO GITLAB TEST DEPLOYMENT*
+We can now create a playbook that will create a virtual machine 
 ```
 - name: Create Azure VM
   hosts: localhost
@@ -196,28 +195,20 @@ playbook that will create *NEED TO CHANGE THE VARIABLES AS THEY STILL RELATE TO 
 
    az: "australiaeast"
 
-   vm_net: "myVNet"
-   vm_subnet: "mySubnet"
+   vm_net: "AnsibleVNet"
+   vm_subnet: "AnsibleSubnet"
 
-   vm_publicIP: "myPublicIP"
-   vm_NSG: "myNSG"
-   vm_NIC: "myNIC"
-   vm_Name: "gitlab-test"
+   vm_publicIP: "AnsiblePublicIP"
+   vm_NSG: "AnsibleNSG"
+   vm_NIC: "AnsibleNIC"
+   vm_Name: "ansibletest"
 
-   resource_group: "gitlab_test"
+   resource_group: "ansible"
 
-   os_user: "azuser"
-   os_pass: "AzuserP@ssw0rd"
+   os_user: "ansible"
+   os_pass: "ansible@ssw0rd"
 
   tasks:
-
-  - name: Create a resource group
-    azure_rm_resourcegroup:
-      name: "{{ resource_group }}"
-      location: "{{ az }}"
-      tags:
-        testing: testing
-        delete: never
 
   - name: Create virtual network
     azure_rm_virtualnetwork:
@@ -265,18 +256,6 @@ playbook that will create *NEED TO CHANGE THE VARIABLES AS THEY STILL RELATE TO 
           access: Allow
           priority: 1003
           direction: Inbound
-        - name: AERO
-          protocol: Tcp
-          destination_port_range: 8060
-          access: Allow
-          priority: 1004
-          direction: Inbound
-        - name: UNKNOWN
-          protocol: Tcp
-          destination_port_range: 9094
-          access: Allow
-          priority: 1005
-          direction: Inbound  
 
   - name: Create virtual network interface card
     azure_rm_networkinterface:
