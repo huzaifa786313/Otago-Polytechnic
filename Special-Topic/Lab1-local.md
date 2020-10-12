@@ -8,9 +8,6 @@ VIM is the text editor used in the following lab
 
 The GNS3 version used at the creation of this lab was GNS3 2.2.12
 
-## Initial Setup
-In the following lab we will install and configure the required components needed to **SOMETHING** gns3 and ansible **EXPAND**
-
 
 ## Topology
 
