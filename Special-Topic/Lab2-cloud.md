@@ -205,6 +205,8 @@ We can now create a playbook that will create a virtual machine
 
    resource_group: "ansible"
 
+   vm_peer: "AnsiblePeer"
+
    os_user: "ansible"
    os_pass: "ansible@ssw0rd"
 
@@ -280,6 +282,29 @@ We can now create a playbook that will create a virtual machine
         publisher: "{{ vm_pub }}"
         sku: "{{ vm_sku }}"
         version: latest
+
+  - name: Peer Old To New
+    azure_rm_virtualnetworkpeering:
+      resource_group: "{{ resource_group }}"
+      virtual_network: "{{ net }}"
+      name: "{{ vm_peer }}"
+      remote_virtual_network:
+              resource_group: "{{ resource_group }}"
+              name: "{{ vm_net }}"
+      allow_virtual_network_access: true
+      allow_forwarded_traffic: true
+
+  - name: Peer New To Old
+    azure_rm_virtualnetworkpeering:
+      resource_group: "{{ resource_group }}"
+      virtual_network: "{{ vm_net }}"
+      name: "{{ net }}"
+      remote_virtual_network:
+              resource_group: "{{ resource_group }}"
+              name: "{{ net }}"
+      allow_virtual_network_access: true
+      allow_forwarded_traffic: true
 ```
+At the end of the playbook we added the azure_rm_virtualnetworkpeering module, this will allow devices in different networks to communicate with each other
 
 ## using azure peerings so that your private ip network in 1 region can communicate with another private network in a different region i.e. AUEast w/ AUSouthEast
