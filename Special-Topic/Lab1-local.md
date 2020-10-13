@@ -17,6 +17,7 @@ The GNS3 version used at the creation of this lab was GNS3 2.2.12
 
 - VM Workstation 
 - Windows Machine
+- Ubuntu 20.04
 
 ## Setup
 
