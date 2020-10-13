@@ -25,17 +25,17 @@ sudo ip route add 192.168.2.0/30 via 192.168.1.254 dev tap1
 
 We will create an ansible playbook that will pull configuration from our routers that we can use as a backup
 
-We will need to create a directory to be used to store the backups of the routers configuration
+In order to achieve this we first need to create a directory to be used to store the backups of the routers configuration
 
 This will create a directory in our home directory
 ```
 sudo mkdir ~/ansible-backups
 ```
-Create a playbook called backup.yaml
+Now we will create a playbook called backup.yaml
 ```
 sudo vim /etc/ansible/backup.yaml
 ```
-Insert the following
+Insert the following into our playbook
 ```
 ---
   - hosts: localhost
@@ -74,20 +74,21 @@ Insert the following
                   dest: "/home/gns3server/ansible-backup/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
 ```
 
-
-now run the playbook which will run 
-```
-show running-config
-```
-and store this 
+You can run your ansible playbooks by being located in the directory where its located by using
 ```
 ansible-playbook backup.yaml
 ```
-we will download and install an application called tree which will help with displaying the contents of our directories
+Or you can provide the path to the playbook
 ```
-sudo apt-get install tree
+ansible-playbook /etc/ansible/backup.yaml
 ```
-we can now use the following command to list the home directory
+Now that we have pulled the configuration and stored it on our machine lets confirm that it is there
+
+I order to do this we will download and install an application called tree which will help with displaying the contents of our directories
+```
+sudo apt-get install tree -y
+```
+We can now use the following command to list the home directory
 ```
 tree ~/ansible-backup
 ```
@@ -99,8 +100,12 @@ Here we can see that ansible managed to pull configuration from the routers
 
 ## Ansible playbooks to deploy configuration
 
-We will create a playbook that will push configuration to our routers this will allow us to maintain a uniform environment
+For this section we will create a playbook that will push configuration to our routers this will allow us to maintain a uniform environment across many devices
 
+```
+sudo vim /etc/ansible/motd.yaml
+```
+Insert the following into our playbook
 ```
 ---
   - name: testbook
@@ -121,8 +126,18 @@ We will create a playbook that will push configuration to our routers this will 
                               Banner
                       state: present
 ```
+The purpose of this playbook is to setup a banner so that when we ssh onto our routers we will see it, you can use this banner to warn unauthorized users
 
-Now lets connect to our router to see the change we made
+You can run your ansible playbooks by being located in the directory where its located by using
+```
+ansible-playbook motd.yaml
+```
+Or you can provide the path to the playbook
+```
+ansible-playbook /etc/ansible/motd.yaml
+```
+
+Now lets connect to our router to see and verify if the change we made took effect
 
 - Do note that due to issues with gns3 and cloud we need to add a few additional options to our ssh command
 
@@ -130,12 +145,9 @@ Now lets connect to our router to see the change we made
 ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c 3des-cbc admin@<router IP>
 ```
 
-If we now ssh onto the router we can see that ansible has configured a motd banner
+We should see the following when we connect
 
 <img src="Images/sshmotd.PNG">
-
-## run a check on your config backups to make sure that they are configured the same - except for the interface ip and such
-
 
 ## Create additional VM's using Ansible
 
@@ -182,7 +194,12 @@ az account list
 - pip install msrestazure
 - pip install ansible[azure]
 
-We can now create a playbook that will create a virtual machine 
+We will now create a playbook that will create a virtual machine in azure
+
+```
+sudo vim /etc/ansible/create.yaml
+```
+Insert the following into the playbook
 ```
 - name: Create Azure VM
   hosts: localhost
