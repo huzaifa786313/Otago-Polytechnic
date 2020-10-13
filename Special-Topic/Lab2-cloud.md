@@ -8,9 +8,7 @@
 - Azure Subscription
 - Terminal Emulator
 
-## Topology
-
-<img src="Images/topologycloud.JPG">
+## Disclaimer
 
 If you stopped your virtual machine that was running your gns3server and you didnt make your tap1 and ip routes persistent then you will need to run the following commands again to recreate those
 
@@ -35,7 +33,12 @@ Now we will create a playbook called backup.yaml
 ```
 sudo vim /etc/ansible/backup.yaml
 ```
-Insert the following into our playbook
+Insert the following
+- Do note, make sure to edit the following 
+```
+<YOUR HOME DIRECTORY> with the home directory of your user account your using
+```
+
 ```
 ---
   - hosts: localhost
@@ -52,11 +55,11 @@ Insert the following into our playbook
 
             - name: Create Directory {{hostvars.localhost.DTG}}
               file:
-                      path: /home/gns3server/ansible-backup/{{hostvars.localhost.DTG}}
+                      path: /home/<YOUR HOME DIRECTORY>/ansible-backups/{{hostvars.localhost.DTG}}
                       state: directory
     run_once: true
 
-  - hosts: network
+  - hosts: routers
     connection: local
     remote_user: admin
     gather_facts: false
@@ -71,9 +74,8 @@ Insert the following into our playbook
               - name: save running config to backup folder
                 copy:
                   content: "{{config.stdout[0]}}"
-                  dest: "/home/gns3server/ansible-backup/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
+                  dest: "/home/<YOUR HOME DIRECTORY>/ansible-backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
 ```
-
 You can run your ansible playbooks by being located in the directory where its located by using
 ```
 ansible-playbook backup.yaml

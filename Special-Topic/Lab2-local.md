@@ -8,11 +8,7 @@
 - Windows Machine
 - Completion of lab 1
 
-## Basic Playbooks (pull configs etc?)
-
-## Topology
-
-<img src="Images/topology.JPG">
+## Disclaimer
 
 If you stopped your virtual machine and you didnt make ip routes persistent then you will need to run the following command again to recreate them
 
@@ -34,10 +30,12 @@ Create a playbook called backup.yaml
 ```
 sudo vim /etc/ansible/backup.yaml
 ```
+
+
+
 Insert the following
 
-Make sure to edit 
-
+- Do note, make sure to edit the following 
 ```
 <YOUR HOME DIRECTORY> with the home directory of your user account your using
 ```
@@ -78,17 +76,17 @@ Make sure to edit
                   content: "{{config.stdout[0]}}"
                   dest: "/home/<YOUR HOME DIRECTORY>/ansible/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
 ```
-
-
-now run the playbook which will run 
-```
-show running-config
-```
-and store this 
+You can run your ansible playbooks by being located in the directory where its located by using
 ```
 ansible-playbook backup.yaml
 ```
-we will download and install an application called tree which will help with displaying the contents of our directories
+Or you can provide the path to the playbook
+```
+ansible-playbook /etc/ansible/backup.yaml
+```
+Now that we have pulled the configuration and stored it on our machine lets confirm that it is there
+
+I order to do this we will download and install an application called tree which will help with displaying the contents of our directories
 ```
 sudo apt-get install tree
 ```
