@@ -94,6 +94,8 @@ In the end your Virtual Network Editor should look simillar to the image below
 
 This ip will be used later
 
+## Create a simple network
+
 Lets create a simple network
 
 <img src="Images/topologyphysical.PNG">
@@ -120,6 +122,8 @@ conf t
 hostname R2
 ```
 
+Now configure the interfaces between R1 and R2
+
 On R1
 ```
 end
@@ -138,7 +142,7 @@ no shut
 ```
 Verify that R1 can ping R2 and R2 can ping R1
 
-Now we need to configure the interface that is connected to our windows machine
+Now configure the interface that is connected to our windows machine
 
 On R1 
 ```
@@ -149,7 +153,7 @@ ip address 192.168.0.1 255.255.255.0
 no shut
 ```
 
-Configure OSPF and a static default route then redistirbute that route into ospf
+Configure a static default route and OSPF  then redistirbute that route into ospf
 
 On R1
 ```
@@ -257,6 +261,9 @@ Here is a guide on how to Add IP Address in Windows Firewall
 - Add the IP address and click on the ‘Ok’ button.
 
 <img src="Images/How-to-Add-IP-Address-in-Windows-Firewall-7.png"> 
+
+- add 192.168.1.0/30
+- add 192.168.0.0/24
 
 That is how you add an IP address to the windows firewall.
 
