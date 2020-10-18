@@ -104,6 +104,22 @@ Lets create a simple network
 
 - Cable R1 and the PC into the switch according to the topology
 
+We need to set hostnames on R1 and R2 because when we create the crypto keys later on they require that the hostname be swaped from the default
+
+On R1
+```
+en
+conf t
+hostname R1
+```
+
+On R2
+```
+en
+conf t
+hostname R2
+```
+
 On R1
 ```
 end
