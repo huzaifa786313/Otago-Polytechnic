@@ -212,45 +212,37 @@ sudo apt-get install -y vim
 
 Now we can change from the L port to the T port so that your machine is now plugged into R1
 
+In order for our routers to be able to ping our windows device we need to create a firewall rule
 
-1) On the Start menu, Click ‘Windows Firewall with Advanced Security’.
+Here is a guide on how to Add IP Address in Windows Firewall
 
-How to Add IP Address in Windows Firewall
+- On the Start menu, Click ‘Windows Firewall with Advanced Security’.
 
- <img src="Images/How-to-Add-IP-Address-in-Windows-Firewall-1-1024x700.png">
+<img src="Images/How-to-Add-IP-Address-in-Windows-Firewall-1-1024x700.png">
 
-2) Click the ‘Advanced settings’ option in the sidebar.
+- Click the ‘Advanced settings’ option in the sidebar.
 
 <img src="Images/How-to-Add-IP-Address-in-Windows-Firewall-2-1024x700.png"> 
 
-3) On the left side, click the option ‘Inbound Rules’.
+- On the left side, click the option ‘Inbound Rules’.
 
-How to Add IP Address in Windows Firewall
+<img src="Images/How-to-Add-IP-Address-in-Windows-Firewall-3-1024x701.png"> 
 
- <img src="Images/How-to-Add-IP-Address-in-Windows-Firewall-3-1024x701.png"> 
+- On the right, under the section ‘Actions’, click on the option ‘New Rule’. Windows Firewall shows you the New Inbound Rule Wizard.
 
-4) On the right, under the section ‘Actions’, click on the option ‘New Rule’. Windows Firewall shows you the New Inbound Rule Wizard.
+<img src="Images/How-to-Add-IP-Address-in-Windows-Firewall-4.png"> 
 
- <img src="Images/How-to-Add-IP-Address-in-Windows-Firewall-4.png"> 
+- A new window will open and Select the ‘custom’ option and click Next.
 
-5) A new window will open and Select the ‘custom’ option and click Next.
+<img src="Images/How-to-Add-IP-Address-in-Windows-Firewall-5.png"> 
 
-How to Add IP Address in Windows Firewall
+- In the left-hand side again, go to the option ‘Scope’.
 
- <img src="Images/How-to-Add-IP-Address-in-Windows-Firewall-5.png"> 
+<img src="Images/How-to-Add-IP-Address-in-Windows-Firewall-6.png"> 
 
-6) In the left-hand side again, go to the option ‘Scope’.
+- Add the IP address and click on the ‘Ok’ button.
 
-How to Add IP Address in Windows Firewall
-
- <img src="Images/How-to-Add-IP-Address-in-Windows-Firewall-6.png"> 
-
-7) Add the IP address and click on the ‘Ok’ button.
-
-How to Add IP Address in Windows Firewall
-
- <img src="Images/How-to-Add-IP-Address-in-Windows-Firewall-7.png"> 
+<img src="Images/How-to-Add-IP-Address-in-Windows-Firewall-7.png"> 
 
 That is how you add an IP address to the windows firewall.
 
-## create a network with a playbook? (AZURE?)
