@@ -126,7 +126,7 @@ no shut
 ```
 Verify that R1 can ping R2 and R2 can ping R1
 
-## On the interface you connected your R1 to the cloud you need to configure it with an ip in the same range as the physical interface, the ens33 ip you recorded earlier
+Now we need to configure the interface that is connected to our windows machine
 
 On R1 
 ```
