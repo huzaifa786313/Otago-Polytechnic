@@ -136,50 +136,6 @@ ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c 3des-cbc admin@<router IP>
 
 If we now ssh onto the router we can see that ansible has configured a motd banner
 
-## run a check on your config backups to make sure that they are configured the same - the interface ip and such
-
-az login will open a web browser
-
-## Ansible playbooks to deploy configuration
-
-We will create a playbook that will push configuration to our routers this will allow us to maintain a uniform environment
-
-```
----
-  - name: testbook
-    hosts: network
-    connection: local
-    remote_user: admin
-    gather_facts: false
-    tasks:
-            - name: configure login banner
-              ios_banner:
-                      banner: login
-                      text: |
-                              Here
-                              Is
-                              A
-                              Test
-                              Configuration
-                              Banner
-                      state: present
-```
-
-Now lets connect to our router to see the change we made
-
-- Do note that due to issues with gns3 and cloud we need to add a few additional options to our ssh command
-
-```
-ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c 3des-cbc admin@<router IP>
-```
-
-If we now ssh onto the router we can see that ansible has configured a motd banner
-
-<img src="Images/sshmotd.PNG">
-
-## run a check on your config backups to make sure that they are configured the same - except for the interface ip and such
-
-
 ## Create additional VM's using Ansible
 
 In order to create VM's in azure using ansible we need to download and install additional software

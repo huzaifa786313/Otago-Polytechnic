@@ -155,7 +155,7 @@ end
 conf t
 router ospf 1
 router-id 2.2.2.2
-network 192.168.1.0 area 0
+network 192.168.1.0 network 0.0.0.3 area 0
 ```
 
 Because ansible is agentless and uses SSH to deploy playbooks, you will need to configure and enable SSH onto your GNS3 Routers, a basic configuration has been provided 
