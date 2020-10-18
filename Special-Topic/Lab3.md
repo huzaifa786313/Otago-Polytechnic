@@ -29,7 +29,7 @@ You can use this same principal in order to run other playbooks that you may wis
 
 - VM Workstation 
 - Windows Machine
-- Completion of lab 1
+- Completion of lab 1 and 2
 - 2 Routers
 - 1 Switch
 
@@ -98,15 +98,11 @@ Lets create a simple network
 
 <img src="Images/topologyphysical.PNG">
 
-
-
-## ** REDO THE TOPOLOGY ** instead of the cloud it connects to the pc? actually it wont be physically connected?
-
 - Cable these 2 routers together according to the topology above
 - Console onto R1/R2
 
 
-- SWITCH inbetween R1 and cloud?
+- Cable R1 and the PC into the switch according to the topology
 
 On R1
 ```
@@ -195,9 +191,11 @@ sudo apt-get install -y tree
 sudo apt-get install -y net-tools
 sudo apt-get install -y vim
 ```
+We need to change the ip address of the interface that we are using on our windows machine
 
+We can do this by doing the following
 
-- Control Panel
+- Open the Control Panel
 - Network and Sharing Center
 - Change adapter settings
 - Right click Ethernet 6 -> properties
