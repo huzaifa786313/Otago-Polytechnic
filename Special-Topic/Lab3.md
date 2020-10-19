@@ -176,7 +176,7 @@ router-id 2.2.2.2
 network 192.168.1.0 network 0.0.0.3 area 0
 ```
 
-Because ansible is agentless and uses SSH to deploy playbooks, you will need to configure and enable SSH onto your GNS3 Routers, a basic configuration has been provided 
+Because Ansible is agentless and uses SSH to deploy playbooks, you will need to configure and enable SSH onto your GNS3 Routers, a basic configuration has been provided 
 
 ``` 
 end
@@ -191,9 +191,9 @@ transport input ssh
 exit
 ```
 
-On your linux vm you will need to configure a route so that traffic knows where to go to to get to your GNS3 routers
+On your linux vm you will need to configure a route so that traffic knows where to go to to get to your routers
 
-In your linux terminal use the following command
+In your linux terminal use the following commands
 
 ```
 sudo ip route add 192.168.0.0/24 via 192.168.0.128 dev ens33
@@ -202,7 +202,7 @@ sudo ip route add 192.168.1.0/30 via 192.168.0.128 dev ens33
 
 Do note that routes configured this way aren't persistent and will need to be re entered, you can configure them to be persistent but for what we are trying to do that isn't required
 
-Before we switch ports on our machine and lose internet connection lets first install some software that we will need
+Before switching from Live to Test port on our machine and therefor lose internet connection lets first download and install some software that we will need
 
 ```
 sudo apt-get update
@@ -211,7 +211,7 @@ sudo apt-get install -y tree
 sudo apt-get install -y net-tools
 sudo apt-get install -y vim
 ```
-We need to change the ip address of the interface that we are using on our windows machine
+Now to change the ip address of the interface that we are using on our windows machine
 
 We can do this by doing the following
 
@@ -219,14 +219,26 @@ We can do this by doing the following
 - Network and Sharing Center
 - Change adapter settings
 - Right click Ethernet 6 -> properties
+
+<img src="Images/ipadapters.PNG">
+
 - Accept
+
+<img src="Images/ipprops.PNG">
+
 - Internet Protocol Version 4 -> properties
-- use the following ip address 
+- Select "Use the following IP address"
+
+Input the following ip address 
+
+- IP Address: 192.168.0.2
+- Subnet Mask: 255.255.255.0
+- Default Gateway: 192.168.0.1
 
 <img src="Images/ipsettings.PNG">
 
-- ok
-- ok
+- Click "Ok" to confirm the settings
+- Click "Ok" to exit
 
 Now we can change from the L port to the T port so that your machine is now plugged into R1
 
