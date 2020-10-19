@@ -1,27 +1,6 @@
 # IN730 Special Topic - Network Automation
 
-## Lab3 - SOMETHING
-
-## Automate Ansible Playbooks
-
-We will expand upon our backup script by automating it so that it will backup our router configs daily so that if we need to revert we can easily
-
-Lets go into cron
-```
-crontab -e
-```
-And insert the following at the bottom
-```
-1 0 1-31 * * ansible-playbook /etc/ansible/backup.yaml
-```
-
-Your crontab should look simillar to the image below
-
-<img src="Images/crontab.PNG">
-
-This will run our playbook everyday at 00:01
-
-You can use this same principal in order to run other playbooks that you may wish to automate
+## Lab3 
 
 ## Ansible on physical gear
 
@@ -242,6 +221,8 @@ Input the following ip address
 
 Now we can change from the L port to the T port so that your machine is now plugged into R1
 
+Normally when working in the network room we would launch a windows VM that we would then turn the firewall off to allow pings and connection from the routers to the machine
+
 In order for our routers to be able to ping our windows device we need to create a firewall rule
 
 Here is a guide on how to Add IP Address in Windows Firewall
@@ -279,3 +260,25 @@ Here is a guide on how to Add IP Address in Windows Firewall
 
 That is how you add an IP address to the windows firewall.
 
+
+
+## Automate Ansible Playbooks
+
+We will expand upon our backup script by automating it so that it will backup our router configs daily so that if we need to revert we can easily
+
+Lets go into cron
+```
+crontab -e
+```
+And insert the following at the bottom
+```
+1 0 1-31 * * ansible-playbook /etc/ansible/backup.yaml
+```
+
+Your crontab should look simillar to the image below
+
+<img src="Images/crontab.PNG">
+
+This will run our playbook everyday at 00:01
+
+You can use this same principal in order to run other playbooks that you may wish to automate
