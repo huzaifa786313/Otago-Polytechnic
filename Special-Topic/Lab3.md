@@ -127,7 +127,7 @@ no shut
 ```
 Verify that R1 can ping R2 and R2 can ping R1
 
-Now configure the interface that is connected to our windows machine
+Now configure the interface that is connected to the switch windows machine
 
 On R1 
 ```
@@ -138,7 +138,7 @@ ip address 192.168.0.1 255.255.255.0
 no shut
 ```
 
-Configure a static default route and OSPF  then redistirbute that route into ospf
+Configure a static default route and OSPF then redistirbute the static route into OSPF
 
 On R1
 ```
