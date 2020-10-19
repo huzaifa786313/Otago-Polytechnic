@@ -14,6 +14,8 @@
 
 This section will combine aspects from Lab 1 and 2 and apply them towards physical equipment
 
+## Ubuntu VM Setup
+
 First thing we need to do is download a ubuntu image that we will use to create our linux VM that will be used for as the ansible server
 
 - Download Ubuntu 20.04.1 LTS image from here https://ubuntu.com/download/desktop
@@ -43,8 +45,9 @@ After downloading the ubuntu image we will now create a virtual machine in VM Wo
 
 - Finish
 
+## VM Workstation Virtual Network Editor
 
-After creating the linux VM we now need to configure some network options in VM workstation
+After creating the linux VM we now need to configure some network options in VM workstation's virtual network editor which will bridge our physical network with our virtual network allowing our linux vm to reach our phyiscal routers
 
 - Click on the Edit tab and go click on the virtual network editior 
 
@@ -67,7 +70,13 @@ In the end your Virtual Network Editor should look simillar to the image below
 
 - Connect to your linux VM and open a terminal
 
-- use the command "ip a" and note down the ip address on the ens33(ens number may vary but there will be only one)
+- Use the command
+
+```
+ip a
+```
+
+And note down the ip address of the interface ens33
 
 <img src="Images/ens.PNG">
 
@@ -75,17 +84,14 @@ This ip will be used later
 
 ## Create a simple network
 
-Lets create a simple network
+Lets cable and create a simple network
 
 <img src="Images/topologyphysical.PNG">
 
-- Cable these 2 routers together according to the topology above
-- Console onto R1/R2
-
-
+- Cable 2 routers together according to the topology above
 - Cable R1 and the PC into the switch according to the topology
 
-We need to set hostnames on R1 and R2 because when we create the crypto keys later on they require that the hostname be swaped from the default
+First thing that need's to be set is the hostnames on Router1 and Router2 this is because when we create the crypto keys later on they require that the hostname be swaped from the default of "Router"
 
 On R1
 ```
