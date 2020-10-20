@@ -219,15 +219,18 @@ We can do this by doing the following
 <img src="Images/ipprops.PNG">
 
 - Internet Protocol Version 4 -> properties
+
+<img src="Images/ipsettings.PNG">
+
 - Select "Use the following IP address"
 
-Input the following ip address 
+Use the following settings 
 
 - IP Address: 192.168.0.2
 - Subnet Mask: 255.255.255.0
 - Default Gateway: 192.168.0.1
 
-<img src="Images/ipsettings.PNG">
+
 
 - Click "Ok" to confirm the settings
 - Click "Ok" to exit
@@ -271,9 +274,82 @@ Here is a guide on how to Add IP Address in Windows Firewall
 - add 192.168.1.0/30
 - add 192.168.0.0/24
 
-That is how you add an IP address to the windows firewall.
+Now that the firewall has been configured 
 
+## Ansible Playbooks
 
+We will run 2 playbooks against our physical routers
+
+### Ansible Ping
+
+```
+sudo vim /etc/ansible/ping.yaml
+```
+
+And insert the following
+```
+---
+  - name: ping
+    hosts: routers
+    connection: local
+    gather_facts: false
+    tasks:
+            - ping:
+```
+
+### Ansible Backup
+
+```
+sudo mkdir ~/ansible
+```
+Create a playbook called backup.yaml
+```
+sudo vim /etc/ansible/backup.yaml
+```
+
+Insert the following
+
+- Do note, make sure to edit the following 
+```
+<YOUR HOME DIRECTORY> with the home directory of your user account your using
+```
+```
+---
+  - hosts: localhost
+
+    tasks:
+            - name: Get Date/Time
+              setup:
+                      filter: "ansible_date_time"
+                      gather_subset: "!all"
+
+            - name: Store Date/Time
+              set_fact:
+                      DTG: "{{ansible_date_time.date }}"
+
+            - name: Create Directory {{hostvars.localhost.DTG}}
+              file:
+                      path: /home/<YOUR HOME DIRECTORY>/ansible/{{hostvars.localhost.DTG}}
+                      state: directory
+    run_once: true
+
+  - hosts: routers
+    connection: local
+    remote_user: admin
+    gather_facts: false
+    tasks:
+            - name: backup running config
+              block:
+              - name:
+                ios_command:
+                  commands: show running-config
+                register: config
+
+              - name: save running config to backup folder
+                copy:
+                  content: "{{config.stdout[0]}}"
+                  dest: "/home/<YOUR HOME DIRECTORY>/ansible/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
+```
 
 ## Automate Ansible Playbooks
 
