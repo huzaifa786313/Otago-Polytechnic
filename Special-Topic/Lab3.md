@@ -176,6 +176,8 @@ transport input ssh
 exit
 ```
 
+## Linux Routing
+
 On your linux vm you will need to configure a route so that traffic knows where to go to to get to your routers
 
 In your linux terminal use the following commands
@@ -187,6 +189,8 @@ sudo ip route add 192.168.1.0/30 via 192.168.0.128 dev ens33
 
 Do note that routes configured this way aren't persistent and will need to be re entered, you can configure them to be persistent but for what we are trying to do that isn't required
 
+## Software
+
 Before switching from Live to Test port on our machine and therefor lose internet connection lets first download and install some software that we will need
 
 ```
@@ -196,7 +200,10 @@ sudo apt-get install -y tree
 sudo apt-get install -y net-tools
 sudo apt-get install -y vim
 ```
-Now to change the ip address of the interface that we are using on our windows machine
+
+## Local Network Settings
+
+Now to change the ip address of the interface that we are using on our windows machine 
 
 We can do this by doing the following
 
