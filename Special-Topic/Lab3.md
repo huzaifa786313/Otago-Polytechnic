@@ -353,7 +353,7 @@ Insert the following
 
 ## Automate Ansible Playbooks
 
-We will expand upon our backup script by automating it so that it will backup our router configs daily so that if we need to revert we can easily
+Now to expand upon the backup script by automating it so that it will backup the router configs daily
 
 Lets go into cron
 ```
