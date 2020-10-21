@@ -355,7 +355,9 @@ Insert the following
 
 Now to expand upon the backup script by automating it so that it will backup the router configs daily
 
-Lets go into cron
+Cron will be the program we use in order to deploys our playbooks automatically
+
+Open up cron using the following command
 ```
 crontab -e
 ```
