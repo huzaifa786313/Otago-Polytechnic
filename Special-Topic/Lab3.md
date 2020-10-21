@@ -91,21 +91,7 @@ Lets cable and create a simple network
 - Cable 2 routers together according to the topology above
 - Cable R1 and the PC into the switch according to the topology
 
-First thing that need's to be set is the hostnames on Router1 and Router2 this is because when we create the crypto keys later on they require that the hostname be swaped from the default of "Router"
 
-On R1
-```
-en
-conf t
-hostname R1
-```
-
-On R2
-```
-en
-conf t
-hostname R2
-```
 
 Now configure the interfaces between R1 and R2
 
@@ -161,7 +147,22 @@ router-id 2.2.2.2
 network 192.168.1.0 network 0.0.0.3 area 0
 ```
 
-Because Ansible is agentless and uses SSH to deploy playbooks, you will need to configure and enable SSH onto your GNS3 Routers, a basic configuration has been provided 
+Now change the default hostnames on Router1 and Router2, this is because when we create the crypto keys in the next step they require that the hostname be a different one from the default
+
+On R1
+```
+end
+conf t
+hostname R1
+```
+
+On R2
+```
+end
+conf t
+hostname R2
+```
+Because Ansible is agentless and uses SSH to deploy playbooks, SSH will need to be configured and enabled on the routers, a basic configuration for this has been provided 
 
 ``` 
 end
@@ -178,20 +179,20 @@ exit
 
 ## Linux Routing
 
-On your linux vm you will need to configure a route so that traffic knows where to go to to get to your routers
+On the linux vm you will need to configure a route so that traffic knows where to go to to get to the routers
 
-In your linux terminal use the following commands
+Open a linux terminal and use the following commands
 
 ```
 sudo ip route add 192.168.0.0/24 via 192.168.0.128 dev ens33
 sudo ip route add 192.168.1.0/30 via 192.168.0.128 dev ens33
 ```
 
-Do note that routes configured this way aren't persistent and will need to be re entered, you can configure them to be persistent but for what we are trying to do that isn't required
+- Do note that routes configured this way aren't persistent and will need to be re entered, you can configure them to be persistent but for what this lab is trying to achieve this isn't required
 
 ## Software
 
-Before switching from Live to Test port on our machine and therefor lose internet connection lets first download and install some software that we will need
+Before switching from the Live (L) to Test (T) port on our machine and therefor lose internet connection lets first download and install some software that we will need
 
 ```
 sudo apt-get update
@@ -205,22 +206,18 @@ sudo apt-get install -y vim
 
 Now to change the ip address of the interface that we are using on our windows machine 
 
-We can do this by doing the following
 
-- Open the Control Panel
-- Network and Sharing Center
-- Change adapter settings
+- Open Control Panel
+- Navigate to Network and Sharing Center
+- Select Change adapter settings
 - Right click Ethernet 6 -> properties
 
 <img src="Images/ipadapters.PNG">
 
-- Accept
+- Select Internet Protocol Version 4 (TCP/IPv4)
+- Open Properties
 
 <img src="Images/ipprops.PNG">
-
-- Internet Protocol Version 4 -> properties
-
-<img src="Images/ipsettings.PNG">
 
 - Select "Use the following IP address"
 
@@ -230,14 +227,18 @@ Use the following settings
 - Subnet Mask: 255.255.255.0
 - Default Gateway: 192.168.0.1
 
-
+<img src="Images/ipsettings.PNG">
 
 - Click "Ok" to confirm the settings
 - Click "Ok" to exit
 
-Now we can change from the L port to the T port so that your machine is now plugged into R1
+Now you can change from the L port to the T port this will then connect your windows machine to R1
 
-Normally when working in the network room we would launch a windows VM that we would then turn the firewall off to allow pings and connection from the routers to the machine
+## Firewall
+
+
+
+Normally when working in the network room you would launch a windows VM that we would then turn the firewall off to allow pings and connection from the routers to the machine
 
 In order for our routers to be able to ping our windows device we need to create a firewall rule
 
@@ -276,11 +277,34 @@ Here is a guide on how to Add IP Address in Windows Firewall
 
 Now that the firewall has been configured 
 
+## Ansible Hosts
+
+First disable host_key_checking in the ansible.cfg file so that you don't need to SSH onto the routers first before we can deploy playbooks, while this helps to save time in a lab environment it is also a security risk
+
+```
+sudo vim /etc/ansible/ansible.cfg
+```
+Go to line 62 and uncomment the following
+```
+#host_key_checking = False
+```
+Then save the file
+
+```
+[routers]
+R2 ansible_host=192.168.1.1 ansible_network_os=ios ansible_ssh_user=admin ansible_ssh_pass=admin
+R1 ansible_host=192.168.1.2 ansible_network_os=ios ansible_ssh_user=admin ansible_ssh_pass=admin
+```
+
 ## Ansible Playbooks
 
 We will run 2 playbooks against our physical routers
 
-### Ansible Ping
+The ping playbook which we created in Lab1 and the backup playbook which was created in Lab2
+
+The configuration for those playbooks has been provided below
+
+### Ping
 
 ```
 sudo vim /etc/ansible/ping.yaml
@@ -297,7 +321,7 @@ And insert the following
             - ping:
 ```
 
-### Ansible Backup
+### Backup
 
 ```
 sudo mkdir ~/ansible
@@ -351,11 +375,27 @@ Insert the following
                   dest: "/home/<YOUR HOME DIRECTORY>/ansible/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
 ```
 
+Now that both of the playbooks have been created, they should be ran in order to confirm that everything is working correctly
+
+```
+cd /etc/ansible
+ansible-playbook ping.yaml
+```
+```
+cd /etc/ansible
+ansible-playbook backup.yaml
+```
+
+- If you get a permssion error when running the backup.yaml playbook you may need to change the permissions on your backup directory
+
+```
+sudo chmod 777 /home/<YOUR HOME DIRECTORY>/ansible/
+```
 ## Automate Ansible Playbooks
 
 Now to expand upon the backup script by automating it so that it will backup the router configs daily
 
-Cron will be the program we use in order to deploys our playbooks automatically
+Cron will be the what is used in order to have the playbooks deployed automatically
 
 Open up cron using the following command
 ```
