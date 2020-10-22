@@ -141,6 +141,7 @@ If we now ssh onto the router we can see that ansible has configured a motd bann
 In order to create VM's in azure using ansible we need to download and install additional software
 
 We will download curl which we require in order to get the azure command line
+
 ```
 sudo apt install curl
 ```
@@ -203,7 +204,9 @@ Create a playbook that will create a virtual machine
 ```
 sudo vim /etc/ansible/create.yaml
 ```
-Insert the following
+
+Insert the following into the playbook
+
 ```
 ---
   - name: Create Azure VM
@@ -306,32 +309,14 @@ Insert the following
           publisher: "{{ vm_pub }}"
           sku: "{{ vm_sku }}"
           version: latest
-
-    - name: Peer Old To New
-      azure_rm_virtualnetworkpeering:
-        resource_group: "{{ resource_group }}"
-        virtual_network: "{{ net }}"
-        name: "{{ vm_peer }}"
-        remote_virtual_network:
-                resource_group: "{{ resource_group }}"
-                name: "{{ vm_net }}"
-        allow_virtual_network_access: true
-        allow_forwarded_traffic: true
-
-    - name: Peer New To Old
-      azure_rm_virtualnetworkpeering:
-        resource_group: "{{ resource_group }}"
-        virtual_network: "{{ vm_net }}"
-        name: "{{ net }}"
-        remote_virtual_network:
-                resource_group: "{{ resource_group }}"
-                name: "{{ net }}"
-        allow_virtual_network_access: true
-        allow_forwarded_traffic: true
 ```
-At the end of this playbook we added the azure_rm_virtualnetworkpeering module, this will allow devices in different networks to communicate with each other
+
+Now run the playbook
+
+- Do note that it will take roughly 3 minutes to deploy
 
 ```
 ansible-playbook create.yaml
 ```
 
+While these virtual machines were created in azure, this same concept can be applied to other cloud vendors as Ansible has modules for a range of cloud providers, the list of modules can be found here https://docs.ansible.com/ansible/2.9/modules/list_of_cloud_modules.html
