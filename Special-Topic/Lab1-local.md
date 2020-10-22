@@ -2,6 +2,20 @@
 
 ## Lab1 - Setting up Ansible (Local Version)
 
+## TITLE HEADING?
+
+The main purpose of this lab is to get your local environment setup so that you can deploy more advanced ansible playbooks in future labs
+
+In order to do achieve this the following will be convered in this lab
+
+- Setting up an Ubuntu VM
+- Setup GNS3
+- GNS3 router template installation
+- Configure a basic ospf network
+- Connect GNS3 to your phyiscal machine's Linux virtual machine
+- Setup Ansible and configure ansible
+- Create and deploy a simple ansible playbook
+
 ## Disclaimer
 
 VIM is the text editor used in the following lab
