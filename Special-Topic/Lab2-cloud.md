@@ -203,128 +203,117 @@ sudo vim /etc/ansible/create.yaml
 ```
 Insert the following into the playbook
 ```
-- name: Create Azure VM
-  hosts: localhost
-  connection: local
+---
+  - name: Create Azure VM
+    hosts: localhost
+    connection: local
 
-  vars:
-   vm_offer: "UbuntuServer"
-   vm_pub: "Canonical"
-   vm_sku: "18.04-LTS"
+    vars:
+     vm_offer: "UbuntuServer"
+     vm_pub: "Canonical"
+     vm_sku: "18.04-LTS"
 
-   vm_size: "Standard_E2s_v3"
+     vm_size: "Standard_E2s_v3"
 
-   az: "australiaeast"
-   net: "Ansible"
-   vm_net: "AnsibleVNet"
-   vm_subnet: "AnsibleSubnet"
+     az: "australiaeast"
+     net: "Ansible"
+     vm_net: "AnsibleVNet"
+     vm_subnet: "AnsibleSubnet"
 
-   vm_publicIP: "AnsiblePublicIP"
-   vm_NSG: "AnsibleNSG"
-   vm_NIC: "AnsibleNIC"
-   vm_Name: "ansibletest"
+     vm_publicIP: "AnsiblePublicIP"
+     vm_NSG: "AnsibleNSG"
+     vm_NIC: "AnsibleNIC"
+     vm_Name: "ansibletest"
 
-   resource_group: "ansible"
+     resource_group: "ansible"
 
-   vm_peer: "AnsiblePeer"
+     vm_peer: "AnsiblePeer"
 
-   os_user: "ansible"
-   os_pass: "ansible@ssw0rd"
+     os_user: "ansible"
+     os_pass: "ansible@ssw0rd"
 
-  tasks:
+    tasks:
 
-  - name: Create virtual network
-    azure_rm_virtualnetwork:
-      resource_group: "{{ resource_group }}"
-      name: "{{ vm_net }}"
-      address_prefixes: "10.0.0.0/16"
+    - name: Create virtual network
+      azure_rm_virtualnetwork:
+        resource_group: "{{ resource_group }}"
+        name: "{{ vm_net }}"
+        address_prefixes: "10.0.0.0/16"
 
-  - name: Add subnet
-    azure_rm_subnet:
-      resource_group: "{{ resource_group }}"
-      name: "{{ vm_subnet }}"
-      address_prefix: "10.0.1.0/24"
-      virtual_network: "{{ vm_net }}"
+    - name: Add subnet
+      azure_rm_subnet:
+        resource_group: "{{ resource_group }}"
+        name: "{{ vm_subnet }}"
+        address_prefix: "10.0.1.0/24"
+        virtual_network: "{{ vm_net }}"
 
-  - name: Create public IP address
-    azure_rm_publicipaddress:
-      resource_group: "{{ resource_group }}"
-      allocation_method: Static
-      name: "{{ vm_publicIP }}"
-      domain_name: gitlab-test
-    register:  reg_publicIP
+    - name: Create public IP address
+      azure_rm_publicipaddress:
+        resource_group: "{{ resource_group }}"
+        allocation_method: Static
+        name: "{{ vm_publicIP }}"
+        domain_name: gitlab-test
+      register:  reg_publicIP
 
-  - debug: var=reg_publicIP
+    - debug: var=reg_publicIP
 
-  - name: Create Network Security Group that allows SSH
-    azure_rm_securitygroup:
-      resource_group: "{{ resource_group }}"
-      name: "{{ vm_NSG }}"
-      rules:
-        - name: SSH
-          protocol: Tcp
-          destination_port_range: 22
-          access: Allow
-          priority: 1001
-          direction: Inbound
-        - name: HTTP
-          protocol: Tcp
-          destination_port_range: 80
-          access: Allow
-          priority: 1002
-          direction: Inbound
-        - name: HTTPS
-          protocol: Tcp
-          destination_port_range: 443
-          access: Allow
-          priority: 1003
-          direction: Inbound
+    - name: Create Network Security Group that allows SSH
+      azure_rm_securitygroup:
+        resource_group: "{{ resource_group }}"
+        name: "{{ vm_NSG }}"
+        rules:
+          - name: SSH
+            protocol: Tcp
+            destination_port_range: 22
+            access: Allow
+            priority: 1001
+            direction: Inbound
+          - name: HTTP
+            protocol: Tcp
+            destination_port_range: 80
+            access: Allow
+            priority: 1002
+            direction: Inbound
+          - name: HTTPS
+            protocol: Tcp
+            destination_port_range: 443
+            access: Allow
+            priority: 1003
+            direction: Inbound
 
-  - name: Create virtual network interface card
-    azure_rm_networkinterface:
-      resource_group: "{{ resource_group }}"
-      name: "{{ vm_NIC }}"
-      virtual_network: "{{ vm_net }}"
-      subnet: "{{ vm_subnet }}"
-      public_ip_name: "{{ vm_publicIP }}"
-      security_group: "{{ vm_NSG }}"
+    - name: Create virtual network interface card
+      azure_rm_networkinterface:
+        resource_group: "{{ resource_group }}"
+        name: "{{ vm_NIC }}"
+        virtual_network: "{{ vm_net }}"
+        subnet: "{{ vm_subnet }}"
+        public_ip_name: "{{ vm_publicIP }}"
+        security_group: "{{ vm_NSG }}"
 
-  - name: Create VM
-    azure_rm_virtualmachine:
-      resource_group: "{{ resource_group }}"
-      name: "{{ vm_Name }}"
-      vm_size: "{{ vm_size }}"
-      admin_username: "{{ os_user }}"
-      admin_password: "{{ os_pass }}"
-      ssh_password_enabled: true
-      network_interfaces: "{{ vm_NIC }}"
-      image:
-        offer: "{{ vm_offer }}"
-        publisher: "{{ vm_pub }}"
-        sku: "{{ vm_sku }}"
-        version: latest
-
-  - name: Peer Old To New
-    azure_rm_virtualnetworkpeering:
-      resource_group: "{{ resource_group }}"
-      virtual_network: "{{ net }}"
-      name: "{{ vm_peer }}"
-      remote_virtual_network:
-              resource_group: "{{ resource_group }}"
-              name: "{{ vm_net }}"
-      allow_virtual_network_access: true
-      allow_forwarded_traffic: true
-
-  - name: Peer New To Old
-    azure_rm_virtualnetworkpeering:
-      resource_group: "{{ resource_group }}"
-      virtual_network: "{{ vm_net }}"
-      name: "{{ net }}"
-      remote_virtual_network:
-              resource_group: "{{ resource_group }}"
-              name: "{{ net }}"
-      allow_virtual_network_access: true
-      allow_forwarded_traffic: true
+    - name: Create VM
+      azure_rm_virtualmachine:
+        resource_group: "{{ resource_group }}"
+        name: "{{ vm_Name }}"
+        vm_size: "{{ vm_size }}"
+        admin_username: "{{ os_user }}"
+        admin_password: "{{ os_pass }}"
+        ssh_password_enabled: true
+        network_interfaces: "{{ vm_NIC }}"
+        image:
+          offer: "{{ vm_offer }}"
+          publisher: "{{ vm_pub }}"
+          sku: "{{ vm_sku }}"
+          version: latest
 ```
-At the end of this playbook we added the azure_rm_virtualnetworkpeering module, this will allow devices in different networks to communicate with each other
+
+Now run the playbook
+
+- Do note that it will take roughly 3 minutes to deploy
+
+```
+ansible-playbook create.yaml
+```
+
+While these virtual machines were created in azure, this same concept can be applied to other cloud vendors as Ansible has modules for a range of cloud providers, the list of modules can be found here https://docs.ansible.com/ansible/2.9/modules/list_of_cloud_modules.html
+
 
