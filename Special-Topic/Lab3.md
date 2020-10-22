@@ -39,7 +39,8 @@ After downloading the ubuntu image we will now create a virtual machine in VM Wo
 
 <img src="Images/disksize.JPG">
 
-- Customize Hardware and change the RAM to 4GB
+- Select "Customize Hardware"
+- Change the RAM to 4GB
 
 <img src="Images/hardware.JPG">
 
@@ -80,8 +81,6 @@ And note down the ip address of the interface ens33
 
 <img src="Images/ens.PNG">
 
-This ip will be used later
-
 ## Create a simple network
 
 Lets cable and create a simple network
@@ -91,7 +90,13 @@ Lets cable and create a simple network
 - Cable 2 routers together according to the topology above
 - Cable R1 and the PC into the switch according to the topology
 
+Console onto the routers so that you can configure them
 
+- Open your prefered terminal emulator
+- Select serial for the "Connection type"
+- Open the connection
+
+<img src="Images/putty.PNG">
 
 Now configure the interfaces between R1 and R2
 
@@ -392,6 +397,7 @@ ansible-playbook backup.yaml
 ```
 sudo chmod 777 /home/<YOUR HOME DIRECTORY>/ansible/
 ```
+
 ## Automate Ansible Playbooks
 
 Now to expand upon the backup script by automating it so that it will backup the router configs daily
@@ -399,10 +405,12 @@ Now to expand upon the backup script by automating it so that it will backup the
 Cron will be the what is used in order to have the playbooks deployed automatically
 
 Open up cron using the following command
+
 ```
 crontab -e
 ```
-And insert the following at the bottom
+
+And insert the following at the bottom of the file
 ```
 1 0 1-31 * * ansible-playbook /etc/ansible/backup.yaml
 ```
