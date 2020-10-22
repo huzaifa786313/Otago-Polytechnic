@@ -20,7 +20,7 @@ sudo ip route add 192.168.1.0/30 via 192.168.0.128 dev ens33
 
 We will create an ansible playbook that will pull configuration from our routers that we can use as a backup
 
-We will need to create a directory to be used to store the backups of the routers configuration
+We will need to create a directory to be used to store the backups of the router’s configuration
 
 This will create a directory in our home directory
 ```
@@ -30,7 +30,6 @@ Create a playbook called backup.yaml
 ```
 sudo vim /etc/ansible/backup.yaml
 ```
-
 
 
 Insert the following
@@ -94,12 +93,11 @@ we can now use the following command to list the home directory
 ```
 tree ~/ansible/
 ```
-you should have an output simillar to the following
+you should have an output similar to the following
 
 <img src="Images/treeconfig1.PNG">
 
 Here we can see that ansible managed to pull configuration from the routers
-
 
 ## Ansible playbooks to deploy configuration
 
@@ -126,7 +124,7 @@ We will create a playbook that will push configuration to our routers this will 
                       state: present
 ```
 
-Now lets connect to our router to see the change we made
+Now let’s connect to the routers to see the change we made
 
 - Do note that due to issues with gns3 and cloud we need to add a few additional options to our ssh command
 
@@ -152,19 +150,19 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 sudo apt install azure-cli
 ```
 
-Now that we have downloaded and installed azure command line we need to connect to it
+Now that we have downloaded and installed azure command line, we need to connect to it
 ```
 az login
 ```
 <img src="Images/azlogin.PNG">
 
-Follow the on screen prompt and input the code it provides on the website then select your microsoft account that you used for the previous lab
+Follow the on-screen prompt and input the code it provides on the website then select your microsoft account that you used for the previous lab
 
 After you have logged in you will be given an output that contains the information about your microsoft azure account
 
 <img src="Images/azdetailsred.PNG">
 
-When you use azure cli it will assign anything you create to your default subscription so if you have multiple subscriptions on your account we will need to set this
+When you use azure cli it will assign anything you create to your default subscription so if you have multiple subscriptions on your account, we will need to set this
 
 To change your default subscription is a quick task
 
@@ -172,7 +170,7 @@ To change your default subscription is a quick task
 az account set --subscription <ID>
 ```
 
-After changing your subscription you wont be given a notification so you will need to verify that it has changed by using the following command
+After changing your subscription, you wont be given a notification so you will need to verify that it has changed by using the following command
 
 ```
 az account list
@@ -320,3 +318,5 @@ ansible-playbook create.yaml
 ```
 
 While these virtual machines were created in azure, this same concept can be applied to other cloud vendors as Ansible has modules for a range of cloud providers, the list of modules can be found here https://docs.ansible.com/ansible/2.9/modules/list_of_cloud_modules.html
+
+

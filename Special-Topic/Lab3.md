@@ -68,8 +68,7 @@ In the end your Virtual Network Editor should look simillar to the image below
 
 <img src="Images/virtualnetworkeditor.JPG">
 
-
-- Connect to your linux VM and open a terminal
+- Connect to your Linux VM and open a terminal
 
 - Use the command
 
@@ -92,7 +91,7 @@ Lets cable and create a simple network
 
 Console onto the routers so that you can configure them
 
-- Open your prefered terminal emulator
+- Open your preferred terminal emulator
 - Select serial for the "Connection type"
 - Open the connection
 
@@ -152,7 +151,7 @@ router-id 2.2.2.2
 network 192.168.1.0 network 0.0.0.3 area 0
 ```
 
-Now change the default hostnames on Router1 and Router2, this is because when we create the crypto keys in the next step they require that the hostname be a different one from the default
+Now change the default hostnames on Router1 and Router2, this is because when we create the crypto keys in the next step, they require that the hostname be a different one from the default
 
 On R1
 ```
@@ -186,7 +185,7 @@ exit
 
 On the linux vm you will need to configure a route so that traffic knows where to go to to get to the routers
 
-Open a linux terminal and use the following commands
+Open a Linux terminal and use the following commands
 
 ```
 sudo ip route add 192.168.0.0/24 via 192.168.0.128 dev ens33
@@ -210,7 +209,6 @@ sudo apt-get install -y vim
 ## Local Network Settings
 
 Now to change the ip address of the interface that we are using on our windows machine 
-
 
 - Open Control Panel
 - Navigate to Network and Sharing Center
@@ -240,7 +238,6 @@ Use the following settings
 Now you can change from the L port to the T port this will then connect your windows machine to R1
 
 ## Firewall
-
 
 
 Normally when working in the network room you would launch a windows VM that we would then turn the firewall off to allow pings and connection from the routers to the machine
@@ -381,7 +378,7 @@ Insert the following
                   dest: "/home/<YOUR HOME DIRECTORY>/ansible/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
 ```
 
-Now that both of the playbooks have been created, they should be ran in order to confirm that everything is working correctly
+Now that both of the playbooks have been created, they should be deployed in order to confirm that everything is working correctly
 
 ```
 cd /etc/ansible
@@ -416,10 +413,12 @@ And insert the following at the bottom of the file
 1 0 1-31 * * ansible-playbook /etc/ansible/backup.yaml
 ```
 
-Your crontab should look simillar to the image below
+Your crontab should look similar to the image below
 
 <img src="Images/crontab.PNG">
 
-This will run our playbook everyday at 00:01
+This will run our playbook every day at 00:01
 
 You can use this same principal in order to run other playbooks that you may wish to automate
+
+

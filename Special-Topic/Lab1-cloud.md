@@ -25,7 +25,7 @@ Lets go to our azure home https://portal.azure.com/#home
 
 ## Resource Group
 
-Lets create a resource group that we can use for this project
+Let’s create a resource group that we can use for this project
 
 Type "resource groups" in the search bar and click on the resource groups under services
 
@@ -79,11 +79,9 @@ Under the ipv4 address we change it from the 10.X.X.X/16 range it gives us to a 
 
 Now we just need to create a subnet within our address range
 
-
 Click the add subnet button
 
 <img src="Images/networksubnetbutton.PNG">
-
 
 Name this subnet ansible
 
@@ -275,7 +273,7 @@ and note the ip address of eth0, we will use this in our gns3_server.conf file
 
 <img src="Images/eth.PNG">
 
-Now lets edit our gns3_server.conf file
+Now let’s edit our gns3_server.conf file
 
 ```
 sudo vim /etc/gns3/gns3_server.conf
@@ -325,7 +323,7 @@ sudo ip route add 192.168.1.0/24 via 192.168.1.254 dev tap1
 sudo ip route add 192.168.2.0/30 via 192.168.1.254 dev tap1
 ```
 
-## Install And Setup GNS3
+## Install and Setup GNS3
 
 ## <p style="text-align: center;">The following occurs on our gns3client VM
 
@@ -364,7 +362,6 @@ In order to create a template using the image we just downloaded we need to do t
 
 <img src="Images/templaterouter.JPG">
 
-
 - Install the appliance on your local computer 
 
 - Select Create a new version
@@ -376,7 +373,6 @@ In order to create a template using the image we just downloaded we need to do t
 - You should now see your router but with its files missing
 
 <img src="Images/missing.JPG">
-
 
 - select your version from the list and click import, locate and select the c7200-advipservicesk9-mz.122-33.SRC2.extracted.bin image your downloaded
 
@@ -405,7 +401,7 @@ We now need to make a few tweaks to our newly created template
 
 - Go to the "Slots" tab and add "PA-GE" to Adapters slots 1 through 4 this will add  gigabyte interfaces to your routers when you create them
 
-If you click on the router icon on the left hand side<br>
+If you click on the router icon on the left-hand side<br>
 <img src="Images/routericon.JPG">  
 you should now see your router template you installed<br>
 <img src="Images/routericon2.JPG">  
@@ -418,10 +414,9 @@ From here go to the Slots tab and add "PA-GE" to Adapters slots 1 through 4 this
 
 ## Configure A Basic Network
 
-
 <img src="Images/topologycloud.JPG">
 
-Lets create a simple network in GNS3
+Let’s create a simple network in GNS3
 
 - Create a new blank project
 
@@ -463,7 +458,7 @@ Now we will add a cloud to our GNS3 project
 
 The cloud allows the routers inside your GNS3 project to communicate with outside devices
 
-Lets add a cloud to connect our virtual routers to our physical network 
+Let’s add a cloud to connect our virtual routers to our physical network 
 
 - From the browse end devices tab 
 
@@ -473,12 +468,11 @@ Lets add a cloud to connect our virtual routers to our physical network
 
 <img src="Images/cloudicon.JPG">
 
-After adding the cloud we now need to configure it 
+After adding the cloud, it is now time to configure it 
 
 - Click on the cloud and go to the "TAP Interfaces" tab
 - Check the that tap1 has been added
 - Cable R1 to the cloud according to the topology
-
 
 We will now configure R1's interface that connects with the TAP interface with an ip address 
 
@@ -597,8 +591,8 @@ The following will run the command against any host in our network group
 ```
 ansible network -c network_cli -m ping
 ```
-lets create a easy playbook to test if everything is working correctly
-ansible can be a bit pedantic with its formating so here is a 
+Let’s create a easy playbook to test if everything is working correctly
+ansible can be a bit pedantic with its formatting so here is a 
 
 ```
 sudo vim /etc/ansible/ping.yaml
@@ -626,10 +620,9 @@ Or you can provide the path to the playbook
 ansible-playbook /etc/ansible/ping.yaml
 ```
 
-After running your playbook the following output should occur
+After running your playbook, the following output should occur
 
 <img src="Images/playbook2.PNG">
-
 
 Congratulations you have now successfully deployed your first ansible playbook
 
@@ -644,3 +637,5 @@ ansible module list can be found here
 
 ansible playbooks user guide can be found here 
 - https://docs.ansible.com/ansible/latest/user_guide/playbooks.html
+
+

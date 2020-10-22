@@ -8,7 +8,6 @@ VIM is the text editor used in the following lab
 
 The GNS3 version used at the creation of this lab was GNS3 2.2.12
 
-
 ## Topology
 
 <img src="Images/topology.JPG">
@@ -20,7 +19,6 @@ The GNS3 version used at the creation of this lab was GNS3 2.2.12
 - Ubuntu 20.04
 
 ## Setup
-
 
 ## Ubuntu Setup
 
@@ -53,7 +51,6 @@ After downloading the ubuntu image we will now create a virtual machine in VM Wo
 
 - Finish
 
-
 After creating the linux VM we now need to configure some network options in VM workstation
 
 - Click on the Edit tab and go click on the virtual network editior 
@@ -74,8 +71,7 @@ In the end your Virtual Network Editor should look simillar to the image below
 
 <img src="Images/virtualnetworkeditor.JPG">
 
-
-- Connect to your linux VM and open a terminal
+- Connect to your Linux VM and open a terminal
 
 - use the command "ip a" and note down the ip address on the ens33(ens number may vary but there will be only one)
 
@@ -90,7 +86,6 @@ In order to download GNS3 you need to signup to their website
 - Sign up to GNS3 https://www.gns3.com/ 
 
 - Download the windows version of GNS3 https://www.gns3.com/software/download
-
 
 
 ## Router Template Configuration
@@ -110,7 +105,6 @@ In order to create a template using the image we just downloaded we need to do t
 
 <img src="Images/templaterouter.JPG">
 
-
 - Install the appliance on your local computer 
 
 - Select Create a new version
@@ -122,7 +116,6 @@ In order to create a template using the image we just downloaded we need to do t
 - You should now see your router but with its files missing
 
 <img src="Images/missing.JPG">
-
 
 - select your version from the list and click import, locate and select the c7200-advipservicesk9-mz.122-33.SRC2.extracted.bin image your downloaded
 
@@ -155,7 +148,7 @@ We now need to make a few tweaks to our newly created template
 
 <img src="Images/topology.JPG">
 
-Lets create a simple network in GNS3
+Let’s create a simple network in GNS3
 
 - Create a new blank project
 
@@ -258,7 +251,7 @@ exit
 
 On your linux vm you will need to configure a route so that traffic knows where to go to to get to your GNS3 routers
 
-In your linux terminal use the following command
+In your Linux terminal use the following command
 
 ```
 sudo ip route add 192.168.1.0/30 via 192.168.0.128 dev ens33
@@ -276,7 +269,7 @@ On your Linux VM open a terminal and use the command
 sudo apt-get install ansible -y
 ```
 
-This will download and install ansible onto the linux machine
+This will download and install ansible onto the Linux machine
 
 After we have installed ansible we now need to make some configurations to it
 
@@ -288,7 +281,6 @@ cd /etc/ansible/
 Inside this directory you will find the ansible.cfg and hosts file, this is also where you will create your ansible playbooks to begin with
 
 We will disable host_key_checking in our ansible.cfg file so that we don't need to SSH onto our GNS3 routers first before we can deploy playbooks, while this helps to save time in a lab environment it is also a security risk
-
 
 ```
 sudo vim /etc/ansible/ansible.cfg
@@ -315,9 +307,9 @@ R1 ansible_host=192.168.0.1 ansible_network_os=ios ansible_ssh_user=admin ansibl
 - ansible_ssh_user=admin the user account that ansible uses to connect with in this example its admin because that is what we created earlier when we setup the router configuration in gns3
 - ansible_ssh_pass=admin the password of the user account that ansible is using to connect with
 
-Now that we have everything setup we can finaly use ansible
+Now that we have everything setup we can finally use ansible
 
-Lets create a simple playbook to test if everything is working correctly
+Let’s create a simple playbook to test if everything is working correctly
 
 ```
 sudo vim /etc/ansible/test.yaml
@@ -352,7 +344,6 @@ In future labs we will cover more uses for ansible in both a local and cloud env
 
 Please save your work or make a script to recreate it quickly along as future labs will be built off this
 
-
 Further reading:
 
 ansible module list can be found here 
@@ -365,3 +356,4 @@ ansible playbooks user guide can be found here
 
 If at some point your pings / connection stops working between your linux vm and your GNS3 routers,
 delete the cable connecting R1 and the cloud together then cable them back together
+

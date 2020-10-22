@@ -23,7 +23,7 @@ sudo ip route add 192.168.2.0/30 via 192.168.1.254 dev tap1
 
 We will create an ansible playbook that will pull configuration from our routers that we can use as a backup
 
-In order to achieve this we first need to create a directory to be used to store the backups of the routers configuration
+In order to achieve this, a directory needs to be created to store the backups of the router’s configuration
 
 This will create a directory in our home directory
 ```
@@ -94,7 +94,7 @@ We can now use the following command to list the home directory
 ```
 tree ~/ansible-backup
 ```
-you should have an output simillar to the following
+you should have an output similar to the following
 
 <img src="Images/treeconfig.PNG">
 
@@ -139,7 +139,7 @@ Or you can provide the path to the playbook
 ansible-playbook /etc/ansible/motd.yaml
 ```
 
-Now lets connect to our router to see and verify if the change we made took effect
+Now let’s connect to our router to see and verify if the change we made took effect
 
 - Do note that due to issues with gns3 and cloud we need to add a few additional options to our ssh command
 
@@ -166,7 +166,7 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 sudo apt install azure-cli
 ```
 
-Now that we have downloaded and installed azure command line we need to connect to it
+Now that the azure command line has been downloaded and installed, it is time to connect to it
 ```
 az login
 ```
@@ -186,7 +186,7 @@ To change your default subscription is a quick task
 az account set --subscription <ID>
 ```
 
-After changing your subscription you wont be given a notification so you will need to verify that it has changed by using the following command
+After changing your subscription, you wont be given a notification so you will need to verify that it has changed by using the following command
 ```
 az account list
 ```
@@ -315,5 +315,6 @@ ansible-playbook create.yaml
 ```
 
 While these virtual machines were created in azure, this same concept can be applied to other cloud vendors as Ansible has modules for a range of cloud providers, the list of modules can be found here https://docs.ansible.com/ansible/2.9/modules/list_of_cloud_modules.html
+
 
 
