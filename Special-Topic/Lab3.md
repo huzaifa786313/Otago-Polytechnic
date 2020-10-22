@@ -118,7 +118,7 @@ no shut
 ```
 Verify that R1 can ping R2 and R2 can ping R1
 
-Now configure the interface that is connected to the switch windows machine
+Now configure to configure the interface that is connected to the switch
 
 On R1 
 ```
