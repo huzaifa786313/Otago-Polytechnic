@@ -309,7 +309,7 @@ The ping playbook which we created in Lab1 and the backup playbook which was cre
 
 The configuration for those playbooks has been provided below
 
-### Ping
+### Ping Playbook
 
 ```
 sudo vim /etc/ansible/ping.yaml
@@ -326,7 +326,7 @@ And insert the following
             - ping:
 ```
 
-### Backup
+### Backup Playbook
 
 Create the directory that you will use to store the backup files
 ```
@@ -387,6 +387,7 @@ Now that both of the playbooks have been created, they should be ran in order to
 cd /etc/ansible
 ansible-playbook ping.yaml
 ```
+
 ```
 cd /etc/ansible
 ansible-playbook backup.yaml
