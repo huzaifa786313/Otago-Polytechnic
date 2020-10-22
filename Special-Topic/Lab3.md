@@ -323,6 +323,7 @@ And insert the following
 
 ### Backup
 
+Create the directory that you will use to store the backup files
 ```
 sudo mkdir ~/ansible
 ```
