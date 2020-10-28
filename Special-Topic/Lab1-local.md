@@ -2,11 +2,9 @@
 
 ## Lab1 - Setting up Ansible (Local Version)
 
-## TITLE HEADING?
+The main purpose of this lab is to configure and setup your local environment so that your GNS3 network can communicate with your Ubuntu VM allowing the deployment of a Ansible playbook to your network
 
-The main purpose of this lab is to get your local environment setup so that you can deploy more advanced ansible playbooks in future labs
-
-In order to do achieve this the following will be convered in this lab
+In order to do achieve this the following will be done in this lab
 
 - Setting up an Ubuntu VM
 - Setup GNS3
