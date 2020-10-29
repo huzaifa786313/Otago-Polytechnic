@@ -4,15 +4,16 @@
 
 The purpose of this lab is to setup your local environment with GNS3 and Ansible and to configure them so that your GNS3 network can communicate with your Ubuntu VM that is used as your Ansible server, allowing the deployment of Ansible playbook's to your GNS3 network.
 
-In order to do achieve this the following will be done
+In order to achieve this the following will be covered in this lab
 
-- Setting up an Ubuntu VM
-- Setup GNS3
-- GNS3 router template installation
-- Configure a basic ospf network
-- Connect GNS3 to your phyiscal machine's Linux virtual machine
-- Setup Ansible and configure ansible
-- Create and deploy a simple ansible playbook
+- Download and setup an Ubuntu VM
+- Download and setup GNS3 on your Windows machine
+- Configure a GNS3 router template
+- Configure a basic ospf network in GNS3
+- Connect GNS3 network to your Ubuntu VM
+- Download and configure Ansible on your Ubuntu VM
+- Create a Ansible playbook
+- Deploy your Ansible playbook
 
 Future labs will expand upon the work that was achieved in this lab
 
