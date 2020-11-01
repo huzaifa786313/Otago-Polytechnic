@@ -4,12 +4,24 @@
 
 The purpose of this lab is to create more useful playbooks that will be able to pull information from the GNS3 network as well as configure the GNS3 network which will allow for the routers to have a uniform configuration, at the very end a playbook will be created that will allow for the deployment of virtuals machines in Azure.
 
-- 
-- 
-- 
-- 
-- 
-- 
+Backups
+- Create a directory that will be used to store configuration files 
+- Create a playbook to pull configuration from the GNS3 routers
+- Deploy the backup playbook and verify it worked correctly
+
+Configuration
+- Create a playbook to send configuration to the GNS3 routers
+- Deploy the configuration playbook
+- SSH onto the routers to verify the configuration worked
+
+Azure VM Creation 
+- Download and install the Azure CLI tool
+- Login to the Azure using the Azure CLI tool
+- Verify correct Azure subscription is being used
+- Download and install additional software required to use Azure with Ansible
+- Create a playbook that will deploy Azure VM's
+- Deploy the creation playbook
+- Open the Azure website and verify your VM is there
 
 ### Requirements
 

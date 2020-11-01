@@ -16,12 +16,14 @@ Configuration
 - Deploy the configuration playbook
 - SSH onto the routers to verify the configuration worked
 
-
 Azure VM Creation 
-- Create 
-- 
-- 
-
+- Download and install the Azure CLI tool
+- Login to the Azure using the Azure CLI tool
+- Verify correct Azure subscription is being used
+- Download and install additional software required to use Azure with Ansible
+- Create a playbook that will deploy Azure VM's
+- Deploy the creation playbook
+- Open the Azure website and verify your VM is there
 
 ## Requirements
 
