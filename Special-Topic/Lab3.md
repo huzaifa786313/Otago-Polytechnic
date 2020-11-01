@@ -6,14 +6,17 @@ The purpose of this lab is to take what was covered and learnt and to replicate 
 
 Also cover how to simply automate your ansible playbooks
 
--
--
--
--
--
--
+- Download and setup an Ubuntu VM
 
 
+- Configure a basic ospf network
+- Connect GNS3 network to your Ubuntu VM
+- Download and configure Ansible on your Ubuntu VM
+- Create a Ansible playbook
+- Deploy your Ansible playbook against your GNS3 network
+
+Ansible automation
+- Configure crontab so the playbooks run regularly automatically 
 
 ## Requirements
 
@@ -432,4 +435,4 @@ This will run our playbook every day at 00:01
 
 You can use this same principal in order to run other playbooks that you may wish to automate
 
-
+A helpful website when it comes to configure crontab is https://crontab.guru/ it provides an easy way to see what combiniation you have to enter for your crontab to run
