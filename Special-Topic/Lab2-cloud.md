@@ -5,10 +5,10 @@
 The purpose of this lab is to create more useful playbooks that will be able to pull information from the GNS3 network as well as configure the GNS3 network which will allow for the routers to have a uniform configuration, at the very end a playbook will be created that will allow for the deployment of virtuals machines in Azure.
 
 In order to achieve this the following will be covered in this lab
-
-- 
-- 
-- 
+ 
+- Create a directory that will be used to store configuration files 
+- Create a playbook to pull configuration from the GNS3 routers
+- Deploy the backup playbook and verify it worked correctly
 - 
 - 
 - 
