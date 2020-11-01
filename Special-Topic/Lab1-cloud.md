@@ -2,16 +2,19 @@
 
 ## Lab1 - Setting up Ansible (Cloud Version)
 
-The purpose of this lab is to get your local envionment setup and working so that it can be expanded upon further in future labs.
+The purpose of this lab is to get your cloud envionment setup and working so that it can be expanded upon further in future labs.
 
 In order to achieve this the following will be covered in this lab
 
-- Download and setup an Ubuntu VM
-- Download and setup GNS3 on your Windows machine
-- Configure a GNS3 router template
+- Create an Azure resource group to store the project
+- Create an Azure network inside a resource group
+- Create a Windows virtual machine in Azure to use as the GNS3 client
+- Create a Linux virtual machine in Azure to use as the GNS3 server as well as the Ansible server
+- Download and setup GNS3 on the Windows machine
+- Configure a GNS3 router template 
 - Configure a basic ospf network in GNS3
-- Connect GNS3 network to your Ubuntu VM
-- Download and configure Ansible on your Ubuntu VM
+- Connect GNS3 network to your Linux Server
+- Download and configure Ansible on your Linux Server
 - Create a Ansible playbook
 - Deploy your Ansible playbook against your GNS3 network
 

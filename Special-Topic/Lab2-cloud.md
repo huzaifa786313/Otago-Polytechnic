@@ -2,7 +2,7 @@
 
 ## Lab2 - Ansible Playbooks (Cloud Version)
 
-The purpose of this lab is to get your local envionment setup and working so that it can be expanded upon further in future labs.
+The purpose of this lab is to create more advanced ansible playbooks that will pull information from the GNS3 network as well as configure the GNS3 network which will allow for the routers to have a uniform configuration, at the very end  deploy virtuals machines in Azure using Ansible 
 
 In order to achieve this the following will be covered in this lab
 
