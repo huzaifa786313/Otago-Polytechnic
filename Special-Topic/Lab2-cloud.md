@@ -6,12 +6,22 @@ The purpose of this lab is to create more useful playbooks that will be able to 
 
 In order to achieve this the following will be covered in this lab
  
+Backups
 - Create a directory that will be used to store configuration files 
 - Create a playbook to pull configuration from the GNS3 routers
 - Deploy the backup playbook and verify it worked correctly
+
+Configuration
+- Create a playbook to send configuration to the GNS3 routers
+- Deploy the configuration playbook
+- SSH onto the routers to verify the configuration worked
+
+
+Azure VM Creation 
+- Create 
 - 
 - 
-- 
+
 
 ## Requirements
 
