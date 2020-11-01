@@ -2,18 +2,16 @@
 
 ## Lab2 - Ansible Playbooks (Cloud Version)
 
-The purpose of this lab is to create more advanced ansible playbooks that will pull information from the GNS3 network as well as configure the GNS3 network which will allow for the routers to have a uniform configuration, at the very end a playbook will be created that will allow for the deployment of virtuals machines in Azure 
+The purpose of this lab is to create more useful playbooks that will be able to pull information from the GNS3 network as well as configure the GNS3 network which will allow for the routers to have a uniform configuration, at the very end a playbook will be created that will allow for the deployment of virtuals machines in Azure.
 
 In order to achieve this the following will be covered in this lab
 
-- Download and setup an Ubuntu VM
-- Download and setup GNS3 on your Windows machine
-- Configure a GNS3 router template
-- Configure a basic ospf network in GNS3
-- Connect GNS3 network to your Ubuntu VM
-- Download and configure Ansible on your Ubuntu VM
-- Create a Ansible playbook
-- Deploy your Ansible playbook against your GNS3 network
+- 
+- 
+- 
+- 
+- 
+- 
 
 ## Requirements
 

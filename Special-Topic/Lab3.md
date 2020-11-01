@@ -1,21 +1,19 @@
 # IN730 Special Topic - Network Automation
 
-## Lab3 
+## Lab3 - Ansible on physical equipment
 
-The purpose of this lab is to get your local envionment setup and working so that it can be expanded upon further in future labs.
+The purpose of this lab is to take what was covered and learnt and to replicate that process onto physical equipment
 
-In order to achieve this the following will be covered in this lab
+Also cover how to simply automate your ansible playbooks
 
-- Download and setup an Ubuntu VM
-- Download and setup GNS3 on your Windows machine
-- Configure a GNS3 router template
-- Configure a basic ospf network in GNS3
-- Connect GNS3 network to your Ubuntu VM
-- Download and configure Ansible on your Ubuntu VM
-- Create a Ansible playbook
-- Deploy your Ansible playbook against your GNS3 network
+-
+-
+-
+-
+-
+-
 
-## Ansible on physical gear
+
 
 ## Requirements
 
