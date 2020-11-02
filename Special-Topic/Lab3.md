@@ -2,21 +2,25 @@
 
 ## Lab3 - Ansible on physical equipment
 
-The purpose of this lab is to take what was covered and learnt and to replicate that process onto physical equipment
+The purpose of this lab is to take what was covered and learnt and to replicate those processes onto physical equipment and also cover how to simply automate your ansible playbooks to run regularly
 
-Also cover how to simply automate your ansible playbooks
+In order to achieve this the following will be covered in this lab
 
 - Download and setup an Ubuntu VM
-
-
-- Configure a basic ospf network
-- Connect GNS3 network to your Ubuntu VM
-- Download and configure Ansible on your Ubuntu VM
+- Configure VM Workstation Virtunal Network Editor
+- Cable the network together
+- Configure a basic OSPF network
+- Configure routes on the Ubuntu VM
+- Download the software needed for future steps
+- Transfer from the live port to the test port
+- Configure windows network
+- Configure windows firewall
+- Configure Ansible on your Ubuntu VM
 - Create a Ansible playbook
-- Deploy your Ansible playbook against your GNS3 network
+- Deploy your Ansible playbook against your network
 
 Ansible automation
-- Configure crontab so the playbooks run regularly automatically 
+- Configure crontab so the playbooks run regularly automatically
 
 ## Requirements
 
