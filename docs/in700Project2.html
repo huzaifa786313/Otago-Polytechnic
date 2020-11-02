@@ -87,7 +87,20 @@
                         <div class="card-body">
                             <h4>Monday</h4>
                             <h4>Tuesday</h4>
-                            <p>Managed to recreate gitlab using ansible</p>
+                            <p>Managed to recreate gitlab using ansible
+                                <br>
+                                create vm
+                                <br>
+                                copy gitlab content to vm
+                                <br>
+                                download gitlab packages and configure
+                                <br>
+                                populate gitlab with the copied content
+
+                                <br>
+                                now while i could see all the repos on the server the content of those repos was missing i believe this was because i forgot to copy one of the files accross, but as i have now learnt why do we need a hosted gitlab when student can just use github which is more stable and has less downtime then the gitlab we were hosting
+                                
+                            </p>
                             <h4>Wednesday</h4>
                             <p>The IoTData VM created in Azure last week needed ports 80 and 443 open thankfully in Azure there is an easy interface to open up ports</p>
                             <img src="img/ports.PNG" width=100%>
@@ -255,12 +268,12 @@
                             <p>
                                 I talked to Rob about getting the permissions of the server changed so that someone in the Ops team was the owner, my theory on this was that if one of us were the owner we would beable to make changes such as increasing the disk size of the VM. It turns out even as owner we couldn't make this change so i had to go back to Rob to talk with him and see if he could add an additional disk to the server which he was able to do.
                                 <br><br>
-                                Now that the IoT server had the additional disk, it just needed to be configured so that they could use it and unfortunately we didnt know the login credentials so i updated the ticket informing them of the current progress and that we would require credentials to login
-                                
+                                Now that the IoT server had the additional disk, it just needed to be configured so that they could use it and unfortunately we didnt know the login credentials so i updated the ticket informing them of the current progress and that we would require credentials to login  
                             </p>
                             <h4>Wednesday</h4>
                             <h4>Thursday</h4>
                             <p>After talking with Faisal we came to the conclussion that asking the client for their login credentials wasn't the best in terms of security practice, so instead we were to ask the client if we could make an admin account on their server so that we had access, so we had to update the ticket requesting permission to make an admin account on this server</p>
+                            <p>We were notified of a breach in one of the VM's using a public ip </p>
                             <h4>Friday</h4>
                         </div>
                     </div>
