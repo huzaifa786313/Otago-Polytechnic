@@ -173,7 +173,7 @@
                             <p>default gateway for azure access to avoid use of public ips</p>
                             <h4>Thursday</h4>
                             <p>I talked to Issac Underwood and asked if he could create a simple web page that would ask the user to enter their name and store that, this was going to serve as the basis of getting the user to create VM's in azure</p>
-                            <p>using ansible i managed to sucsessfully create a playbook that would allow for the bulk creation of VM's in Azure based on the number that the user entered i was then able to configure this so that it would pair that network with my current network using Azure's network peerings</p>
+                            <p>using ansible i managed to sucsessfully create a playbook that would allow for the bulk creation of VM's in Azure based on the number that the user entered i was then able to configure this so that it would pair that network with my current network using Azure's network peerings</p>     
                             <h4>Friday</h4>
                         </div>
                     </div>
@@ -229,9 +229,15 @@
                         <div class="card-body">
                             <h4>Monday</h4>
                             <h4>Tuesday</h4>
-                            <p>IoT Server BEGINS HERE</p>
+                            <p>
+                                I talked to Rob about getting the permissions of the server changed so that someone in the Ops team was the owner, my theory on this was that if one of us were the owner we would beable to make changes such as increasing the disk size of the VM. It turns out even as owner we couldn't make this change so i had to go back to Rob to talk with him and see if he could add an additional disk to the server which he was able to do.
+                                <br><br>
+                                Now that the IoT server had the additional disk, it just needed to be configured so that they could use it and unfortunately we didnt know the login credentials so i updated the ticket informing them of the current progress and that we would require credentials to login
+                                
+                            </p>
                             <h4>Wednesday</h4>
                             <h4>Thursday</h4>
+                            <p>After talking with Faisal we came to the conclussion that asking the client for their login credentials wasn't the best in terms of security practice, so instead we were to ask the client if we could make an admin account on their server so that we had access, so we had to update the ticket requesting permission to make an admin account on this server</p>
                             <h4>Friday</h4>
                         </div>
                     </div>
@@ -241,14 +247,18 @@
                         </div>
                         <div class="card-body">
                             <h4>Monday</h4>
+                            <p>Labour Day</p>
                             <h4>Tuesday</h4>
+                            <p>day off</p>
                             <h4>Wednesday</h4>
                             <h4>Thursday</h4>  
                             <p>i took what i learnt in virtualisation assignment 3 and containerized issac's flaskapp so that it would run</p>
                             <img src="img/requestsite.PNG" width=100%>
                             <p></p>
                             <h4>Friday</h4>
-                            <p>docker redirect user creation</p>
+                            <p>docker redirect user creation
+                                After hearing back from Faisal in regards to the IoT server that requires more disk space i went and spoke to Rob about him adding an admin account onto their server so that we could login and configure the disk, Rob had to change the student accounts password from what it was to the polytech default password after this i was able to login using it and create an admin account acccording to the details stored in the KeePass file.
+                            </p>
                         </div>
                     </div>
                     <div class="card">
@@ -257,7 +267,11 @@
                         </div>
                         <div class="card-body">
                             <h4>Monday</h4>
-                            <p>docker redirect<br>After failing to combine the 2 disks into one logical disk i decided to look over the previous semester's gitlab documentation and discovered that a previous group had done something simillar with redirecting docker to a larger disk</p>
+                            <p>docker redirect<br>After failing to combine the 2 disks into one logical disk i decided to look over the previous semester's gitlab documentation and discovered that a previous group had done something simillar with redirecting docker to a larger disk
+                                <br><br>
+                                After this experience i believe that other project teams shouldn't be coming to the Ops team to solve their problems if they made the server instead they should come to us and request that we make it for them so that we already have an admin account setup on it to avoid the long wait time before the issue was resolved
+                            
+                            </p>
                             <img src="img/newdisk.PNG" width=100% >
                             <h4>Tuesday</h4>
                             <h4>Wednesday</h4>
