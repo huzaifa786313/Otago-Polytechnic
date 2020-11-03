@@ -209,11 +209,11 @@
                                 ways that this could be achieved
                                 <br> Give every VM a public ip that the student could use to connect to but this also has a huge cost to it and by giving it a public ip it opens it up to attack
                                 <br> Have something simillar to the kate server currently in use at otao polytechnic, were you would login to that server with unique credentials then ssh from that server to your required VM, this option would be the best in terms of cost as you would only need a public ip on the gateway server, it also adds the benefit of security as you only need to secure the gateway from unauthorized access. this would be my preferred option.
-
+<br><br>
                                 Azure offers the ability to easily create peerings between networks in your azure subscription allowing for devices in different networks and subnets to communicate with each other this would offer alot more flexability when it comes to configuring specific paper related VMs, you could put additional rules on the security paper network in order to restrict the ability of accedentially sending commands to an undesired target
                             </p>
                             <h4>Thursday</h4>
-                            <p>I talked to Issac Underwood and asked if he could create a simple web page that would ask the user to enter their name and store that, this was going to serve as the basis of getting the user to create VM's in azure</p>
+                            <p>I talked to Issac Underwood about the possibility of creating a simple web page that would ask the user to enter their name and store that, this was going to serve as the basis of getting the user to create VM's in azure</p>
                             <p>using ansible i managed to sucsessfully create a playbook that would allow for the bulk creation of VM's in Azure based on the number that the user entered i was then able to configure this so that it would pair that network with my current network using Azure's network peerings</p>     
                             <h4>Friday</h4>
                         </div>
@@ -271,6 +271,15 @@
                         </div>
                         <div class="card-body">
                             <h4>Monday</h4>
+                            <p>This morning i talked with yan about the work she did with the vmware webstore and using op login credentials to sign into it, my plan was to see if it was possible to copy the code that she used for this and intergrate it into the simple webpage that issac created in order to verify that it was infact an otago polytechnic student, i would then expand on this by creating a few scripts that would take <br><br>
+                            get the login that the student used then using azure cli commands take that username and see if they were in any resources groups and if it came back positive then they would beable to create a VM<br><br>
+                            in order to improve security on this and usability by the students i wanted to see <br>
+                            after talking more with this with Rob we came to the conclussion that another idea would be to<br>
+                            create a resource group that would house the virtual network i.e. a resource group named "IN718" and then give every student in that paper a resource group you would then link the VM they create in their own resource group to that of the paper resource group by using that network for the VM's network, this would allow for students to beable to sign in to azure and restart or turn off there VM's while not being able to touch other students VMs
+                            <br> doing it this way is the most logical choice but you would need a handful of scripts to make sure that every *SOMETHING* <br>
+                            
+
+                            </p>
                             <h4>Tuesday</h4>
                             <p>
                                 I talked to Rob about getting the permissions of the server changed so that someone in the Ops team was the owner, my theory on this was that if one of us were the owner we would beable to make changes such as increasing the disk size of the VM. It turns out even as owner we couldn't make this change so i had to go back to Rob to talk with him and see if he could add an additional disk to the server which he was able to do.
