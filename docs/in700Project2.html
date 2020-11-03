@@ -96,10 +96,8 @@
                                 download gitlab packages and configure
                                 <br>
                                 populate gitlab with the copied content
-
                                 <br>
-                                now while i could see all the repos on the server the content of those repos was missing i believe this was because i forgot to copy one of the files accross, but as i have now learnt why do we need a hosted gitlab when student can just use github which is more stable and has less downtime then the gitlab we were hosting
-                                
+                                now while i could see all the repos on the server the content of those repos was missing i believe this was because i forgot to copy one of the files accross, but as i have now learnt why do we need a hosted gitlab when student can just use github which is more stable and has less downtime then the gitlab we were hosting     
                             </p>
                             <h4>Wednesday</h4>
                             <p>The IoTData VM created in Azure last week needed ports 80 and 443 open thankfully in Azure there is an easy interface to open up ports</p>
@@ -206,7 +204,12 @@
                             <h4>Monday</h4>
                             <h4>Tuesday</h4>
                             <h4>Wednesday</h4>
-                            <p>default gateway for azure access to avoid use of public ips</p>
+                            <p>default gateway for azure access to avoid use of public ips<br>
+                                A thought that accured to me was that if we were also migrating away from vrealize and hosting those VM's required for those papers in azure that we would require some way for students to connect to them <br>
+                                ways that this could be achieved
+                                <br> Give every VM a public ip that the student could use to connect to but this also has a huge cost to it and by giving it a public ip it opens it up to attack
+                                <br> Have something simillar to the kate server currently in use at otao polytechnic, were you would login to that server with unique credentials then ssh from that server to your required VM, this option would be the best in terms of cost as you would only need a public ip on the gateway server, it also adds the benefit of security as you only need to secure the gateway from unauthorized access
+                            </p>
                             <h4>Thursday</h4>
                             <p>I talked to Issac Underwood and asked if he could create a simple web page that would ask the user to enter their name and store that, this was going to serve as the basis of getting the user to create VM's in azure</p>
                             <p>using ansible i managed to sucsessfully create a playbook that would allow for the bulk creation of VM's in Azure based on the number that the user entered i was then able to configure this so that it would pair that network with my current network using Azure's network peerings</p>     
@@ -253,6 +256,7 @@
                         <div class="card-body">
                             <h4>Monday</h4>
                             <h4>Tuesday</h4>
+
                             <h4>Wednesday</h4>
                             <h4>Thursday</h4>
                             <h4>Friday</h4>
@@ -271,6 +275,10 @@
                                 Now that the IoT server had the additional disk, it just needed to be configured so that they could use it and unfortunately we didnt know the login credentials so i updated the ticket informing them of the current progress and that we would require credentials to login  
                             </p>
                             <h4>Wednesday</h4>
+                            <p>
+                                Since i would now need to configure the disk on the IoT server i decided i would mess around with snapshots, so i created a ubuntu vm using VM workstation and took a snapshot of it, having never messed around with snapshots before it was extremely easy to figure out <br><img src="img/snapshot.PNG" width=100%><br>
+                                the only thing i wasn't aware of atleast with snapshots in VM workstation is that it will remove network capability untill you revert it.
+                            </p>
                             <h4>Thursday</h4>
                             <p>After talking with Faisal we came to the conclussion that asking the client for their login credentials wasn't the best in terms of security practice, so instead we were to ask the client if we could make an admin account on their server so that we had access, so we had to update the ticket requesting permission to make an admin account on this server</p>
                             <p>We were notified of a breach in one of the VM's using a public ip </p>
