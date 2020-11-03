@@ -74,9 +74,13 @@
                                 <img src="img/iotvm.PNG" width=100%>
                             </p>
                             <h4>Wednesday</h4>
-                            <p>backed up bit gitlabs data</p>
+                            <p>backed up bit gitlabs data
+                                One of the tasks of the Ops team is to backup the data of our hosted gitlab server so i went and talked with Rob about this and he had a hard drive that was used for those backups so i took the harddrive and followed the instructions that a previous Ops team group had created for gitlab backups, due to the size of the gitlab files and having to use WinSCP the process had to be ran over night
+                            </p>
                             <h4>Thursday</h4>
-                            <p>took a copy of the gitlab data in order to see if i could migrate gitlab to a cloud server</p>
+                            <p>I went took a copy of the gitlab data in order to see if i could migrate gitlab to a cloud server<br>
+                            after the gitlab backups hand finished copying over i also took a copy for myself that i was going to use to see if i could migrate it to a server in Azure using ansible playbooks
+                            </p>
                             <h4>Friday</h4>
                         </div>
                     </div>
@@ -277,7 +281,7 @@
                             after talking more with this with Rob we came to the conclussion that another idea would be to<br>
                             create a resource group that would house the virtual network i.e. a resource group named "IN718" and then give every student in that paper a resource group you would then link the VM they create in their own resource group to that of the paper resource group by using that network for the VM's network, this would allow for students to beable to sign in to azure and restart or turn off there VM's while not being able to touch other students VMs
                             <br> doing it this way is the most logical choice but you would need a handful of scripts to make sure that every *SOMETHING* <br>
-                            
+
 
                             </p>
                             <h4>Tuesday</h4>
