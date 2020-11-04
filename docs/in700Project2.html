@@ -94,7 +94,14 @@
                         </div>
                         <div class="card-body">
                             <h4>Monday</h4>
-                            
+                            <p>After a few unsucsessful attempts i finaly managed to create a VM in Azure using an Ansible playbook now all i needed to do was to download and install gitlab onto the server and then populate it with the contents of the gitlab backup i took last week
+                                <br>
+                                I managed to get gitlab ce installed onto the server but it turns out the version i downloaded was way ahead of the version used for op's gitlab so i had to downgrade to the same version in order to import the data from the backup
+                                <br>
+                                i took the commands that i had entered on the command line in order to download and install gitlab as well as reconfigure it to use the backup data and put this into an Ansible playbook 
+                                <br>
+                                i then deleted my test gitlab server from Azure and ran the gitlab creation and the gitlab install playbooks from my Ansible server to test if i had automated the gitlab creation this would prove beneficial if in the future you needed to recreate it
+                            </p>
                             <h4>Tuesday</h4>
                             <p>Managed to recreate gitlab using ansible
                                 <br><br>
