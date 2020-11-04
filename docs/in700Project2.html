@@ -56,6 +56,7 @@
                             <p>After learning about the azure migration that was going to take place at otago polytechnic i decided i would see if i could take my idea for special topic and replicate that in Azure, this would allow me to get more familiar with working in a cloud based environment and the challenges that occur</p>
                             <h4>Wednesday</h4>
                             <h4>Thursday</h4>
+                            <p>Faisal gave us a bunch of topics that we could choose to focus on this semester, i choose to focus on Automation with Azure which blended quite well with what i was trying to achieve in my special topic with network automation with a focus on Ansible</p>
                             <h4>Friday</h4>
                         </div>
                     </div>
@@ -79,9 +80,12 @@
                             </p>
                             <h4>Thursday</h4>
                             <p>I went took a copy of the gitlab data in order to see if i could migrate gitlab to a cloud server<br>
-                            after the gitlab backups hand finished copying over i also took a copy for myself that i was going to use to see if i could migrate it to a server in Azure using ansible playbooks
+                            after the gitlab backups hand finished copying over i also took a copy for myself that i was going to use to see if i could migrate it to a server in Azure
                             </p>
                             <h4>Friday</h4>
+                            <p>I was looking into Ansible and its modules and discovered that Ansible had cloud modules and one of the vendors that it had modules for was Azure <a href=https://docs.ansible.com/ansible/2.9/modules/list_of_cloud_modules.html#azure>https://docs.ansible.com/ansible/2.9/modules/list_of_cloud_modules.html#azure</a>
+                            <br> so i decided i would automate the creation of the gitlab server using an Ansible playbook, this would blend well with the Azure automation task i decided to work on
+                            </p>
                         </div>
                     </div>
                     <div class="card">
@@ -90,20 +94,23 @@
                         </div>
                         <div class="card-body">
                             <h4>Monday</h4>
+                            
                             <h4>Tuesday</h4>
                             <p>Managed to recreate gitlab using ansible
-                                <br>
-                                create vm
-                                <br>
+                                <br><br>
+                                create vm, using ansible i have managed to create a playbook that will create a vm in Azure
+
+                                <br><br>
                                 copy gitlab content to vm
-                                <br>
+                                <br><br>
                                 download gitlab packages and configure
-                                <br>
+                                <br><br>
                                 populate gitlab with the copied content
-                                <br>
+                                <br><br>
                                 now while i could see all the repos on the server the content of those repos was missing i believe this was because i forgot to copy one of the files accross, but as i have now learnt why do we need a hosted gitlab when student can just use github which is more stable and has less downtime then the gitlab we were hosting     
                             </p>
                             <h4>Wednesday</h4>
+                            <p>An update to the IoT Ubuntu came in </p>
                             <p>The IoTData VM created in Azure last week needed ports 80 and 443 open thankfully in Azure there is an easy interface to open up ports</p>
                             <img src="img/ports.PNG" width=100%>
                             <p>I also did ufw allow on those ports on the IoTData server just to be sure</p>
@@ -220,6 +227,8 @@
                             <p>I talked to Issac Underwood about the possibility of creating a simple web page that would ask the user to enter their name and store that, this was going to serve as the basis of getting the user to create VM's in azure</p>
                             <p>using ansible i managed to sucsessfully create a playbook that would allow for the bulk creation of VM's in Azure based on the number that the user entered i was then able to configure this so that it would pair that network with my current network using Azure's network peerings</p>     
                             <h4>Friday</h4>
+                            <p>After thinking about how users were going to sign into the VM creation website i remebered that the help.ict.op.ac.nz site had a link that would take you to a VMWare site where you would sign in using your login credentials but unfortunately it was no longer up, so i had to ask Rob if he had the original code for it so i could reuse it and just change it so if they logged in it would instead redirect them to the creation website, it turns out that it was updated by yan recently i was going to speak to yan about it after we got back from the holidays
+                            </p>
                         </div>
                     </div>
                     <div class="card">
@@ -251,7 +260,7 @@
                             <h4>Thursday</h4>
                             <p>CCL TRIP</p>
                             <img src="img/cclplan.PNG" width=100%>
-                            <p></p>
+                            <p>The trip was overall a great success</p>
                             <h4>Friday</h4>
                         </div>
                     </div>
@@ -286,6 +295,7 @@
                             </p>
                             <h4>Tuesday</h4>
                             <p>
+                                    <img src="img/iotvm2.PNG" width=100%><br>
                                 I talked to Rob about getting the permissions of the server changed so that someone in the Ops team was the owner, my theory on this was that if one of us were the owner we would beable to make changes such as increasing the disk size of the VM. It turns out even as owner we couldn't make this change so i had to go back to Rob to talk with him and see if he could add an additional disk to the server which he was able to do.
                                 <br><br>
                                 Now that the IoT server had the additional disk, it just needed to be configured so that they could use it and unfortunately we didnt know the login credentials so i updated the ticket informing them of the current progress and that we would require credentials to login  
@@ -311,8 +321,9 @@
                             <h4>Tuesday</h4>
                             <p>day off</p>
                             <h4>Wednesday</h4>
+                            <p></p>
                             <h4>Thursday</h4>  
-                            <p>i took what i learnt in virtualisation assignment 3 and containerized issac's flaskapp so that it would run</p>
+                            <p>i took what i learnt in the virtualisation assignment 3 and containerized issac's flaskapp so that it would run</p>
                             <img src="img/requestsite.PNG" width=100%>
                             <p></p>
                             <h4>Friday</h4>
@@ -336,6 +347,7 @@
                             <h4>Tuesday</h4>
                             <h4>Wednesday</h4>
                             <h4>Thursday</h4>
+                            <p>today we had a Q&A with nick baty on security </p>
                             <h4>Friday</h4>
                         </div>
                     </div>
