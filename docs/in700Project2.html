@@ -112,15 +112,18 @@
                                 <br>
                                 i took the commands that i had entered on the command line in order to download and install gitlab as well as reconfigure it to use the backup data and put this into an Ansible playbook 
                                 <br>
-                                i then deleted my test gitlab server from Azure and ran the gitlab creation and the gitlab install playbooks from my Ansible server to test if i had automated the gitlab creation this would prove beneficial if in the future you needed to recreate it
+                                i then deleted my test gitlab server from Azure and was ready to run the gitlab playbooks tomorrow
                             </p>
                             <h4>Tuesday</h4>
                             <p>Managed to recreate gitlab using ansible
+                                <br>
+                                I had to have 2 playbooks in order to do this, the first was to create a VM in Azure and then the second was to download gitlab and then configure it
                                 <br><br>
                                 create vm, using ansible i have managed to create a playbook that will create a vm in Azure
 
                                 <br><br>
                                 copy gitlab content to vm
+                                After creating the linux server in Azure that i will be using to host the gitlab server i create, i then had to copy over the contents of the gitlab backup i took last week, i had to use WinSCP to copy it over but fortunatley this time it was copying at around 10MB/s so it only took a few minutes
                                 <br><br>
                                 download gitlab packages and configure
                                 <br><br>
@@ -176,6 +179,7 @@
                         </div>
                         <div class="card-body">
                             <h4>Monday</h4>
+                            <p>Today we had professor Martin Hohmann-Marriott come in to talk to us about what hes been working on in the open source field *EXPAND*</p>
                             <h4>Tuesday</h4>
                             <h4>Wednesday</h4>
                             <h4>Thursday</h4>
