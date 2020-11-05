@@ -149,9 +149,9 @@
                         </div>
                         <div class="card-body">
                             <h4>Monday</h4>
-                            <p>Anthony Locke asked for my help in creating a minecraft server as he was unable to host one locally at his flat, so since Azure offers a free 30 day trial i decided that it would be better to host <a href="https://minecraft.gamepedia.com/Tutorials/Setting_up_a_server">https://minecraft.gamepedia.com/Tutorials/Setting_up_a_server</a>
+                            <p>Anthony Locke asked for my assistance in creating a minecraft server for him as he was unable to host one locally at his flat, so since Azure offers a free 30 day trial i decided that it would be better to host it there and use Azures ability to give VM's a public ip and dns to allow for connectivity instead of havin to configure commerical routers, the following guide was what i used to install minecraft onto a server <a href="https://minecraft.gamepedia.com/Tutorials/Setting_up_a_server">https://minecraft.gamepedia.com/Tutorials/Setting_up_a_server</a>
                             <br>
-
+                            
                             </p>
                             <h4>Tuesday</h4>
                             <h4>Wednesday</h4>
@@ -253,14 +253,24 @@
                         <div class="card-body">
                             <h4>Monday</h4>
                             <h4>Tuesday</h4>
+                            <p></p>
                             <h4>Wednesday</h4>
                             <p>default gateway for azure access to avoid use of public ips<br>
                                 A thought that accured to me was that if we were also migrating away from vrealize and hosting those VM's required for those papers in azure that we would require some way for students to connect to them <br>
+                                I brought this concern up with Rob and that we might need to create a gateway server so that students could access the VM's used for systems papers
+                                <br>
+                                After bringing up this concern i went and checked if Azure offers any kind of on premises solution to which they do <a href="https://docs.microsoft.com/en-us/microsoft-365/enterprise/connect-an-on-premises-network-to-a-microsoft-azure-virtual-network?view=o365-worldwide">https://docs.microsoft.com/en-us/microsoft-365/enterprise/connect-an-on-premises-network-to-a-microsoft-azure-virtual-network?view=o365-worldwide</a> 
+                                <br>
+                                A possible solution is to merge the current OP on-premises network with an azure virtual network allowing students to connect to VM's hosted in azure while they are on an OP computer but
+                                <br>
+                                I brought up the possible use of a on prem solution with Rob
+                                <br>
                                 ways that this could be achieved
                                 <br> Give every VM a public ip that the student could use to connect to but this also has a huge cost to it and by giving it a public ip it opens it up to attack
                                 <br> Have something simillar to the kate server currently in use at otao polytechnic, were you would login to that server with unique credentials then ssh from that server to your required VM, this option would be the best in terms of cost as you would only need a public ip on the gateway server, it also adds the benefit of security as you only need to secure the gateway from unauthorized access. this would be my preferred option.
                                 <br><br>
                                 Azure offers the ability to easily create peerings between networks in your azure subscription allowing for devices in different networks and subnets to communicate with each other this would offer alot more flexability when it comes to configuring specific paper related VMs, you could put additional rules on the security paper network in order to restrict the ability of accedentially sending commands to an undesired target
+                                <br>
                             </p>
                             <h4>Thursday</h4>
                             <p>I talked to Issac Underwood about the possibility of creating a simple web page that would ask the user to enter their name and store that, this was going to serve as the basis of getting the user to create VM's in azure</p>
