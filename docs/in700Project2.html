@@ -143,13 +143,11 @@
                             </p>
                             <h4>Thursday</h4>
                             <p>
-                                I went took a copy of the gitlab data in order to see if i could migrate gitlab to a cloud server
-                                <br>
-                                After the gitlab backups hand finished copying over i also took a copy for myself that i was going to use to see if i could migrate it to a server in Azure
+                                I spoke to Rob about getting access to a csv file for the students currently in project, i would use the contents of this csv to load them into the gitlab server, I also took a copy of the gitlab backup data in order to see if i could use that to populate the new gitlab server.
                             </p>
                             <h4>Friday</h4>
                             <p>
-                                so i decided i would automate the creation of the gitlab server using an Ansible playbook, this would blend well with the Azure automation task i decided to work on
+                                I decided i would attempt to automate the creation of a gitlab server using an Ansible playbook and then to configure that gitlab server using the contents of the backups i took yesturday.
                             </p>
                         </div>
                     </div>
@@ -159,7 +157,7 @@
                         </div>
                         <div class="card-body">
                             <h4>Monday</h4>
-                            <p>After a few unsucsessful attempts i finaly managed to create a VM in Azure using an Ansible playbook now all i needed to do was to download and install gitlab onto the server and then populate it with the contents of the gitlab backup i took last week
+                            <p>After a few unsucsessful attempts i finaly managed to create the gitlab VM in Azure using an Ansible playbook now all i needed to do was to download and install gitlab onto the server and then populate it with the contents of the gitlab backup i took last week
                                 <br>
                                 I managed to get gitlab ce installed onto the server but it turns out the version i downloaded was way ahead of the version used for op's gitlab so i had to downgrade to the same version in order to import the data from the backup
                                 <br>
