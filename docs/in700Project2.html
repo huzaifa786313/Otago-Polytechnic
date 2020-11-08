@@ -144,6 +144,7 @@
                             <h4>Thursday</h4>
                             <p>
                                 I spoke to Rob about getting access to a csv file for the students currently in project, i would use the contents of this csv to load them into the gitlab server, I also took a copy of the gitlab backup data in order to see if i could use that to populate the new gitlab server.
+                                <img src="img/gitlabdata.PNG" width=100%>
                             </p>
                             <h4>Friday</h4>
                             <p>
@@ -157,14 +158,16 @@
                         </div>
                         <div class="card-body">
                             <h4>Monday</h4>
-                            <p>After a few unsucsessful attempts i finaly managed to create the gitlab VM in Azure using an Ansible playbook now all i needed to do was to download and install gitlab onto the server and then populate it with the contents of the gitlab backup i took last week
-                                <br>
-                                I managed to get gitlab ce installed onto the server but it turns out the version i downloaded was way ahead of the version used for op's gitlab so i had to downgrade to the same version in order to import the data from the backup
-                                <br>
+                            <p>
+                                After a few unsucsessful attempts i finaly managed to create the gitlab VM in Azure using an Ansible playbook now all i needed to do was to download and install gitlab onto the server and then populate it with the contents of the gitlab backup i took last week.
+                                <br><br>
+                                I managed to get gitlab ce installed onto the server but it turns out the version i downloaded was way ahead of the version used for op's gitlab so i had to downgrade to the same version in order to import the data from the backup.
+                                <br><br>
+                                After installing the correct version of gitlab ce onto the gitlab server i created and copying over the gitlab backup data from my local machine i was ready to run the reconfigure command on gitlab that would rebuild gitlab with the contents from the backup, This sucsessfully worked and i had my own working copy of the otago polytechnic gitlab and all the users and repo's but unfortunately i missed one of the folders when i did the reconfigure so i lacked the content of the repo's
+                                <br><br>
                                 i took the commands that i had entered on the command line in order to download and install gitlab as well as reconfigure it to use the backup data and put this into an Ansible playbook 
-                                <br>
-                                i then deleted my test gitlab server from Azure and was ready to run the gitlab playbooks tomorrow
-                                
+                                <br><br>
+                                Now that i had everything i needed to recreate gitlab quickly I then deleted my test gitlab server from Azure and was ready to run the gitlab playbooks tomorrow.
                             </p>
                             <h4>Tuesday</h4>
                             <p>Managed to recreate gitlab using ansible
