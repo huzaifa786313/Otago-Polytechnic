@@ -59,11 +59,11 @@
                                 One of my main goals this semester is to try and work more on automatation this is a goal that i am carrying over from Project 1, I am hoping I can try to automate the certificate renewal and deployment for the BIT platform so that we avoid having services that our client's cant connect to like we had in the previous semester with <a href="https://gitlab.op-bit.nz">Gitlab</a> and accessing <a href="https://help.ict.op.ac.nz/">https://help.ict.op.ac.nz/</a> from outside the polytech network.
                             </p>
                             <p>
-                                In the first project class of the semester the Operations and Security team was informed that we would be migrating from our current onsite solution to Microsoft Azure a cloud provider.
+                                In the first project class the Operations and Security team was informed that we would be migrating from our current onsite solution to Microsoft Azure a cloud provider.
                                 <br><br>
-                                The main goal as a group would be to discover what services we are currently offering and then to determin if they are still need or can be retired, gitlab is a possible service will be retiring as it is mainly used purely for repos and op's gitlab doesn't have a great track record when it comes to uptime and reliability so instead students can just use github
+                                The main goal as a group would be to discover what services we are currently offering and then to determin if they are still need or can be retired, gitlab is a possible service will be retiring as it is mainly used purely for repos and Otago Polytechnic's gitlab doesn't have a great track record when it comes to uptime and reliability so instead students can just use github which alot of students were doing during the covid lockdown
                                 <br><br>
-                                After learning about the Azure migration i have decided that trying to come up with an automation solution for certificate renewals for our services might not be needed as we wernt sure what services we would be taking to the cloud
+                                After learning about the Azure migration i have decided that trying to come up with an automation solution for certificate renewals for our services might not be needed as i was unsure what services we would be taking to the cloud
                             </p>
                             <h4>Tuesday</h4>
                             <p>
@@ -78,11 +78,8 @@
                                 Because the way i planned my special topic i was using VM workstation in order to host my windows VM that was running GNS3, when i migrated my special topic to Azure i discovered that i couldn't run VM workstation on it and was getting error's, after further investigation into these errors i discovered that the setup i had does not support nested virtualisation
                                 <br><br>
                                 I have learnt that Azure does support nested virtualisation but only on certain setups <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/acu">https://docs.microsoft.com/en-us/azure/virtual-machines/acu</a>
-
                                 <br>
                                 This information will come in handy for Project as if we migrate our vRealize solution to Azure we will need to be aware of this limitation
-                                <br><br>
-                                One of the main initial challenges i have had to deal with in Azure is dealing with working in someone elses network, while Azure does allow alot of control for the client it can be a little finicky 
                             </p>
                             <h4>Thursday</h4>
                             <p>
@@ -115,14 +112,17 @@
                         <div class="card-body">
                             <h4>Monday</h4>
                             <p>
-                                After failing multiple times in Azure at trying to bridge devices that are in different networks together i decided that i would try and automate my VM creation 
+                                Today was both a frustrating and exciting day with my work with Azure.
+                                <br>
+                                I was trying to create a bridge between multiple devices similiar to what i had done in both Linux and System's Administration and after each time i tried to create a bridge i failed so i had to delete my VM as i was unable to SSH back onto that device and then recreate it, because this happened multiple times due to simple errors i decided that i would look into how to automate the creation of VM's in Azure so that i could save myself time if i was to mess up again, After a qucik google search i managed to find information azure automation <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/infrastructure-automation">https://docs.microsoft.com/en-us/azure/virtual-machines/infrastructure-automation</a>
+                                <br><br>
+                                After i saw that Ansible was on the list of tools that works with Azure i went and took a look at the modules that Ansible has and discovered Ansible's cloud modules and one of the vendors that it had modules for was Azure <a href=https://docs.ansible.com/ansible/2.9/modules/list_of_cloud_modules.html#azure>https://docs.ansible.com/ansible/2.9/modules/list_of_cloud_modules.html#azure</a>
                             </p>
                             <h4>Tuesday</h4>
-                            <p>IOT Ubuntu VM request
+                            <p>
+                                A request came in last week on our ticketing site for an IoT server to be created for the IoT project team which i noticed was still not complete even though other team members were working on it, they said they were having issues with connecting to it after they created it, i believe it was because they were using the dev test labs in Azure, so i talked to Faisal about this and we decided that we would create a resource group specificly for this Vm and that i would be made owner of it.
                                 <br>
-                                A request came in last week for an IoT server to be created for the IoT project team which i noticed was still not complete even though other team members were working on it, they said they were having issues with creating it and i believe it was because they were using the dev test labs in Azure, so i talked to Faisal about this and we decided that we would create a resource group specificly for this Vm and that i would be made owner of it,
-                                <br>
-                                this would allow me to have full control, so i create a Ubuntu VM according to the specs they required
+                                This would allow me to have full control, so i create a Ubuntu VM according to the specs they required
                                 <img src="img/iotvm.PNG" width=100%>
                                 <br>
                                 As i had already created a Ansible playbook that would deploy a VM in Azure i decided i would also use Ansible to deploy the IoT server this would allow me to get more practice using Ansible as well as have a playbook that i could run if they needed additional servers in the future
@@ -138,7 +138,7 @@
                             after the gitlab backups hand finished copying over i also took a copy for myself that i was going to use to see if i could migrate it to a server in Azure
                             </p>
                             <h4>Friday</h4>
-                            <p>I was looking into Ansible and its modules and discovered that Ansible had cloud modules and one of the vendors that it had modules for was Azure <a href=https://docs.ansible.com/ansible/2.9/modules/list_of_cloud_modules.html#azure>https://docs.ansible.com/ansible/2.9/modules/list_of_cloud_modules.html#azure</a>
+                            <p>
                             <br> so i decided i would automate the creation of the gitlab server using an Ansible playbook, this would blend well with the Azure automation task i decided to work on
                             </p>
                         </div>
@@ -183,6 +183,9 @@
                             <img src="img/ports.PNG" width=100%>
                             <p>I also did ufw allow on those ports on the IoTData server just to be sure and confirmed with Jordan </p>
                             <h4>Thursday</h4>
+                            <p>
+                                Now that i have managed to create a VM in azure using an ansible playbook i want to expand upon this by creating multiple copies of a resource, if i can figure this out it may prove useful in automating the creation of VM's for such papers as IN724 Security and IN734 Operations Engineering 
+                            </p>
                             <h4>Friday</h4>
                         </div>
                     </div>
