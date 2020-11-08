@@ -113,33 +113,41 @@
                             <h4>Monday</h4>
                             <p>
                                 Today was both a frustrating and exciting day with my work with Azure.
-                                <br>
-                                I was trying to create a bridge between multiple devices similiar to what i had done in both Linux and System's Administration and after each time i tried to create a bridge i failed so i had to delete my VM as i was unable to SSH back onto that device and then recreate it, because this happened multiple times due to simple errors i decided that i would look into how to automate the creation of VM's in Azure so that i could save myself time if i was to mess up again, After a qucik google search i managed to find information azure automation <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/infrastructure-automation">https://docs.microsoft.com/en-us/azure/virtual-machines/infrastructure-automation</a>
                                 <br><br>
-                                After i saw that Ansible was on the list of tools that works with Azure i went and took a look at the modules that Ansible has and discovered Ansible's cloud modules and one of the vendors that it had modules for was Azure <a href=https://docs.ansible.com/ansible/2.9/modules/list_of_cloud_modules.html#azure>https://docs.ansible.com/ansible/2.9/modules/list_of_cloud_modules.html#azure</a>
+                                I was trying to create a bridge between multiple devices similiar to what i had done in both Linux and System's Administration and after each time i tried to create a bridge i failed so i had to delete my VM as i was unable to SSH back onto that device and then recreate it.
+                                <br><br>
+                                This happened multiple times due to simple human errors so i decided that i would look into how to automate the creation of VM's in Azure so that i could save myself time if i was to mess up again, After a qucik google search i managed to find information azure automation <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/infrastructure-automation">https://docs.microsoft.com/en-us/azure/virtual-machines/infrastructure-automation</a>
+                                <br><br>
+                                After i saw that Ansible was on the list of tools that works with Azure i went and took a look at the documentation as well as the modules that Ansible has and discovered Ansible's cloud modules <a href=https://docs.ansible.com/ansible/2.9/modules/list_of_cloud_modules.html#azure>https://docs.ansible.com/ansible/2.9/modules/list_of_cloud_modules.html#azure</a>
+                                <br><br>
+                                With this information i would try and create a playbook that would automate the deployment of a VM in Azure
                             </p>
                             <h4>Tuesday</h4>
                             <p>
                                 A request came in last week on our ticketing site for an IoT server to be created for the IoT project team which i noticed was still not complete even though other team members were working on it, they said they were having issues with connecting to it after they created it, i believe it was because they were using the dev test labs in Azure, so i talked to Faisal about this and we decided that we would create a resource group specificly for this Vm and that i would be made owner of it.
-                                <br>
+                                <br><br>
                                 This would allow me to have full control, so i create a Ubuntu VM according to the specs they required
                                 <img src="img/iotvm.PNG" width=100%>
-                                <br>
+                                <br><br>
                                 As i had already created a Ansible playbook that would deploy a VM in Azure i decided i would also use Ansible to deploy the IoT server this would allow me to get more practice using Ansible as well as have a playbook that i could run if they needed additional servers in the future
+                                <br><br>
+                                I have uploaded the playbook to my github which can be found can be found here <a href="https://github.com/samsojl1/Otago-Polytechnic/blob/master/Special-Topic/Ansible/ansible/iot/IoTData-28-07-2020.yml">https://github.com/samsojl1/Otago-Polytechnic/blob/master/Special-Topic/Ansible/ansible/iot/IoTData-28-07-2020.yml</a>
                                 <br>
-                                i have uploaded the playbook to my github which can be found can be found here <a href="https://github.com/samsojl1/Otago-Polytechnic/blob/master/Special-Topic/Ansible/ansible/iot/IoTData-28-07-2020.yml">https://github.com/samsojl1/Otago-Polytechnic/blob/master/Special-Topic/Ansible/ansible/iot/IoTData-28-07-2020.yml</a>
+                                I acknowledge that having the username and password displayed in the playbook is not even close to ideal but this was a quick playbook created to see if i could get things to work, ideally you would rather use SSH keys or pull the password / user variable from another file that isn't published
                             </p>
                             <h4>Wednesday</h4>
-                            <p>backed up bit gitlabs data
-                                One of the tasks of the Ops team is to backup the data of our hosted gitlab server so i went and talked with Rob about this and he had a hard drive that was used for those backups so i took the harddrive and followed the instructions that a previous Ops team group had created for gitlab backups, due to the size of the gitlab files and having to use WinSCP the process had to be ran over night
+                            <p>
+                                One of the tasks of the Operations and Security team is to backup the data of our gitlab server and no one had done it yet so i went and talked with Rob about this and he had a hard drive that was used for those backups so i took the harddrive and followed the instructions that a previous Operations and Security group had created for gitlab backups, due to the size of the gitlab files and having to use WinSCP the process had to be ran over night
                             </p>
                             <h4>Thursday</h4>
-                            <p>I went took a copy of the gitlab data in order to see if i could migrate gitlab to a cloud server<br>
-                            after the gitlab backups hand finished copying over i also took a copy for myself that i was going to use to see if i could migrate it to a server in Azure
+                            <p>
+                                I went took a copy of the gitlab data in order to see if i could migrate gitlab to a cloud server
+                                <br>
+                                After the gitlab backups hand finished copying over i also took a copy for myself that i was going to use to see if i could migrate it to a server in Azure
                             </p>
                             <h4>Friday</h4>
                             <p>
-                            <br> so i decided i would automate the creation of the gitlab server using an Ansible playbook, this would blend well with the Azure automation task i decided to work on
+                                so i decided i would automate the creation of the gitlab server using an Ansible playbook, this would blend well with the Azure automation task i decided to work on
                             </p>
                         </div>
                     </div>
