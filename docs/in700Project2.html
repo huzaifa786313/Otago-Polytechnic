@@ -51,36 +51,59 @@
                         <div class="card-body">
                             <h4>Monday</h4>
                             <p>
-                                I came in early on the first day in the new semester in order to talk to Adon to make sure that i was going to get Ops and security as my project group
-                                <br>
-                                I also used this time to setup my special topic topology on my project machine
+                                I decided that i would come in early on the first day in order to talk to Adon to make sure that i was going to get Operations and security as my project group, thankfully as a project 2 student i got first dibs on my project choice.
+                                <br><br>
+                                Afterwards I used the time before my first project class to setup my special topic topology on my project machine, and make sure that all the applications i was using in the previous semester were updated to the latest versions
                             </p>
                             <p>
-                                One of my main goals this semester is to try and work more on automatation this is a goal that i am carrying over from Project 1, I am hoping i can try to automate the certificate renewal and deployment for the BIT platform so that we avoid having services that our client's cant connect to like we had in the previous semester with Gitlab.
+                                One of my main goals this semester is to try and work more on automatation this is a goal that i am carrying over from Project 1, I am hoping I can try to automate the certificate renewal and deployment for the BIT platform so that we avoid having services that our client's cant connect to like we had in the previous semester with <a href="https://gitlab.op-bit.nz">Gitlab</a> and accessing <a href="https://help.ict.op.ac.nz/">https://help.ict.op.ac.nz/</a> from outside the polytech network.
                             </p>
                             <p>
                                 In the first project class of the semester the Operations and Security team was informed that we would be migrating from our current onsite solution to Microsoft Azure a cloud provider.
-                                <br>
+                                <br><br>
                                 The main goal as a group would be to discover what services we are currently offering and then to determin if they are still need or can be retired, gitlab is a possible service will be retiring as it is mainly used purely for repos and op's gitlab doesn't have a great track record when it comes to uptime and reliability so instead students can just use github
-
-                                We would also need to identify services that are currently running but are no longer in use
-                                <br>
-                                <br>
-                                After learning about the azure migration i have decided that trying to come up with an automation solution for certificate renewals for our services might not be needed 
+                                <br><br>
+                                After learning about the Azure migration i have decided that trying to come up with an automation solution for certificate renewals for our services might not be needed as we wernt sure what services we would be taking to the cloud
                             </p>
                             <h4>Tuesday</h4>
                             <p>
-                                After learning about the Azure migration that was going to take place at otago polytechnic, I decided that i would see if i could take my idea for special topic and replicate that in Azure, this would allow me to get more familiar with working in a cloud based environment and the challenges that occur
+                                After learning about the Azure migration yesturday that was going to take place at otago polytechnic, and that our otago polytechnic email can be used to signup for a free 30 day trial with Microsoft Azure i would see if i could take my idea for special topic and replicate that in Azure, this would allow me to get more familiar with working in a cloud based environment and any challenges that could occur with that.
                             </p>
                             <h4>Wednesday</h4>
                             <p>
-                                After managing to migrate my special topic to Azure i was faced with *WORKING IN ANOTHER PERSONS NETWORK*
-                                One of the main challenges i can see currently with Azure is that you have to navigate through someone elses network.
+                                I have managed to transfer my special topic to Microsoft Azure this has the benefit of allowing me to work on it from anywhere as long as i have an internet connection. It also means that if i break my VM i can easily remake it  
+                                <br><br>
+                                As a free trial account with Azure you are limited in the amount of vCPU's that you can have in one region which limits what you can do so you need to be aware of how many vCPU's the VM you create is using
+                                <br><br>
+                                Because the way i planned my special topic i was using VM workstation in order to host my windows VM that was running GNS3, when i migrated my special topic to Azure i discovered that i couldn't run VM workstation on it and was getting error's, after further investigation into these errors i discovered that the setup i had does not support nested virtualisation
+                                <br><br>
+                                I have learnt that Azure does support nested virtualisation but only on certain setups <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/acu">https://docs.microsoft.com/en-us/azure/virtual-machines/acu</a>
 
+                                <br>
+                                This information will come in handy for Project as if we migrate our vRealize solution to Azure we will need to be aware of this limitation
+                                <br><br>
+                                One of the main initial challenges i have had to deal with in Azure is dealing with working in someone elses network, while Azure does allow alot of control for the client it can be a little finicky 
                             </p>
                             <h4>Thursday</h4>
                             <p>
-                                Faisal gave us a bunch of topics that we could choose to focus on this semester, i choose to focus on Automation with Azure which blended quite well with what i was trying to achieve in my special topic with network automation with a focus on Ansible
+                                In this afternoons Project class Faisal informed us about some topics that we could choose to focus on this semester
+                                <ul>
+                                    <li>
+                                        Azure DevOps
+                                    </li>
+                                    <li>
+                                        Azure/AWS IoT
+                                    </li>
+                                    <li>
+                                        Azure/AWS Data Analytics / Machine Learning
+                                    </li>
+                                    <li>
+                                        Azure/AWS Security / Automation
+                                    </li>
+                                </ul>
+                                 I have chosen to focus on Automation with Azure which will blended quite well with what i was trying to achieve in my special topic with network automation with a focus on Ansible
+                                 <br>
+                                 I also believe that automation will be the future of IT infrastructure 
                             </p>
                             <h4>Friday</h4>
                         </div>
@@ -91,7 +114,9 @@
                         </div>
                         <div class="card-body">
                             <h4>Monday</h4>
-                            <p>After bricking</p>
+                            <p>
+                                After failing multiple times in Azure at trying to bridge devices that are in different networks together i decided that i would try and automate my VM creation 
+                            </p>
                             <h4>Tuesday</h4>
                             <p>IOT Ubuntu VM request
                                 <br>
@@ -101,9 +126,8 @@
                                 <img src="img/iotvm.PNG" width=100%>
                                 <br>
                                 As i had already created a Ansible playbook that would deploy a VM in Azure i decided i would also use Ansible to deploy the IoT server this would allow me to get more practice using Ansible as well as have a playbook that i could run if they needed additional servers in the future
-
-                            <br>
-                            i have uploaded the playbook to my github which can be found can be found here <a href="https://github.com/samsojl1/Otago-Polytechnic/blob/master/Special-Topic/Ansible/ansible/iot/IoTData-28-07-2020.yml">https://github.com/samsojl1/Otago-Polytechnic/blob/master/Special-Topic/Ansible/ansible/iot/IoTData-28-07-2020.yml</a>
+                                <br>
+                                i have uploaded the playbook to my github which can be found can be found here <a href="https://github.com/samsojl1/Otago-Polytechnic/blob/master/Special-Topic/Ansible/ansible/iot/IoTData-28-07-2020.yml">https://github.com/samsojl1/Otago-Polytechnic/blob/master/Special-Topic/Ansible/ansible/iot/IoTData-28-07-2020.yml</a>
                             </p>
                             <h4>Wednesday</h4>
                             <p>backed up bit gitlabs data
@@ -432,6 +456,15 @@
                         </div>
                         <div class="card-body">
                             <h4>Monday</h4>
+                            <p>
+                                Showcase
+                                <br>
+                                Raspberry Pi wifi?
+                                <br><br>
+                                I was messing around with my docker assignment from virtualisation and i wanted to see if i could deploy it and connect to it using a public ip
+                                This should of been simple as all i needed to do was install docker on one of my Azure servers then run "sudo docker stack deploy --compose-file docker-compose.yml test", it managed to build and deploy sucsessfully but when i went to connect to it it wouldnt, at first i was stumped because i had done something very simillar with the webtest deployment 2 weeks ago, so i compared the 2 servers and noticed that i forgot to enable the ports in Azure to accept 8080
+                                <img src="img/dockersite.PNG" width=100%>
+                            </p>
                             <h4>Tuesday</h4>
                             <h4>Wednesday</h4>
                             <h4>Thursday</h4>
