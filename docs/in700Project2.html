@@ -102,7 +102,6 @@
                                  <br>
                                  I also believe that automation will be the future of IT infrastructure 
                             </p>
-                            <h4>Friday</h4>
                         </div>
                     </div>
                     <div class="card">
@@ -124,7 +123,7 @@
                             </p>
                             <h4>Tuesday</h4>
                             <p>
-                                A request came in last week on our ticketing site for an IoT server to be created for the IoT project team which i noticed was still not complete even though other team members were working on it, they said they were having issues with connecting to it after they created it, i believe it was because they were using the dev test labs in Azure.
+                                I was checking the Operations and Security ticketing website <a href="https://ticketing.op-bit.nz/">https://ticketing.op-bit.nz/</a> to see if we had anything left over from last semester and i noticed that a request came in last week for an IoT server to be created for the IoT project team which i noticed was still not complete even though other team members were working on it, they said they were having issues with connecting to it after they created it, i believe it was because they were using the dev test labs in Azure.
                                 <br><br>
                                 I talked to Faisal about this and we decided that we would create a resource group specificly for this Vm and that i would be made owner of it, this would allow me to have full control.
                                 <br><br>
@@ -196,7 +195,7 @@
                             </p>
                             <h4>Friday</h4>
                             <p>
-                                I have put the gitlab automation on the backburner as it turns out we are extremely likely to be discontinuing it.
+                                I have put the gitlab automation on the backburner as it turns out we are extremely likely to be discontinuing it. Even though most of the work i did for this was wasted i learnt alot about both Microsoft Azure and Ansible which will be useful in the future.
                             </p>
                         </div>
                     </div>
@@ -207,21 +206,23 @@
                         <div class="card-body">
                             <h4>Monday</h4>
                             <p>
-                                Anthony Locke asked for my assistance in creating a minecraft server for him as he was unable to host one locally at his flat, so since Azure offers a free 30 day trial i decided that it would be better to host it there and use Azures ability to give VM's a public ip and dns to allow for connectivity instead of having to configure commerical routers and port forwarding, the following guide was what i used to install minecraft onto a server <a href="https://minecraft.gamepedia.com/Tutorials/Setting_up_a_server">https://minecraft.gamepedia.com/Tutorials/Setting_up_a_server</a>
-                                <br>
-
+                                Anthony Locke asked for my assistance in helping to create a minecraft server for him as he was unable to host one on a Raspberry Pi at his flat
+                                <br><br>
+                                I informed him that as an Otago Polytechnic student he could use his email to signup for a free 30 day trial and he could use that to host a server in Azure that could be used to run a minecraft server, it would also have the added benefit of being able to have a public ip and a DNS so that connecting to it would be alot easier
+                                <br><br>
+                                After we setup a server in Microsoft Azure we used the following guide to configure it to run minecraft <a href="https://minecraft.gamepedia.com/Tutorials/Setting_up_a_server">https://minecraft.gamepedia.com/Tutorials/Setting_up_a_server</a>
+                                <br><br>
+                                This was a very interesting task as i had once previously rented a minecraft server and to see how easy it is to setup i might just host my own in the future.
                             </p>
-                            <h4>Tuesday</h4>
-                            <h4>Wednesday</h4>
                             <h4>Thursday</h4>
                             <p>
-                                Adon informed us that there would be a trip planned to the Christchurch based IT company Compuer Concepts Limited(CCL) for the project 2 Operations and Security team if there wasnt another lockdown
+                                This afternoon Adon informed us that there would be a trip planned to the Christchurch based IT company Compuer Concepts Limited(CCL) for the project 2 Operations and Security team if there wasnt another lockdown.
                             </p>
                             <h4>Friday</h4>
                             <p>
-                                Tim came to me to request if i could create a Minecraft server for him which i was happy to do as it wasn't a very complex process and because he is also a Otago polytechnic student he had a Azure free trial avaliable to him
+                                Tim came to me after hearing about the Minecraft server that i had created for Anthony and asked if i could create a Minecraft server for him which i was happy to do as it wasn't a very complex process and because he is also a Otago polytechnic student he had a Azure free trial avaliable to him.
                                 <br><br>
-                                Because i already created Anthony's Minecraft server twice i was very familiar with it so it only took me 5 minutes to get Tim's server configured and working
+                                Because i already created Anthony's Minecraft server twice i was very familiar with it so it only took me 5 minutes to get Tim's server configured and working.
                             </p>
                         </div>
                     </div>
@@ -232,21 +233,18 @@
                         <div class="card-body">
                             <h4>Monday</h4>
                             <p>
-                                Tim came back to me this time requesting the he wanted to convert his server to a modded one which required more configuration and dealing with having to have multiple things with the correct versions
-                                <br>
-                                While this was stressful trying to figure out how to get it working
+                                Tim came back to me this time requesting the he wanted to convert his server from a standard to a modded one, which required more configuration and having to deal with version compatability issues. While this was stressful trying to figure out how to get it working, once i managed to get it to deploy without errors it was a satisfying result
                             </p>
-                            <h4>Tuesday</h4>
                             <h4>Wednesday</h4>
                             <p>
-                                After messing around with trying to create bridges on my Azure hosted VM's and bricking them so i couldn't ssh back onto them to revert the mistake i discovered that Azure has a useful feature called "Serial console"
-                                <br>
+                                After messing around with trying to create bridges on my Azure hosted VM's and bricking them so i couldn't SSH back onto them to revert the mistake i discovered that Azure has a useful feature called "Serial console"
+                                <br><br>
                                 <img src="img/console.PNG">
                                 <br><br>
-                                This allows you to connect directly onto your VM much like if you were to plug a cable directly into your server this allow me to revert the bridging error i made instead of recreating a new VM and updating that to the point before i did the bridge
+                                This allows you to connect directly onto your VM much like if you were to plug a cable directly into your server this allowed me to revert the bridging error i made instead of having to recreate a new VM and updating that to the point before i did the bridge.
+                                <br><br>
+                                This saved me alot of time as i ended up bricking it twice more in the day
                             </p>
-                            <h4>Thursday</h4>
-                            <h4>Friday</h4>
                         </div>
                     </div>
                     <div class="card">
@@ -260,14 +258,13 @@
                                 <br><br>
                                 He also invites us to attend a talk he was having later that day, unfortunately i did not attend as the idea of open source didn't exactly align with what i want to achieve in network and infrastructure automation.
                             </p>
-                            <h4>Tuesday</h4>
-                            <h4>Wednesday</h4>
-                            <h4>Thursday</h4>
                             <h4>Friday</h4>
                             <p>
                                 As a standing request from Rob we had to check the computer kits in D312 to make sure that they were working correctly and if anything wasn't we were to document it and try to fix it, this week it was me and Jae's turn to check.
                                 <br><br>
-                                Jae and I identified a few machines that needed network drivers installed which we did by downloaded the driver on another machine onto a usb and transfering the drivers to the effected machine, we also discovered a few kits that were not displaying video, we tried a few different fixes such as making sure everything was plugged in correctly internally as well as reseating the ram and other components, unfortunately this did not work so we took the downstairs to the work room to be worked on next week as it was approaching the end of day. A link to the checklist report can be found <a href="https://otagopoly.sharepoint.com/:w:/s/OperationsandSecurity/ETVWjXf4YcdEnLMUumHNL2ABdqJLifIj7G-VD-9KYoa3AA?e=oPRGhH">here</a>
+                                Jae and I identified a few machines that needed network drivers installed which we did by downloaded the driver on another machine onto a usb and transfering the drivers to the effected machine, we also discovered a few kits that were not displaying video, we tried a few different fixes such as making sure everything was plugged in correctly internally as well as reseating the ram and other components, unfortunately this did not work so we took the downstairs to the work room to be worked on next week as it was approaching the end of day.
+                                <br><br>
+                                A link to the checklist report can be found <a href="https://otagopoly.sharepoint.com/:w:/s/OperationsandSecurity/ETVWjXf4YcdEnLMUumHNL2ABdqJLifIj7G-VD-9KYoa3AA?e=oPRGhH">here</a>
                             </p>
                         </div>
                     </div>
@@ -289,11 +286,9 @@
                                 The second one just needed a graphics cards added in as the on board VGA wasn't working and as we were out of graphics card this would serve as a backup kit for when one of the kits that did have a graphics card stopped working this could take that card and replace it
                                 <br><br>
                                 The final machine had a broken motherboard cpu socket so i replaced that with a new motherboard
+                                <br><br>
+                                I informed Rob about the updated state of these machines and he was happy.
                             </p>
-                            <h4>Tuesday</h4>
-                            <h4>Wednesday</h4>
-                            <h4>Thursday</h4>
-                            <h4>Friday</h4>
                         </div>
                     </div>
                     <div class="card">
@@ -301,11 +296,9 @@
                             <h3>Week 8 7 — 13 September, 2020</h3>
                         </div>
                         <div class="card-body">
-                            <h4>Monday</h4>
-                            <h4>Tuesday</h4>
-                            <h4>Wednesday</h4>
-                            <h4>Thursday</h4>
-                            <h4>Friday</h4>
+                            <p>
+                                Nothing special happened this week just general mainteance of the BIT Platform and more work with Azure and Ansible.
+                            </p>
                         </div>
                     </div>
                     <div class="card">
@@ -313,12 +306,14 @@
                             <h3>Week 9 14 — 20 September, 2020</h3>
                         </div>
                         <div class="card-body">
-                            <h4>Monday</h4>
                             <h4>Tuesday</h4>
-                            <p>Today we were informed that the trip to CCL was going to proceed but it was going to be pushed back till later in October</p>
-                            <h4>Wednesday</h4>
-                            <h4>Thursday</h4>
+                            <p>
+                                Today we were informed that the trip to CCL was going to proceed but it was going to be pushed back till later in October most likely the forth week.
+                            </p>
                             <h4>Friday</h4>
+                            <p>
+                                I am attempting to create Microsoft Azure resources using an Ansible playbook that is generating the names for those resources using a provided csv, so far it is only creating the first name in the list i believe this is due to an issue with he variable i am using in my playbook
+                            </p>
                         </div>
                     </div>
                     <div class="card">
@@ -326,13 +321,11 @@
                             <h3>Week 10 21 — 27 September, 2020</h3>
                         </div>
                         <div class="card-body">
-                            <h4>Monday</h4>
-                            <h4>Tuesday</h4>
                             <h4>Wednesday</h4>
                             <p>
                                 A thought that accured to me was that if we were also migrating away from vRealize and hosting those virtual machines required for those papers in azure that we would require some way for students to connect to them 
                                 <br><br>
-                                I brought this concern up with Rob and that we might need to create a gateway server so that students could access the virtual macgines used for systems papers
+                                I brought this concern up with Rob and that we might need to create a gateway server so that students could access the virtual machines used for systems papers
                                 <br><br>
                                 After bringing up this concern i went and checked if Azure offers any kind of on premises solution to which they do <a href="https://docs.microsoft.com/en-us/microsoft-365/enterprise/connect-an-on-premises-network-to-a-microsoft-azure-virtual-network?view=o365-worldwide">https://docs.microsoft.com/en-us/microsoft-365/enterprise/connect-an-on-premises-network-to-a-microsoft-azure-virtual-network?view=o365-worldwide</a> 
                                 <br><br>
@@ -364,14 +357,12 @@
                             <h3>Holidays Week 1 28 September — 4 October, 2020</h3>
                         </div>
                         <div class="card-body">
-                            <h4>Monday</h4>
-                            <h4>Tuesday</h4>
                             <h4>Wednesday</h4>
                             <p>
-                                This Morning i was informed that the CCL trip was going ahead next week and that Faisal would like us to complete the level 1 and 2 of Fortinet NSE Certification before the trip, thankfully it was free to do
+                                This Morning i was informed that the CCL trip was going ahead next week and that Faisal would like us to complete the level 1 and 2 of Fortinet NSE Certification before the trip, thankfully it was free to do.
+                                <br>
+                                <img src="img/ccl.PNG" width=100%>
                             </p>
-                            <h4>Thursday</h4>
-                            <h4>Friday</h4>
                         </div>
                     </div>
                     <div class="card">
@@ -379,6 +370,7 @@
                             <h3>Holidays Week 2 5 — 11 October, 2020</h3>
                         </div>
                         <div class="card-body">
+                            <h4>Tuesday</h4>
                             <p>Faisal requested that before we go to CCL that we get our NSE 1 and 2 certifications</p>
                             <img src="img/nse1.png" width=100%>
                             <br>
@@ -387,8 +379,9 @@
                             <h4>Thursday</h4>
                             <p>CCL TRIP</p>
                             <img src="img/cclplan.PNG" width=100%>
-                            <p>The trip was overall a great success</p>
-                            <h4>Friday</h4>
+                            <p>
+                                The trip was overall a great success
+                            </p>
                         </div>
                     </div>
                     <div class="card">
@@ -508,7 +501,6 @@
                             <p>
                                 zero touch provisoning
                             </p>
-                            <h4>Wednesday</h4>
                             <h4>Thursday</h4>
                             <p>
                                 today we had a Q&A with nick baty on security 
@@ -536,16 +528,26 @@
                             <p>
                                 Showcase
                                 <br><br>
-                                Raspberry Pi wifi?
+                                Raspberry Pi wifi? / Ansible minecraft server creation? in docker? O.o create a server in minutes?
                                 <br><br>
                                 I was messing around with my docker assignment from virtualisation and i wanted to see if i could deploy it and connect to it using a public ip
                                 This should of been simple as all i needed to do was install docker on one of my Azure servers then run "sudo docker stack deploy --compose-file docker-compose.yml test", it managed to build and deploy sucsessfully but when i went to connect to it it wouldnt, at first i was stumped because i had done something very simillar with the webtest deployment 2 weeks ago, so i compared the 2 servers and noticed that i forgot to enable the ports in Azure to accept 8080
                                 <img src="img/dockersite.PNG" width=100%>
+                                <br><br>
+                                portfolio writing
                             </p>
                             <h4>Tuesday</h4>
+                            <p>
+                                Focusing on finishing my portfolio
+                            </p>
                             <h4>Wednesday</h4>
+                            <p>
+                                portfolio report
+                            </p>
                             <h4>Thursday</h4>
-                            <h4>Friday</h4>
+                            <p>
+                                Hand in portfolio and report
+                            </p>
                         </div>
                     </div>
                 </div>
