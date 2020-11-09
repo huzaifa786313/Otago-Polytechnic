@@ -163,30 +163,22 @@
                                 <br><br>
                                 I managed to get gitlab ce installed onto the server but it turns out the version i downloaded was way ahead of the version used for op's gitlab so i had to downgrade to the same version in order to import the data from the backup.
                                 <br><br>
-                                After installing the correct version of gitlab ce onto the gitlab server i created and copying over the gitlab backup data from my local machine i was ready to run the reconfigure command on gitlab that would rebuild gitlab with the contents from the backup, This sucsessfully worked and i had my own working copy of the otago polytechnic gitlab and all the users and repo's but unfortunately i missed one of the folders when i did the reconfigure so i lacked the content of the repo's
+                                After installing the correct version of gitlab ce onto the gitlab server i created and copying over the gitlab backup data from my local machine i was ready to run the reconfigure command on gitlab that would rebuild gitlab with the contents from the backup, This sucsessfully worked and i had my own working copy of the otago polytechnic gitlab and all the users and repo's but unfortunately i missed one of the folders when i did the reconfigure so i lacked the content of the repo's.
                                 <br><br>
-                                i took the commands that i had entered on the command line in order to download and install gitlab as well as reconfigure it to use the backup data and put this into an Ansible playbook 
+                                Now that i have managed to manually configure the gitlab server i decided that i would script the process so that if we were migrating gitlab it would be all set to go on a new server, i took the commands that i had entered on the command line in order to download and install gitlab as well as reconfigure it to use the backup data and put this into an Ansible playbook.
                                 <br><br>
-                                Now that i had everything i needed to recreate gitlab quickly I then deleted my test gitlab server from Azure and was ready to run the gitlab playbooks tomorrow.
+                                Now that i have everything i need to recreate gitlab quickly I have deleted my test gitlab server from Azure and am ready to run the gitlab playbooks tomorrow.
                             </p>
                             <h4>Tuesday</h4>
-                            <p>Managed to recreate gitlab using ansible
+                            <p>
+                                This morning i ran my Ansible playbooks that were designed to recreate gitlab, everything worked correctly
+                                <br><br>
+                                The playbooks that were used for this can be found here <a href="https://github.com/samsojl1/Otago-Polytechnic/tree/master/Special-Topic/Ansible/ansible/gitlab">https://github.com/samsojl1/Otago-Polytechnic/tree/master/Special-Topic/Ansible/ansible/gitlab</a>
+                                I had to make some minor changes to the playbook which was to set the correct version of gitlab to be installed and a typo in the url link
                                 <br>
-                                I had to have 2 playbooks in order to do this, the first was to create a VM in Azure and then the second was to download gitlab and then configure it
+                                After making these minor changes everything works exactly as planned
                                 <br><br>
-                                create vm, using ansible i have managed to create a playbook that will create a vm in Azure
-                                <br><br>
-                                copy gitlab content to vm
-                                After creating the linux server in Azure that i will be using to host the gitlab server i create, i then had to copy over the contents of the gitlab backup i took last week, i had to use WinSCP to copy it over but fortunatley this time it was copying at around 10MB/s so it only took a few minutes
-                                <br><br>
-                                download gitlab packages and configure
-                                <br><br>
-                                populate gitlab with the copied content
-                                <br><br>
-                                now while i could see all the repos on the server the content of those repos was missing i believe this was because i forgot to copy one of the files accross, but as i have now learnt why do we need a hosted gitlab when student can just use github which is more stable and has less downtime then the gitlab we were hosting     
-
-                                <br><br>
-                                the playbooks that were used for this can be found here <a href="https://github.com/samsojl1/Otago-Polytechnic/tree/master/Special-Topic/Ansible/ansible/gitlab">https://github.com/samsojl1/Otago-Polytechnic/tree/master/Special-Topic/Ansible/ansible/gitlab</a> the finalised playbooks are gitlabStage1.yml and gitlabStage2MKII.yml, i left the previous versions i was working on in the folder as they 
+                                The finalised playbooks are gitlabStage1.yml and gitlabStage2MKII.yml, i left the previous versions i was working on in the folder as they may prove useful in the future
                             </p>
                             <h4>Wednesday</h4>
                             <p>An update to the IoT Ubuntu ticket came in </p>
