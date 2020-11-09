@@ -330,21 +330,17 @@
                             <h4>Tuesday</h4>
                             <h4>Wednesday</h4>
                             <p>
-                                A thought that accured to me was that if we were also migrating away from vrealize and hosting those VM's required for those papers in azure that we would require some way for students to connect to them 
+                                A thought that accured to me was that if we were also migrating away from vRealize and hosting those virtual machines required for those papers in azure that we would require some way for students to connect to them 
                                 <br><br>
-                                I brought this concern up with Rob and that we might need to create a gateway server so that students could access the VM's used for systems papers
+                                I brought this concern up with Rob and that we might need to create a gateway server so that students could access the virtual macgines used for systems papers
                                 <br><br>
                                 After bringing up this concern i went and checked if Azure offers any kind of on premises solution to which they do <a href="https://docs.microsoft.com/en-us/microsoft-365/enterprise/connect-an-on-premises-network-to-a-microsoft-azure-virtual-network?view=o365-worldwide">https://docs.microsoft.com/en-us/microsoft-365/enterprise/connect-an-on-premises-network-to-a-microsoft-azure-virtual-network?view=o365-worldwide</a> 
                                 <br><br>
-                                A possible solution is to merge the current OP on-premises network with an azure virtual network allowing students to connect to VM's hosted in azure while they are on an OP computer but
+                                A possible solution is to merge the Otago Polytechnic network with a azure virtual network allowing students to connect to VM's hosted in azure while they are on an OP computer but they would still require a gateway to connect when they are off premises
                                 <br><br>
-                                I brought up the possible use of a on prem solution with Rob
+                                Another possible solution is to give every VM a public ip that the student could use to connect to but this also has a huge cost to it and by giving it a public ip it opens it up to attack
                                 <br><br>
-                                ways that this could be achieved
-                                <br><br>
-                                Give every VM a public ip that the student could use to connect to but this also has a huge cost to it and by giving it a public ip it opens it up to attack
-                                <br><br>
-                                Have something simillar to the kate server currently in use at otao polytechnic, were you would login to that server with unique credentials then ssh from that server to your required VM, this option would be the best in terms of cost as you would only need a public ip on the gateway server, it also adds the benefit of security as you only need to secure the gateway from unauthorized access. this would be my preferred option.
+                                Alternatively a solution is to have something simillar to the kate server currently in use at otao polytechnic, were you would login to that server with unique credentials then ssh from that server to your required VM, this option would be the best in terms of cost as you would only need a public ip on the gateway server, it also adds the benefit of security as you only need to secure the gateway from unauthorized access. this would be my preferred option.
                                 <br><br>
                                 Azure offers the ability to easily create peerings between networks in your azure subscription allowing for devices in different networks and subnets to communicate with each other this would offer alot more flexability when it comes to configuring specific paper related VMs, you could put additional rules on the security paper network in order to restrict the ability of accedentially sending commands to an undesired target
                             </p>
