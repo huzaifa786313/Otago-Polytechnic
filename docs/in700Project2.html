@@ -308,7 +308,7 @@
                         <div class="card-body">
                             <h4>Tuesday</h4>
                             <p>
-                                Today we were informed that the trip to CCL was going to proceed but it was going to be pushed back till later in October most likely the forth week.
+                                Today we were informed that the trip to CCL was going to proceed but it was going to be pushed back till later in October most likely the fourth week.
                             </p>
                             <h4>Friday</h4>
                             <p>
@@ -331,7 +331,7 @@
                                 <br><br>
                                 A possible solution is to merge the Otago Polytechnic network with a azure virtual network allowing students to connect to VM's hosted in azure while they are on an OP computer but they would still require a gateway to connect when they are off premises
                                 <br><br>
-                                Another possible solution is to give every VM a public ip that the student could use to connect to but this also has a huge cost to it and by giving it a public ip it opens it up to attack
+                                Another possible solution is to give every VM a public ip that the student could use to connect to, but this also has a huge cost to it and by giving it a public ip it opens it up to attack
                                 <br><br>
                                 Alternatively a solution is to have something simillar to the kate server currently in use at otao polytechnic, were you would login to that server with unique credentials then ssh from that server to your required VM, this option would be the best in terms of cost as you would only need a public ip on the gateway server, it also adds the benefit of security as you only need to secure the gateway from unauthorized access. this would be my preferred option.
                                 <br><br>
@@ -391,20 +391,16 @@
                         <div class="card-body">
                             <h4>Monday</h4>
                             <p>
-                                Azure cli
+                                I was looking into come of the other features you can do with the Azure command-line interface (Azure CLI) and i had the idea that you could use it to check to see if a user is in a specific resource group and if they were in that resource group then they would beable to create a VM.
                                 <br><br>
-                                After looking into azure cli there are commands that you can use to see if users have access to resources, you could use this to perform checks and if they are in the resource they can create a VM 
-                                <br><br>
-                                Using the csv or the variables generating from the VM creation website you can use azure cli
+                                My plan would be to combine the VM creation website created before the holidays and use the output from that to run a script that would run my Ansible playbook that would run then run a check using Azure CLI and if it came back it would create a VM and assign it to that user.
                             </p>
-                            <h4>Tuesday</h4>
-                            <p></p>
-                            <h4>Wednesday</h4>
                             <h4>Thursday</h4>
                             <p>
-                                Today we had a speaker from onecall a local dunedin IT company where he talked about what onecall *EXPAND*
+                                Today we had Mark Waller from OneCall a IT company in Dunedincome speak to us about what it is he works on and some of the skills they look for. <a href="https://www.onecall.net.nz/">https://www.onecall.net.nz/</a>
+                                <br><br>
+                                He talked about how services are heading towards a subscription based business and that while the future is heading towards cloud there will always be a need for physical infrastructure and that a hybrid solution of cloud and physical will be popular
                             </p>
-                            <h4>Friday</h4>
                         </div>
                     </div>
                     <div class="card">
@@ -414,41 +410,41 @@
                         <div class="card-body">
                             <h4>Monday</h4>
                             <p>
-                                This morning i talked with yan about the work she did with the vmware webstore and using op login credentials to sign into it, my plan was to see if it was possible to copy the code that she used for this and intergrate it into the simple webpage that issac created in order to verify that it was infact an otago polytechnic student, i would then expand on this by creating a few scripts that would take 
+                                This morning i talked with Yan about the work she did with the VMWare webstore and being able to use Otago Polytechnic login credentials to sign into it, my plan was to see if it was possible to copy the code that she used for this and intergrate it into the simple webpage that Isaac created in order to verify that it was infact an Otago Polytechnic student, you could then expand on this by creating a few scripts that would take perform checks
                                 <br><br>
-                                get the login that the student used then using azure cli commands take that username and see if they were in any resources groups and if it came back positive then they would beable to create a VM
+                                Get the login that the student used then using Azure CLI commands take that username and see if they were in any resources groups and if it came back positive then they would beable to create a VM
                                 <br><br>
-                                in order to improve security on this and usability by the students i wanted to see 
+                                After talking more with this with Rob we came to the conclussion that another idea would be to.
                                 <br><br>
-                                after talking more with this with Rob we came to the conclussion that another idea would be to
+                                Create a resource group that would house the virtual network i.e. a resource group named "IN724" and then give every student in that paper a resource group you would then link the VM they create in their own resource group to that of the paper resource group by using that network for the VM's network, this would allow for students to beable to sign in to azure and restart or turn off there VM's while not being able to touch other students VMs
                                 <br><br>
-                                create a resource group that would house the virtual network i.e. a resource group named "IN718" and then give every student in that paper a resource group you would then link the VM they create in their own resource group to that of the paper resource group by using that network for the VM's network, this would allow for students to beable to sign in to azure and restart or turn off there VM's while not being able to touch other students VMs
-                                <br><br>
-                                doing it this way is the most logical choice but you would need a handful of scripts to make sure that every *SOMETHING*
+                                Doing it this way is the most logical choice and would allow you to have more control over the networks, you could have specific firewalls on different networks based on what they needed to achieve.
                             </p>
                             <h4>Tuesday</h4>
                             <p>
+                                A ticket came in asking for a storage increase on a IoT Server, it took us a bit to figure out where it was stored because we wern't sure if it was local, vRealize or Azure. We discovered that it was stored in vRealize but as Operations and Security members we couldn't make any changes to it
+                                <br><br>
                                 <img src="img/iotvm2.PNG" width=100%><br>
-                                I talked to Rob about getting the permissions of the server changed so that someone in the Ops team was the owner, my theory on this was that if one of us were the owner we would beable to make changes such as increasing the disk size of the VM. It turns out even as owner we couldn't make this change so i had to go back to Rob to talk with him and see if he could add an additional disk to the server which he was able to do.
+                                I talked to Rob about getting the permissions of the server changed so that someone in the Operations and Security team was the owner, my theory on this was that if one of us were the owner we would beable to make changes such as increasing the disk size of the VM. It turns out even as owner we couldn't make this change so i had to go back to Rob to talk with him and see if he could add an additional disk to the server which he was able to do.
                                 <br><br>
                                 Now that the IoT server had the additional disk, it just needed to be configured so that they could use it and unfortunately we didnt know the login credentials so i updated the ticket informing them of the current progress and that we would require credentials to login  
                             </p>
                             <h4>Wednesday</h4>
                             <p>
-                                Since i would now need to configure the disk on the IoT server i decided i would mess around with snapshots, so i created a ubuntu vm using VM workstation and took a snapshot of it, having never messed around with snapshots before it was extremely easy to figure out 
+                                Since i would now need to configure the disk on the IoT server i decided i would mess around with snapshots, so i created an ubuntu vm using VM workstation and took a snapshot of it, having never messed around with snapshots before it was extremely easy to figure out 
                                 <br><br>
                                 <img src="img/snapshot.PNG" width=100%>
                                 <br><br>
-                                the only thing i wasn't aware of atleast with snapshots in VM workstation is that it will remove network capability untill you revert it.
+                                The only thing i wasn't aware of atleast with snapshots in VM workstation is that it will remove network capability untill you revert it.
                             </p>
                             <h4>Thursday</h4>
                             <p>
-                                After talking with Faisal we came to the conclussion that asking the client for their login credentials wasn't the best in terms of security practice, so instead we were to ask the client if we could make an admin account on their server so that we had access, so we had to update the ticket requesting permission to make an admin account on this server
+                                After talking with Faisal we came to the conclussion that asking the client for their login credentials wasn't the best in terms of security practice, so instead we were to ask the client if we could make an admin account on their server so that we had access, so we had to update the ticket requesting permission to make an admin account on this server.
+                                <br><br>
+                                <img src="img/ticketing2.PNG" width=100%>
+                                <br><br>
+                                We were notified of a breach in one of the VM's using a public ip
                             </p>
-                            <p>
-                                We were notified of a breach in one of the VM's using a public ip 
-                            </p>
-                            <h4>Friday</h4>
                         </div>
                     </div>
                     <div class="card">
@@ -460,26 +456,21 @@
                             <p>
                                 Labour Day
                             </p>
-                            <h4>Tuesday</h4>
-                            <p>
-                                day off
-                            </p>
-                            <h4>Wednesday</h4>
-                            <p>
-
-                            </p>
                             <h4>Thursday</h4>  
                             <p>
-                                i took what i learnt in the virtualisation assignment 3 and containerized issac's flaskapp so that it would run
-                            </p>
-                            <img src="img/requestsite.PNG" width=100%>
-                            <p>
-
+                                I remebered that Isaac's website was made using flask and that i was able to create a docker container flaskapp for the virtualisation assignment 3 so i will attempt to put the VM creation flaskapp in a docker container and then because the server that it is located on has a public ip i'll be able to see if i can connect to it.
+                                <br><br>
+                                I managed to get the VM creation website to deploy
+                                <br><br>
+                                <img src="img/requestsite.PNG" width=100%>
+                                <br><br>
+                                If i can get everything done in time i will come back to this and try to implment my plan of creating resources using this site.
                             </p>
                             <h4>Friday</h4>
                             <p>
-                                docker redirect user creation
                                 After hearing back from Faisal in regards to the IoT server that requires more disk space i went and spoke to Rob about him adding an admin account onto their server so that we could login and configure the disk, Rob had to change the student accounts password from what it was to the polytech default password after this i was able to login using it and create an admin account acccording to the details stored in the KeePass file.
+                                <br><br>
+                                As no one else in the Operations group wanted to actually configure it, i ended up with the task but as i had to leave early it wouldnt be done until Monday morning.
                             </p>
                         </div>
                     </div>
@@ -538,7 +529,7 @@
                             </p>
                             <h4>Tuesday</h4>
                             <p>
-                                Focusing on finishing my portfolio
+                                Today i spent most of the day finishing up my project portfolio
                             </p>
                             <h4>Wednesday</h4>
                             <p>
