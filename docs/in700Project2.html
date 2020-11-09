@@ -181,15 +181,23 @@
                                 The finalised playbooks are gitlabStage1.yml and gitlabStage2MKII.yml, i left the previous versions i was working on in the folder as they may prove useful in the future
                             </p>
                             <h4>Wednesday</h4>
-                            <p>An update to the IoT Ubuntu ticket came in </p>
-                            <p>The IoTData VM created in Azure last week needed ports 80 and 443 open thankfully in Azure there is an easy interface to open up ports</p>
-                            <img src="img/ports.PNG" width=100%>
-                            <p>I also did ufw allow on those ports on the IoTData server just to be sure and confirmed with Jordan </p>
+                            <p>
+                                An update to the IoT Ubuntu ticket came in 
+                                <br><br>
+                                The IoTData VM created in Azure last week needed ports 80 and 443 open thankfully in Azure there is an easy interface to open up ports.
+                                <br>
+                                <img src="img/ports.PNG" width=100%>
+                                <br><br>
+                                I also did ufw allow on those ports on the IoTData server just to be sure and confirmed with Jordan the everything was now working for him.
+                            </p>
                             <h4>Thursday</h4>
                             <p>
                                 Now that i have managed to create a VM in azure using an ansible playbook i want to expand upon this by creating multiple copies of a resource, if i can figure this out it may prove useful in automating the creation of VM's for such papers as IN724 Security and IN734 Operations Engineering 
                             </p>
                             <h4>Friday</h4>
+                            <p>
+                                I have put the gitlab automation on the backburner as it turns out we are extremely likely to be discontinuing it.
+                            </p>
                         </div>
                     </div>
                     <div class="card">
@@ -198,17 +206,23 @@
                         </div>
                         <div class="card-body">
                             <h4>Monday</h4>
-                            <p>Anthony Locke asked for my assistance in creating a minecraft server for him as he was unable to host one locally at his flat, so since Azure offers a free 30 day trial i decided that it would be better to host it there and use Azures ability to give VM's a public ip and dns to allow for connectivity instead of havin to configure commerical routers, the following guide was what i used to install minecraft onto a server <a href="https://minecraft.gamepedia.com/Tutorials/Setting_up_a_server">https://minecraft.gamepedia.com/Tutorials/Setting_up_a_server</a>
-                            <br>
-                            
+                            <p>
+                                Anthony Locke asked for my assistance in creating a minecraft server for him as he was unable to host one locally at his flat, so since Azure offers a free 30 day trial i decided that it would be better to host it there and use Azures ability to give VM's a public ip and dns to allow for connectivity instead of having to configure commerical routers and port forwarding, the following guide was what i used to install minecraft onto a server <a href="https://minecraft.gamepedia.com/Tutorials/Setting_up_a_server">https://minecraft.gamepedia.com/Tutorials/Setting_up_a_server</a>
+                                <br>
+
                             </p>
                             <h4>Tuesday</h4>
                             <h4>Wednesday</h4>
                             <h4>Thursday</h4>
-                            <p>Adon informed us that there would be a trip planned to Christchurch based IT company Compuer Concepts Limited(CCL) for the project 2 Ops team if there wasnt another lockdown</p>
+                            <p>
+                                Adon informed us that there would be a trip planned to the Christchurch based IT company Compuer Concepts Limited(CCL) for the project 2 Operations and Security team if there wasnt another lockdown
+                            </p>
                             <h4>Friday</h4>
-                            <p>I helped Tim create a minecraft server in Azure *EXPAND*</p>
-
+                            <p>
+                                Tim came to me to request if i could create a Minecraft server for him which i was happy to do as it wasn't a very complex process and because he is also a Otago polytechnic student he had a Azure free trial avaliable to him
+                                <br><br>
+                                Because i already created Anthony's Minecraft server twice i was very familiar with it so it only took me 5 minutes to get Tim's server configured and working
+                            </p>
                         </div>
                     </div>
                     <div class="card">
@@ -217,13 +231,19 @@
                         </div>
                         <div class="card-body">
                             <h4>Monday</h4>
-                            <p>I had to assist Tim with his minecraft as he wanted to convert his server to a modded one which required more configuration and dealing with having to have multiple things with the correct versions</p>
+                            <p>
+                                I had to assist Tim with his minecraft as he wanted to convert his server to a modded one which required more configuration and dealing with having to have multiple things with the correct versions
+                                <br>
+                                While this was stressful trying to figure out how to get it working
+                            </p>
                             <h4>Tuesday</h4>
                             <h4>Wednesday</h4>
-                            <p>After messing around with trying to create bridges on my Azure hosted VM's and bricking them so i couldn't ssh back onto them to revert the mistake i discovered that Azure has a useful feature called "Serial console"<br>
-                            <img src="img/console.PNG">
-                            <br><br>
-                            this allows you to connect directly onto your VM much like if you were to plug a cable directly into your server this allow me to revert the bridging error i made instead of recreating a new VM and updating that to the point before i did the bridge
+                            <p>
+                                After messing around with trying to create bridges on my Azure hosted VM's and bricking them so i couldn't ssh back onto them to revert the mistake i discovered that Azure has a useful feature called "Serial console"
+                                <br>
+                                <img src="img/console.PNG">
+                                <br><br>
+                                This allows you to connect directly onto your VM much like if you were to plug a cable directly into your server this allow me to revert the bridging error i made instead of recreating a new VM and updating that to the point before i did the bridge
                             </p>
                             <h4>Thursday</h4>
                             <h4>Friday</h4>
@@ -235,14 +255,17 @@
                         </div>
                         <div class="card-body">
                             <h4>Monday</h4>
-                            <p>Today we had professor Martin Hohmann-Marriott come in to talk to us about what hes been working on in the open source field *EXPAND*</p>
+                            <p>
+                                Today we had professor Martin Hohmann-Marriott come in to talk to us about what hes been working on in the open source field *EXPAND*
+                            </p>
                             <h4>Tuesday</h4>
                             <h4>Wednesday</h4>
                             <h4>Thursday</h4>
                             <h4>Friday</h4>
-                            <p>D312 check
+                            <p>
+                                D312 check
                                 As a standing request from Rob we had to check the computer kits in D312 to make sure that they were working correctly and if anything wasn't we were to document it and try to fix it
-                                <br>
+                                <br><br>
                                 Jae and I identified a few machines that needed network drivers installed which we did by downloaded the driver on another machine onto a usb and transfering the drivers to the effected machine, we also discovered a few kits that were not displaying video, we tried a few different fixes such as making sure everything was plugged in correctly internally as well as reseating the ram and other components, unfortunately this did not work so we took the downstairs to the work room to be worked on next week as it was approaching the end of day
                             </p>
                         </div>
