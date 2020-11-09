@@ -349,13 +349,17 @@
                                 Azure offers the ability to easily create peerings between networks in your azure subscription allowing for devices in different networks and subnets to communicate with each other this would offer alot more flexability when it comes to configuring specific paper related VMs, you could put additional rules on the security paper network in order to restrict the ability of accedentially sending commands to an undesired target
                             </p>
                             <h4>Thursday</h4>
-                            <p>I talked to Issac Underwood about the possibility of creating a simple web page that would ask the user to enter their name and store that, this was going to serve as the basis of getting the user to create VM's in azure</p>
-                            <p>using ansible i managed to sucsessfully create a playbook that would allow for the bulk creation of VM's in Azure based on the number that the user entered i was then able to configure this so that it would pair that network with my current network using Azure's network peerings</p>  
                             <p>
-                                I have sucsessfully managed to create Azure resources based off a csv file
+                                This morning I have sucsessfully managed to create Azure resources based off a csv file
+                                <br><br>
+                                I talked to Issac Underwood about the possibility of creating a simple web page that would ask the user to enter their name and store that, this was going to serve as the basis of getting the user to create VM's in azure
+                                <br><br>
+                                using ansible i managed to sucsessfully create a playbook that would allow for the bulk creation of VM's in Azure based on the number that the user entered i was then able to configure this so that it would pair that network with my current network using Azure's network peerings
+                                <br><br>                
                             </p>   
                             <h4>Friday</h4>
-                            <p>After thinking about how users were going to sign into the VM creation website i remebered that the help.ict.op.ac.nz site had a link that would take you to a VMWare site where you would sign in using your login credentials but unfortunately it was no longer up, so i had to ask Rob if he had the original code for it so i could reuse it and just change it so if they logged in it would instead redirect them to the creation website, it turns out that it was updated by yan recently i was going to speak to yan about it after we got back from the holidays
+                            <p>
+                                After thinking about how users were going to sign into the VM creation website i remebered that the help.ict.op.ac.nz site had a link that would take you to a VMWare site where you would sign in using your login credentials but unfortunately it was no longer up, so i had to ask Rob if he had the original code for it so i could reuse it and just change it so if they logged in it would instead redirect them to the creation website, it turns out that it was updated by yan recently i was going to speak to yan about it after we got back from the holidays
                             </p>
                         </div>
                     </div>
@@ -367,7 +371,9 @@
                             <h4>Monday</h4>
                             <h4>Tuesday</h4>
                             <h4>Wednesday</h4>
-                            <p>This Morning i was informed that the CCL trip was going ahead next week and that Faisal would like us to achieve level 1 and 2 of Fortinet NSE Certification before the trip, thankfully it was free to do</p>
+                            <p>
+                                This Morning i was informed that the CCL trip was going ahead next week and that Faisal would like us to complete the level 1 and 2 of Fortinet NSE Certification before the trip, thankfully it was free to do
+                            </p>
                             <h4>Thursday</h4>
                             <h4>Friday</h4>
                         </div>
@@ -399,7 +405,9 @@
                             <p></p>
                             <h4>Wednesday</h4>
                             <h4>Thursday</h4>
-                            <p>Today we had a speaker from onecall a local dunedin IT company where he talked about what onecall *EXPAND*</p>
+                            <p>
+                                Today we had a speaker from onecall a local dunedin IT company where he talked about what onecall *EXPAND*
+                            </p>
                             <h4>Friday</h4>
                         </div>
                     </div>
@@ -409,30 +417,41 @@
                         </div>
                         <div class="card-body">
                             <h4>Monday</h4>
-                            <p>This morning i talked with yan about the work she did with the vmware webstore and using op login credentials to sign into it, my plan was to see if it was possible to copy the code that she used for this and intergrate it into the simple webpage that issac created in order to verify that it was infact an otago polytechnic student, i would then expand on this by creating a few scripts that would take <br><br>
-                            get the login that the student used then using azure cli commands take that username and see if they were in any resources groups and if it came back positive then they would beable to create a VM<br><br>
-                            in order to improve security on this and usability by the students i wanted to see <br>
-                            after talking more with this with Rob we came to the conclussion that another idea would be to<br>
-                            create a resource group that would house the virtual network i.e. a resource group named "IN718" and then give every student in that paper a resource group you would then link the VM they create in their own resource group to that of the paper resource group by using that network for the VM's network, this would allow for students to beable to sign in to azure and restart or turn off there VM's while not being able to touch other students VMs
-                            <br> doing it this way is the most logical choice but you would need a handful of scripts to make sure that every *SOMETHING* <br>
-
-
+                            <p>
+                                This morning i talked with yan about the work she did with the vmware webstore and using op login credentials to sign into it, my plan was to see if it was possible to copy the code that she used for this and intergrate it into the simple webpage that issac created in order to verify that it was infact an otago polytechnic student, i would then expand on this by creating a few scripts that would take 
+                                <br><br>
+                                get the login that the student used then using azure cli commands take that username and see if they were in any resources groups and if it came back positive then they would beable to create a VM
+                                <br><br>
+                                in order to improve security on this and usability by the students i wanted to see 
+                                <br><br>
+                                after talking more with this with Rob we came to the conclussion that another idea would be to
+                                <br><br>
+                                create a resource group that would house the virtual network i.e. a resource group named "IN718" and then give every student in that paper a resource group you would then link the VM they create in their own resource group to that of the paper resource group by using that network for the VM's network, this would allow for students to beable to sign in to azure and restart or turn off there VM's while not being able to touch other students VMs
+                                <br><br>
+                                doing it this way is the most logical choice but you would need a handful of scripts to make sure that every *SOMETHING*
                             </p>
                             <h4>Tuesday</h4>
                             <p>
-                                    <img src="img/iotvm2.PNG" width=100%><br>
+                                <img src="img/iotvm2.PNG" width=100%><br>
                                 I talked to Rob about getting the permissions of the server changed so that someone in the Ops team was the owner, my theory on this was that if one of us were the owner we would beable to make changes such as increasing the disk size of the VM. It turns out even as owner we couldn't make this change so i had to go back to Rob to talk with him and see if he could add an additional disk to the server which he was able to do.
                                 <br><br>
                                 Now that the IoT server had the additional disk, it just needed to be configured so that they could use it and unfortunately we didnt know the login credentials so i updated the ticket informing them of the current progress and that we would require credentials to login  
                             </p>
                             <h4>Wednesday</h4>
                             <p>
-                                Since i would now need to configure the disk on the IoT server i decided i would mess around with snapshots, so i created a ubuntu vm using VM workstation and took a snapshot of it, having never messed around with snapshots before it was extremely easy to figure out <br><img src="img/snapshot.PNG" width=100%><br>
+                                Since i would now need to configure the disk on the IoT server i decided i would mess around with snapshots, so i created a ubuntu vm using VM workstation and took a snapshot of it, having never messed around with snapshots before it was extremely easy to figure out 
+                                <br><br>
+                                <img src="img/snapshot.PNG" width=100%>
+                                <br><br>
                                 the only thing i wasn't aware of atleast with snapshots in VM workstation is that it will remove network capability untill you revert it.
                             </p>
                             <h4>Thursday</h4>
-                            <p>After talking with Faisal we came to the conclussion that asking the client for their login credentials wasn't the best in terms of security practice, so instead we were to ask the client if we could make an admin account on their server so that we had access, so we had to update the ticket requesting permission to make an admin account on this server</p>
-                            <p>We were notified of a breach in one of the VM's using a public ip </p>
+                            <p>
+                                After talking with Faisal we came to the conclussion that asking the client for their login credentials wasn't the best in terms of security practice, so instead we were to ask the client if we could make an admin account on their server so that we had access, so we had to update the ticket requesting permission to make an admin account on this server
+                            </p>
+                            <p>
+                                We were notified of a breach in one of the VM's using a public ip 
+                            </p>
                             <h4>Friday</h4>
                         </div>
                     </div>
@@ -442,17 +461,28 @@
                         </div>
                         <div class="card-body">
                             <h4>Monday</h4>
-                            <p>Labour Day</p>
+                            <p>
+                                Labour Day
+                            </p>
                             <h4>Tuesday</h4>
-                            <p>day off</p>
+                            <p>
+                                day off
+                            </p>
                             <h4>Wednesday</h4>
-                            <p></p>
+                            <p>
+
+                            </p>
                             <h4>Thursday</h4>  
-                            <p>i took what i learnt in the virtualisation assignment 3 and containerized issac's flaskapp so that it would run</p>
+                            <p>
+                                i took what i learnt in the virtualisation assignment 3 and containerized issac's flaskapp so that it would run
+                            </p>
                             <img src="img/requestsite.PNG" width=100%>
-                            <p></p>
+                            <p>
+
+                            </p>
                             <h4>Friday</h4>
-                            <p>docker redirect user creation
+                            <p>
+                                docker redirect user creation
                                 After hearing back from Faisal in regards to the IoT server that requires more disk space i went and spoke to Rob about him adding an admin account onto their server so that we could login and configure the disk, Rob had to change the student accounts password from what it was to the polytech default password after this i was able to login using it and create an admin account acccording to the details stored in the KeePass file.
                             </p>
                         </div>
@@ -463,24 +493,35 @@
                         </div>
                         <div class="card-body">
                             <h4>Monday</h4>
-                            <p>docker redirect<br>After failing to combine the 2 disks into one logical disk i decided to look over the previous semester's gitlab documentation and discovered that a previous group had done something simillar with redirecting docker to a larger disk
+                            <p>
+                                docker redirect
+                                <br><br>
+                                After failing to combine the 2 disks into one logical disk i decided to look over the previous semester's gitlab documentation and discovered that a previous group had done something simillar with redirecting docker to a larger disk
                                 <br><br>
                                 After this experience i believe that other project teams shouldn't be coming to the Ops team to solve their problems if they made the server instead they should come to us and request that we make it for them so that we already have an admin account setup on it to avoid the long wait time before the issue was resolved
-                            
                             </p>
                             <img src="img/newdisk.PNG" width=100% >
                             <h4>Tuesday</h4>
-                            <p>zero touch provisoning</p>
+                            <p>
+                                zero touch provisoning
+                            </p>
                             <h4>Wednesday</h4>
                             <h4>Thursday</h4>
-                            <p>today we had a Q&A with nick baty on security 
-                                <br>
-                                he talked about how he got into IT security<br>that you dont start out in security<br>you migrate from another field
+                            <p>
+                                today we had a Q&A with nick baty on security 
+                                <br><br>
+                                he talked about how he got into IT security
+                                <br><br>
+                                that you dont start out in security
+                                <br><br>
+                                you migrate from another field
                                 <br><br>
                                 I followed up with Cameron to confirm with him if he was happy about the solution and closed the ticket, i also noticed that the IoTData ticket from August was still opened so i also closed that as that ticket had been resolved
                             </p>
                             <h4>Friday</h4>
-                            <p>I created a linux VM in azure for Damian Pang so that he could finish his docker virtualisation assignment, this only took 30 seconds as i still had my generic linux vm creation ansible playbook</p>
+                            <p>
+                                I created a linux VM in azure for Damian Pang so that he could finish his docker virtualisation assignment, this only took 30 seconds as i still had my generic linux vm creation ansible playbook
+                            </p>
                         </div>
                     </div>
                     <div class="card">
@@ -491,7 +532,7 @@
                             <h4>Monday</h4>
                             <p>
                                 Showcase
-                                <br>
+                                <br><br>
                                 Raspberry Pi wifi?
                                 <br><br>
                                 I was messing around with my docker assignment from virtualisation and i wanted to see if i could deploy it and connect to it using a public ip
